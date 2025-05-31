@@ -71,6 +71,16 @@
       gap: 15px;
       width: 100%;
       max-width: 340px;
+      text-align: center;
+    }
+
+    .server-ip {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--orange-light);
+      background-color: rgba(255, 123, 0, 0.1);
+      padding: 12px;
+      border-radius: 12px;
     }
 
     a.button {
@@ -90,6 +100,17 @@
     a.button:hover {
       background-color: var(--orange-light);
       box-shadow: 0 6px 15px rgba(255, 123, 0, 0.6);
+    }
+
+    .donate-link {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+
+    .donate-link a {
+      color: var(--orange-light);
+      text-decoration: underline;
+      font-weight: 500;
     }
 
     .footer {
@@ -120,7 +141,8 @@
 
   <div class="links">
     <a class="button" href="https://discord.gg/cZVHu9dCw2" target="_blank">🎧 Discord beitreten</a>
-    <a class="button" href="minecraft://connect/EpicCity.eu" target="_blank">🎮 Jetzt joinen: EpicCity.eu</a>
+    <div class="server-ip">Server IP: <strong>EpicCity.eu</strong></div>
+    <div class="donate-link">❤️ Unterstütze uns: <a href="https://mc-host24.de/donate/epiccity" target="_blank">Jetzt spenden</a></div>
   </div>
 
   <div class="footer">
