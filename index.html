@@ -3,99 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EpicCity.eu - Linktree</title>
+  <title>EpicCity.eu - Minecraft Server</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #1e1e1e;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff3e0;
+    :root {
+      --orange: #ff7b00;
+      --orange-light: #ffa447;
+      --background: #121212;
+      --text: #f4f4f4;
+      --secondary: #cccccc;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
+      padding: 30px 20px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 123, 0, 0.6);
+      margin-bottom: 20px;
+      border: 3px solid var(--orange);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--orange);
       text-align: center;
     }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.25em;
-      color: #ff6f00; /* kräftiges Orange */
-      letter-spacing: 3px;
-      text-shadow: 0 0 10px #ff6f00aa;
-    }
+
     p.description {
-      font-size: 1.3rem;
-      margin-bottom: 2em;
-      color: #ffb74d;
-      text-shadow: 0 0 5px #ffb74daa;
+      font-size: 1.1rem;
+      text-align: center;
+      color: var(--secondary);
+      margin-bottom: 25px;
     }
+
+    ul.features {
+      list-style: none;
+      margin-bottom: 30px;
+      color: var(--orange-light);
+    }
+
+    ul.features li {
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
     .links {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 15px;
       width: 100%;
       max-width: 340px;
     }
+
     a.button {
-      background: #ff6f00;
-      color: #fff3e0;
-      padding: 16px 28px;
-      border-radius: 35px;
+      display: block;
+      text-align: center;
+      background-color: var(--orange);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 50px;
       text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 700;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(255, 111, 0, 0.6);
-    }
-    a.button:hover {
-      background: #ffa040;
-      box-shadow: 0 7px 20px rgba(255, 160, 64, 0.9);
-    }
-    .footer {
-      margin-top: 3.5em;
-      font-size: 0.9rem;
-      color: #ffa040aa;
-    }
-    ul.features {
-      list-style: none;
-      padding: 0;
-      margin-top: 1em;
-      margin-bottom: 2em;
-      color: #ffb74d;
-      text-align: left;
-      max-width: 340px;
-      margin-left: auto;
-      margin-right: auto;
       font-weight: 600;
-    }
-    ul.features li {
-      margin: 10px 0;
       font-size: 1.1rem;
-      text-shadow: 0 0 5px #ffb74d99;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 123, 0, 0.4);
+    }
+
+    a.button:hover {
+      background-color: var(--orange-light);
+      box-shadow: 0 6px 15px rgba(255, 123, 0, 0.6);
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: var(--secondary);
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
+
+  <!-- Server Logo -->
+  <div class="logo">
+    <img src="https://p16-pu-sign-no.tiktokcdn-eu.com/tos-no1a-avt-0068c001-no/e07e2fee64e2887e0d4bf58195b5f357~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=39735839&x-expires=1748851200&x-signature=F2n6TZX%2BnESGWW8lSD%2BTCCZptWI%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a" alt="EpicCity Logo">
+  </div>
+
   <h1>EpicCity.eu</h1>
-  <p class="description">Dein Minecraft CityBuild Server mit Chestshop, Events, Crates & nettem Team!</p>
+  <p class="description">Minecraft CityBuild Server mit Stil – erlebe Chestshops, Events, Crates und ein aktives Team!</p>
 
   <ul class="features">
     <li>🏙️ CityBuild</li>
     <li>💰 Chestshop</li>
-    <li>🎉 Events</li>
-    <li>🎁 Crates</li>
-    <li>🤝 Nette Teammitglieder</li>
+    <li>🎉 Events & Giveaways</li>
+    <li>🎁 Crates mit Belohnungen</li>
+    <li>🤝 Aktives & freundliches Team</li>
   </ul>
 
   <div class="links">
-    <a class="button" href="https://discord.gg/cZVHu9dCw2" target="_blank" rel="noopener noreferrer">Discord Server beitreten</a>
-    <a class="button" href="minecraft://connect/EpicCity.eu" target="_blank" rel="noopener noreferrer">Minecraft Server beitreten: EpicCity.eu</a>
+    <a class="button" href="https://discord.gg/cZVHu9dCw2" target="_blank">🎧 Discord beitreten</a>
+    <a class="button" href="minecraft://connect/EpicCity.eu" target="_blank">🎮 Jetzt joinen: EpicCity.eu</a>
   </div>
 
   <div class="footer">
-    &copy; 2025 EpicCity.eu
+    &copy; 2025 EpicCity Minecraft Server
   </div>
 </body>
 </html>
