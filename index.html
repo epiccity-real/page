@@ -1,152 +1,623 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EpicCity.eu - Minecraft Server</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --orange: #ff7b00;
-      --orange-light: #ffa447;
-      --background: #121212;
-      --text: #f4f4f4;
-      --secondary: #cccccc;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpicCity.eu - Premium Minecraft CityBuild Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --background: #0f0f23;
+            --background-light: #1a1a2e;
+            --surface: #16213e;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #f59e0b;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
 
-    body {
-      background-color: var(--background);
-      color: var(--text);
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 20px;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .logo img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255, 123, 0, 0.6);
-      margin-bottom: 20px;
-      border: 3px solid var(--orange);
-    }
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f0f23);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: var(--orange);
-      text-align: center;
-    }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    p.description {
-      font-size: 1.1rem;
-      text-align: center;
-      color: var(--secondary);
-      margin-bottom: 25px;
-    }
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-    ul.features {
-      list-style: none;
-      margin-bottom: 30px;
-      color: var(--orange-light);
-    }
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
 
-    ul.features li {
-      margin: 8px 0;
-      font-weight: 500;
-    }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
 
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 340px;
-      text-align: center;
-    }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
 
-    .server-ip {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--orange-light);
-      background-color: rgba(255, 123, 0, 0.1);
-      padding: 12px;
-      border-radius: 12px;
-    }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-    a.button {
-      display: block;
-      text-align: center;
-      background-color: var(--orange);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(255, 123, 0, 0.4);
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    a.button:hover {
-      background-color: var(--orange-light);
-      box-shadow: 0 6px 15px rgba(255, 123, 0, 0.6);
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    .donate-link {
-      margin-top: 20px;
-      font-size: 1rem;
-    }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    .donate-link a {
-      color: var(--orange-light);
-      text-decoration: underline;
-      font-weight: 500;
-    }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
-    .footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: var(--secondary);
-      opacity: 0.7;
-    }
-  </style>
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Server Info */
+        .server-info {
+            background: var(--surface);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .server-ip {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background-light);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features {
+                padding: 4rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .server-ip {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
 
-  <!-- Server Logo -->
-  <div class="logo">
-    <img src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/67f204e3f5253a9d8485c88fcca8ed38~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=d6f4b0b1&x-expires=1748880000&x-signature=biZPKcPpq6vXIHXfRi8YSztWJrk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a" alt="EpicCity Logo">
-  </div>
+    <header>
+        <nav>
+            <div class="logo">EpicCity</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+    <a href="https://discord.gg/cZVHu9dCw2" class="discord-btn" target="_blank">
+        Discord
+    </a>
+    <a href="https://mc-host24.de/donate/epiccity" class="discord-btn" target="_blank">
+        Spenden
+    </a>
+            </ul>
+        </nav>
+    </header>
 
-  <h1>EpicCity.eu</h1>
-  <p class="description">Minecraft CityBuild Server mit Stil – erlebe Chestshops, Events, Crates und ein aktives Team!</p>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>EpicCity.eu</h1>
+                <p>Der ultimative Minecraft CityBuild Server mit Stil – erlebe epische Chestshops, aufregende Events, wertvolle Crates und ein unschlagbares Team!</p>
+<a href="https://discord.gg/cZVHu9dCw2" class="btn btn-secondary">
+    <i class="fab fa-discord"></i> Discord Beitreten
+</a>
 
-  <ul class="features">
-    <li>🏙️ CityBuild</li>
-    <li>💰 Chestshop</li>
-    <li>🎉 Events & Giveaways</li>
-    <li>🎁 Crates mit Belohnungen</li>
-    <li>🤝 Aktives & freundliches Team</li>
-  </ul>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-  <div class="links">
-    <a class="button" href="https://discord.gg/cZVHu9dCw2" target="_blank">🎧 Discord beitreten</a>
-    <div class="server-ip">Server IP: <strong>EpicCity.eu</strong></div>
-    <div class="donate-link">❤️ Unterstütze uns: <a href="https://mc-host24.de/donate/epiccity" target="_blank">Jetzt spenden</a></div>
-  </div>
+        <section class="features fade-in" id="features">
+            <h2>Warum EpicCity?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Episches CityBuild</h3>
+                    <p>Baue deine Traumstadt in unserem modernen CityBuild-System. Kaufe Grundstücke, gestalte Wolkenkratzer und werde zum Stadtmagnaten!</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>ChestShop System</h3>
+                    <p>Handele smart mit unserem intuitiven ChestShop-System. Verkaufe deine Items, verdiene Geld und baue dein Wirtschaftsimperium auf!</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-star"></i>
+                    </div>
+                    <h3>Events & Giveaways</h3>
+                    <p>Nimm an spannenden Events teil und gewinne exklusive Preise. Täglich neue Herausforderungen und mega Giveaways warten auf dich!</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Epische Crates</h3>
+                    <p>Öffne mysteriöse Crates und entdecke seltene Items, Waffen und Belohnungen. Das Glück ist auf deiner Seite!</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Aktives Team</h3>
+                    <p>Unser freundliches und kompetentes Team steht dir rund um die Uhr zur Verfügung. Support, der wirklich hilft!</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sicher & Stabil</h3>
+                    <p>Genieße lag-freies Spielen auf unserer hochperformanten Hardware. Deine Builds sind bei uns sicher!</p>
+                </div>
+            </div>
+        </section>
 
-  <div class="footer">
-    &copy; 2025 EpicCity Minecraft Server
-  </div>
+        <section class="server-info fade-in">
+            <h2>Server beitreten</h2>
+            <div class="server-ip">
+                EpicCity.eu
+                <button class="copy-btn" onclick="copyServerIP()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <p>Kopiere die Server-IP und füge sie in deinen Minecraft-Client ein!</p>
+        </section>
+    </main>
+
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="https://discord.gg/cZVHu9dCw2" title="Discord" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://mc-host24.de/donate/epiccity" title="Spenden" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-heart"></i>
+            </a>
+            <a href="https://epiccity.eu" title="Website" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 EpicCity Minecraft Server. Made with ❤️</p>
+    </div>
+</footer>
+
+    <script>
+        // Particle animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                const startX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 20;
+
+                particle.style.left = startX + 'px';
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.animationDuration = duration + 's';
+                particle.style.animationDelay = delay + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Copy server IP
+        function copyServerIP() {
+            navigator.clipboard.writeText('EpicCity.eu').then(() => {
+                const button = document.querySelector('.copy-btn');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.background = 'var(--secondary)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'var(--primary)';
+                }, 2000);
+            });
+        }
+
+        // Header scroll effect
+        function handleScroll() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(15, 15, 35, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(15, 15, 35, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            handleScroll();
+        });
+
+        // Easter egg for Darcci
+        console.log('Website built by Darcci');
+        console.log('Lel you found an Easter Egg');
+    </script>
 </body>
-</html>
+</html> 
