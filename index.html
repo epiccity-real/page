@@ -15,15 +15,15 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --background: #0f0f23;
-            --background-light: #1a1a2e;
-            --surface: #16213e;
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent: #f59e0b;
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --secondary: #fb923c;
+            --background: #1a0f0a;
+            --background-light: #2d1b13;
+            --surface: #3d2317;
+            --text: #fef3e2;
+            --text-muted: #d4a574;
+            --accent: #fbbf24;
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
 
@@ -43,7 +43,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f0f23);
+            background: linear-gradient(-45deg, #1a0f0a, #2d1b13, #3d2317, #1a0f0a);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -68,7 +68,7 @@
             position: absolute;
             background: var(--primary);
             border-radius: 50%;
-            opacity: 0.1;
+            opacity: 0.15;
             animation: float 20s infinite linear;
         }
 
@@ -83,9 +83,9 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(15, 15, 35, 0.95);
+            background: rgba(26, 15, 10, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid rgba(249, 115, 22, 0.3);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -98,6 +98,48 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+        }
+
+        .nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(249, 115, 22, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.offline {
+            background: #ef4444;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .player-count {
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .logo {
@@ -113,6 +155,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -215,12 +258,12 @@
         .btn-primary {
             background: var(--gradient);
             color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.6);
         }
 
         .btn-secondary {
@@ -261,7 +304,7 @@
             background: var(--surface);
             padding: 2.5rem;
             border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.2);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -285,7 +328,7 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
             border-color: var(--primary);
         }
 
@@ -347,7 +390,7 @@
             background: var(--background-light);
             padding: 4rem 2rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-top: 1px solid rgba(249, 115, 22, 0.3);
         }
 
         .footer-content {
@@ -377,6 +420,15 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            
+            .nav-center {
+                display: none;
+            }
+            
+            .server-status {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
             }
 
             .hero h1 {
@@ -421,16 +473,18 @@
     <header>
         <nav>
             <div class="logo">EpicCity</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-    <a href="https://discord.gg/cZVHu9dCw2" class="discord-btn" target="_blank">
-        Discord
-    </a>
-    <a href="https://mc-host24.de/donate/epiccity" class="discord-btn" target="_blank">
-        Spenden
-    </a>
-            </ul>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="https://discord.gg/cZVHu9dCw2" target="_blank">Discord</a></li>
+                    <li><a href="https://mc-host24.de/donate/epiccity" target="_blank">Spenden</a></li>
+                </ul>
+            </div>
+            <div class="server-status" id="serverStatus">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="playerCount">Lädt...</span>
+            </div>
         </nav>
     </header>
 
@@ -439,10 +493,9 @@
             <div class="hero-content">
                 <h1>EpicCity.eu</h1>
                 <p>Der ultimative Minecraft CityBuild Server mit Stil – erlebe epische Chestshops, aufregende Events, wertvolle Crates und ein unschlagbares Team!</p>
-<a href="https://discord.gg/cZVHu9dCw2" class="btn btn-secondary">
-    <i class="fab fa-discord"></i> Discord Beitreten
-</a>
-
+                <div class="cta-buttons">
+                    <a href="https://discord.gg/cZVHu9dCw2" class="btn btn-secondary">
+                        <i class="fab fa-discord"></i> Discord Beitreten
                     </a>
                 </div>
             </div>
@@ -508,22 +561,22 @@
         </section>
     </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="social-links">
-            <a href="https://discord.gg/cZVHu9dCw2" title="Discord" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-discord"></i>
-            </a>
-            <a href="https://mc-host24.de/donate/epiccity" title="Spenden" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-heart"></i>
-            </a>
-            <a href="https://epiccity.eu" title="Website" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-globe"></i>
-            </a>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://discord.gg/cZVHu9dCw2" title="Discord" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://mc-host24.de/donate/epiccity" title="Spenden" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <a href="https://epiccity.eu" title="Website" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 EpicCity Minecraft Server. Made with ❤️</p>
         </div>
-        <p>&copy; 2025 EpicCity Minecraft Server. Made with ❤️</p>
-    </div>
-</footer>
+    </footer>
 
     <script>
         // Particle animation
@@ -583,10 +636,10 @@
         function handleScroll() {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(15, 15, 35, 0.98)';
+                header.style.background = 'rgba(26, 15, 10, 0.98)';
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
             } else {
-                header.style.background = 'rgba(15, 15, 35, 0.95)';
+                header.style.background = 'rgba(26, 15, 10, 0.95)';
                 header.style.boxShadow = 'none';
             }
         }
@@ -605,10 +658,36 @@
             });
         });
 
+        // Server Status
+        async function updateServerStatus() {
+            try {
+                const response = await fetch(`https://api.mcsrvstat.us/2/epiccity.eu`);
+                const data = await response.json();
+                
+                const statusDot = document.getElementById('statusDot');
+                const playerCount = document.getElementById('playerCount');
+                
+                if (data.online) {
+                    statusDot.classList.remove('offline');
+                    playerCount.innerHTML = `<span class="player-count">${data.players.online}/${data.players.max}</span> Online`;
+                } else {
+                    statusDot.classList.add('offline');
+                    playerCount.textContent = 'Offline';
+                }
+            } catch (error) {
+                console.log('Server status fetch failed:', error);
+                document.getElementById('playerCount').textContent = 'Server prüfen...';
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             animateOnScroll();
+            updateServerStatus();
+            
+            // Update server status every 60 seconds
+            setInterval(updateServerStatus, 60000);
         });
 
         window.addEventListener('scroll', () => {
@@ -621,4 +700,4 @@
         console.log('Lel you found an Easter Egg');
     </script>
 </body>
-</html> 
+</html>
