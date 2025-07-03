@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EpicCity.eu - Premium Minecraft CityBuild Server</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script disable-devtool-auto src='https://kypx.me/raw/J0zHgq.js'></script>
+    <title>Bohncity Schule - Klasse 5</title>
     <style>
         * {
             margin: 0;
@@ -14,690 +11,1049 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #f97316;
-            --primary-dark: #ea580c;
-            --secondary: #fb923c;
-            --background: #1a0f0a;
-            --background-light: #2d1b13;
-            --surface: #3d2317;
-            --text: #fef3e2;
-            --text-muted: #d4a574;
-            --accent: #fbbf24;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
         }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(-45deg, #1a0f0a, #2d1b13, #3d2317, #1a0f0a);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 15, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(249, 115, 22, 0.3);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            padding: 20px;
         }
 
-        .nav-center {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .server-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(249, 115, 22, 0.1);
-            padding: 0.5rem 1rem;
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--secondary);
-            animation: pulse 2s infinite;
-        }
-
-        .status-dot.offline {
-            background: #ef4444;
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        .player-count {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 80px;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px;
             text-align: center;
-            position: relative;
-            padding: 2rem;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInUp 1s ease-out;
+        .bean-logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            animation: slideInUp 1s ease-out 0.2s both;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-buttons {
+        .stats {
             display: flex;
-            gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
-            animation: slideInUp 1s ease-out 0.4s both;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-card.math { border-left-color: #3182ce; }
+        .subject-card.german { border-left-color: #38a169; }
+        .subject-card.english { border-left-color: #e53e3e; }
+        .subject-card.science { border-left-color: #805ad5; }
+        .subject-card.geography { border-left-color: #319795; }
+        .subject-card.history { border-left-color: #d69e2e; }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .subject-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .subject-description {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-size: 1.1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
-        .btn-primary:hover {
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 8rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            padding: 2.5rem;
+        .topic-view {
+            background: white;
             border-radius: 20px;
-            border: 1px solid rgba(249, 115, 22, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        /* Server Info */
-        .server-info {
-            background: var(--surface);
-            padding: 4rem 2rem;
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .server-ip {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-        }
-
-        .copy-btn {
-            background: var(--primary);
+        .back-btn {
+            background: #718096;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
-            margin-left: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--background-light);
-            padding: 4rem 2rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(249, 115, 22, 0.3);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
+            margin-bottom: 20px;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            gap: 8px;
         }
 
-        .social-links a {
-            color: var(--text-muted);
-            font-size: 1.5rem;
+        .back-btn:hover {
+            background: #4a5568;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .topic-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
+        .topic-card:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+            transform: translateY(-2px);
         }
 
-        /* Mobile Responsive */
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .question-card {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .answer-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 2px solid #68d391;
+        }
+
+        .feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 2px solid #fc8181;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .game-stat {
+            text-align: center;
+        }
+
+        .game-stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .game-stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            z-index: 1000;
+            animation: celebrate 1s ease-out;
+        }
+
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-center {
-                display: none;
-            }
-            
-            .server-status {
-                font-size: 0.8rem;
-                padding: 0.3rem 0.8rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .features {
-                padding: 4rem 1rem;
-            }
-
-            .features-grid {
+            .subjects-grid {
                 grid-template-columns: 1fr;
             }
-
-            .server-ip {
-                font-size: 1.5rem;
+            
+            .header h1 {
+                font-size: 2rem;
             }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="particles" id="particles"></div>
-
-    <header>
-        <nav>
-            <div class="logo">EpicCity</div>
-            <div class="nav-center">
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="https://discord.gg/cZVHu9dCw2" target="_blank">Discord</a></li>
-                    <li><a href="https://mc-host24.de/donate/epiccity" target="_blank">Spenden</a></li>
-                </ul>
-            </div>
-            <div class="server-status" id="serverStatus">
-                <div class="status-dot" id="statusDot"></div>
-                <span id="playerCount">Lädt...</span>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1>EpicCity.eu</h1>
-                <p>Der ultimative Minecraft CityBuild Server mit Stil – erlebe epische Chestshops, aufregende Events, wertvolle Crates und ein unschlagbares Team!</p>
-                <div class="cta-buttons">
-                    <a href="https://discord.gg/cZVHu9dCw2" class="btn btn-secondary">
-                        <i class="fab fa-discord"></i> Discord Beitreten
-                    </a>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="bean-logo">🫘</div>
+            <h1>Bohncity Schule</h1>
+            <p>Klasse 5 - Interaktive Lernplattform</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span>🏆</span>
+                    <span>Punkte: <span id="totalScore">0</span></span>
+                </div>
+                <div class="stat-item">
+                    <span>⚡</span>
+                    <span>Streak: <span id="totalStreak">0</span></span>
+                </div>
+                <div class="stat-item">
+                    <span>📚</span>
+                    <span>Fächer: 6</span>
                 </div>
             </div>
-        </section>
-
-        <section class="features fade-in" id="features">
-            <h2>Warum EpicCity?</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-city"></i>
-                    </div>
-                    <h3>Episches CityBuild</h3>
-                    <p>Baue deine Traumstadt in unserem modernen CityBuild-System. Kaufe Grundstücke, gestalte Wolkenkratzer und werde zum Stadtmagnaten!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>ChestShop System</h3>
-                    <p>Handele smart mit unserem intuitiven ChestShop-System. Verkaufe deine Items, verdiene Geld und baue dein Wirtschaftsimperium auf!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-star"></i>
-                    </div>
-                    <h3>Events & Giveaways</h3>
-                    <p>Nimm an spannenden Events teil und gewinne exklusive Preise. Täglich neue Herausforderungen und mega Giveaways warten auf dich!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3>Epische Crates</h3>
-                    <p>Öffne mysteriöse Crates und entdecke seltene Items, Waffen und Belohnungen. Das Glück ist auf deiner Seite!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Aktives Team</h3>
-                    <p>Unser freundliches und kompetentes Team steht dir rund um die Uhr zur Verfügung. Support, der wirklich hilft!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Sicher & Stabil</h3>
-                    <p>Genieße lag-freies Spielen auf unserer hochperformanten Hardware. Deine Builds sind bei uns sicher!</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="server-info fade-in">
-            <h2>Server beitreten</h2>
-            <div class="server-ip">
-                EpicCity.eu
-                <button class="copy-btn" onclick="copyServerIP()">
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <p>Kopiere die Server-IP und füge sie in deinen Minecraft-Client ein!</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://discord.gg/cZVHu9dCw2" title="Discord" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://mc-host24.de/donate/epiccity" title="Spenden" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <a href="https://epiccity.eu" title="Website" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-globe"></i>
-                </a>
-            </div>
-            <p>&copy; 2025 EpicCity Minecraft Server. Made with ❤️</p>
         </div>
-    </footer>
+
+        <!-- Hauptmenü -->
+        <div id="home-view">
+            <div class="subjects-grid">
+                <div class="subject-card math" onclick="openSubject('math')">
+                    <div class="subject-icon">🔢</div>
+                    <div class="subject-title">Mathematik</div>
+                    <div class="subject-description">Rechnen mit natürlichen Zahlen, Geometrie & Brüche</div>
+                    <button class="btn">Starten</button>
+                </div>
+                
+                <div class="subject-card german" onclick="openSubject('german')">
+                    <div class="subject-icon">📚</div>
+                    <div class="subject-title">Deutsch</div>
+                    <div class="subject-description">Wortarten, Satzglieder & Rechtschreibung</div>
+                    <button class="btn">Starten</button>
+                </div>
+                
+                <div class="subject-card english" onclick="openSubject('english')">
+                    <div class="subject-icon">🇬🇧</div>
+                    <div class="subject-title">Englisch</div>
+                    <div class="subject-description">Grundwortschatz & Simple Present</div>
+                    <button class="btn">Starten</button>
+                </div>
+                
+                <div class="subject-card science" onclick="openSubject('science')">
+                    <div class="subject-icon">🔬</div>
+                    <div class="subject-title">Natur & Technik</div>
+                    <div class="subject-description">Körper, Tiere & Stromkreise</div>
+                    <button class="btn">Starten</button>
+                </div>
+                
+                <div class="subject-card geography" onclick="openSubject('geography')">
+                    <div class="subject-icon">🌍</div>
+                    <div class="subject-title">Geographie</div>
+                    <div class="subject-description">Kontinente, Deutschland & Karten lesen</div>
+                    <button class="btn">Starten</button>
+                </div>
+                
+                <div class="subject-card history" onclick="openSubject('history')">
+                    <div class="subject-icon">📜</div>
+                    <div class="subject-title">Geschichte</div>
+                    <div class="subject-description">Römer, Ägypter & Mittelalter</div>
+                    <button class="btn">Starten</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fach-Ansicht -->
+        <div id="subject-view" class="hidden">
+            <button class="back-btn" onclick="goHome()">
+                ← Zurück zur Startseite
+            </button>
+            <div class="topic-view">
+                <h2 id="subject-title"></h2>
+                <p id="subject-description"></p>
+                <div class="topics-grid" id="topics-container"></div>
+            </div>
+        </div>
+
+        <!-- Quiz-Ansicht -->
+        <div id="quiz-view" class="hidden">
+            <button class="back-btn" onclick="goToSubject()">
+                ← Zurück zu den Themen
+            </button>
+            <div class="quiz-container">
+                <h2 id="quiz-title"></h2>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value" id="current-score">0</div>
+                        <div class="game-stat-label">Punkte</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value" id="current-streak">0</div>
+                        <div class="game-stat-label">Streak</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value" id="time-left">60</div>
+                        <div class="game-stat-label">Zeit</div>
+                    </div>
+                </div>
+                
+                <div class="question-card" id="question-container">
+                    <div id="question-text">Bereit für deine erste Aufgabe?</div>
+                </div>
+                
+                <input type="text" class="answer-input" id="answer-input" placeholder="Deine Antwort...">
+                
+                <div class="feedback hidden" id="feedback"></div>
+                
+                <button class="btn" id="submit-btn" onclick="checkAnswer()">Antwort prüfen</button>
+                <button class="btn hidden" id="next-btn" onclick="nextQuestion()">Nächste Frage</button>
+                <button class="btn hidden" id="start-btn" onclick="startQuiz()">Quiz starten</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Particle animation
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        let currentSubject = null;
+        let currentTopic = null;
+        let score = 0;
+        let streak = 0;
+        let totalScore = parseInt(localStorage.getItem('totalScore') || '0');
+        let totalStreak = parseInt(localStorage.getItem('totalStreak') || '0');
+        let timeLeft = 60;
+        let gameActive = false;
+        let currentQuestion = null;
+        let timer = null;
+        let totalQuestions = 0;
+        let correctAnswers = 0;
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 4 + 1;
-                const startX = Math.random() * window.innerWidth;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 20;
-
-                particle.style.left = startX + 'px';
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.animationDuration = duration + 's';
-                particle.style.animationDelay = delay + 's';
-
-                particlesContainer.appendChild(particle);
+        // Fächer und Themen
+        const subjects = {
+            math: {
+                name: 'Mathematik',
+                icon: '🔢',
+                description: 'Rechnen, Geometrie und logisches Denken',
+                topics: [
+                    { id: 'addition', name: 'Addition & Subtraktion', description: 'Grundrechenarten üben' },
+                    { id: 'multiplication', name: 'Multiplikation & Division', description: 'Einmaleins und Teilen' },
+                    { id: 'fractions', name: 'Brüche', description: 'Einführung in Brüche' },
+                    { id: 'geometry', name: 'Geometrie', description: 'Formen und Flächen' },
+                    { id: 'units', name: 'Maßeinheiten', description: 'Längen, Gewichte, Zeit' },
+                    { id: 'word_problems', name: 'Sachaufgaben', description: 'Mathematik im Alltag' }
+                ]
+            },
+            german: {
+                name: 'Deutsch',
+                icon: '📚',
+                description: 'Sprache, Rechtschreibung und Texte verstehen',
+                topics: [
+                    { id: 'word_types', name: 'Wortarten', description: 'Nomen, Verben, Adjektive' },
+                    { id: 'sentence_parts', name: 'Satzglieder', description: 'Subjekt, Prädikat, Objekt' },
+                    { id: 'tenses', name: 'Zeitformen', description: 'Präsens, Präteritum, Perfekt' },
+                    { id: 'spelling', name: 'Rechtschreibung', description: 'Richtig schreiben' },
+                    { id: 'texts', name: 'Texte schreiben', description: 'Beschreibungen und Berichte' },
+                    { id: 'reading', name: 'Lesen & Verstehen', description: 'Texte erfassen' }
+                ]
+            },
+            english: {
+                name: 'Englisch',
+                icon: '🇬🇧',
+                description: 'Grundlagen der englischen Sprache',
+                topics: [
+                    { id: 'vocabulary', name: 'Grundwortschatz', description: 'Familie, Schule, Freizeit' },
+                    { id: 'simple_present', name: 'Simple Present', description: 'Gegenwart auf Englisch' },
+                    { id: 'pronouns', name: 'Pronomen', description: 'I, you, he, she, it' },
+                    { id: 'questions', name: 'Fragen stellen', description: 'What, where, when, why' },
+                    { id: 'conversations', name: 'Gespräche', description: 'Begrüßung und Small Talk' },
+                    { id: 'writing', name: 'Texte schreiben', description: 'Kurze Texte verfassen' }
+                ]
+            },
+            science: {
+                name: 'Natur & Technik',
+                icon: '🔬',
+                description: 'Forschen und die Welt verstehen',
+                topics: [
+                    { id: 'senses', name: 'Sinne', description: 'Sehen, Hören, Riechen, Schmecken' },
+                    { id: 'body', name: 'Menschlicher Körper', description: 'Bewegung und Gesundheit' },
+                    { id: 'animals', name: 'Tiere', description: 'Lebensräume und Verhalten' },
+                    { id: 'plants', name: 'Pflanzen', description: 'Wachstum und Photosynthese' },
+                    { id: 'electricity', name: 'Strom', description: 'Stromkreise und Geräte' },
+                    { id: 'environment', name: 'Umwelt', description: 'Nachhaltigkeit und Schutz' }
+                ]
+            },
+            geography: {
+                name: 'Geographie',
+                icon: '🌍',
+                description: 'Die Welt entdecken und verstehen',
+                topics: [
+                    { id: 'directions', name: 'Himmelsrichtungen', description: 'Norden, Süden, Osten, Westen' },
+                    { id: 'continents', name: 'Kontinente', description: 'Europa, Asien, Afrika...' },
+                    { id: 'germany', name: 'Deutschland', description: 'Bundesländer und Gebirge' },
+                    { id: 'maps', name: 'Karten lesen', description: 'Orientierung und Maßstab' },
+                    { id: 'climate', name: 'Klima', description: 'Wetter und Klimazonen' },
+                    { id: 'cities', name: 'Städte & Länder', description: 'Hauptstädte Europas' }
+                ]
+            },
+            history: {
+                name: 'Geschichte',
+                icon: '📜',
+                description: 'Reise in die Vergangenheit',
+                topics: [
+                    { id: 'timeline', name: 'Zeitrechnung', description: 'v. Chr. und n. Chr.' },
+                    { id: 'egypt', name: 'Altes Ägypten', description: 'Pharaonen und Pyramiden' },
+                    { id: 'greece', name: 'Griechenland', description: 'Demokratie und Götter' },
+                    { id: 'rome', name: 'Römisches Reich', description: 'Gladiatoren und Legionen' },
+                    { id: 'medieval', name: 'Mittelalter', description: 'Ritter und Burgen' },
+                    { id: 'sources', name: 'Quellen', description: 'Wie erforscht man Geschichte?' }
+                ]
             }
-        }
+        };
 
-        // Scroll animations
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Copy server IP
-        function copyServerIP() {
-            navigator.clipboard.writeText('EpicCity.eu').then(() => {
-                const button = document.querySelector('.copy-btn');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i>';
-                button.style.background = 'var(--secondary)';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.style.background = 'var(--primary)';
-                }, 2000);
-            });
-        }
-
-        // Header scroll effect
-        function handleScroll() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(26, 15, 10, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.background = 'rgba(26, 15, 10, 0.95)';
-                header.style.boxShadow = 'none';
+        // Fragen für verschiedene Themen
+        const questions = {
+            math: {
+                addition: [
+                    { question: "Was ist 25 + 17?", answer: "42", explanation: "25 + 17 = 42" },
+                    { question: "Was ist 84 - 29?", answer: "55", explanation: "84 - 29 = 55" },
+                    { question: "Was ist 156 + 78?", answer: "234", explanation: "156 + 78 = 234" },
+                    { question: "Was ist 200 - 85?", answer: "115", explanation: "200 - 85 = 115" }
+                ],
+                multiplication: [
+                    { question: "Was ist 7 × 8?", answer: "56", explanation: "7 × 8 = 56" },
+                    { question: "Was ist 9 × 6?", answer: "54", explanation: "9 × 6 = 54" },
+                    { question: "Was ist 72 ÷ 8?", answer: "9", explanation: "72 ÷ 8 = 9" },
+                    { question: "Was ist 45 ÷ 5?", answer: "9", explanation: "45 ÷ 5 = 9" }
+                ]
+            },
+            german: {
+                word_types: [
+                    { question: "Welche Wortart ist 'Hund'?", answer: "nomen", explanation: "Hund ist ein Nomen (Hauptwort)" },
+                    { question: "Welche Wortart ist 'laufen'?", answer: "verb", explanation: "Laufen ist ein Verb (Tunwort)" },
+                    { question: "Welche Wortart ist 'schön'?", answer: "adjektiv", explanation: "Schön ist ein Adjektiv (Eigenschaftswort)" }
+                ]
+            },
+            english: {
+                vocabulary: [
+                    { question: "Wie heißt 'Hund' auf Englisch?", answer: "dog", explanation: "Hund = dog" },
+                    { question: "Wie heißt 'Katze' auf Englisch?", answer: "cat", explanation: "Katze = cat" },
+                    { question: "Wie heißt 'Haus' auf Englisch?", answer: "house", explanation: "Haus = house" }
+                ]
+            },
+            science: {
+                senses: [
+                    { question: "Mit welchem Organ riechen wir?", answer: "nase", explanation: "Wir riechen mit der Nase" },
+                    { question: "Wie viele Sinne hat der Mensch?", answer: "5", explanation: "Sehen, Hören, Riechen, Schmecken, Tasten" }
+                ]
+            },
+            geography: {
+                directions: [
+                    { question: "Wie heißt die Himmelsrichtung zwischen Nord und Ost?", answer: "nordost", explanation: "Zwischen Nord und Ost liegt Nordost" },
+                    { question: "Welche Himmelsrichtung ist das Gegenteil von Norden?", answer: "süden", explanation: "Das Gegenteil von Norden ist Süden" }
+                ]
+            },
+            history: {
+                egypt: [
+                    { question: "Wie hießen die Herrscher im alten Ägypten?", answer: "pharaonen", explanation: "Die Herrscher Ägyptens waren die Pharaonen" },
+                    { question: "Welcher Fluss fließt durch Ägypten?", answer: "nil", explanation: "Der Nil ist der Fluss Ägyptens" }
+                ]
             }
-        }
+        };
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Initialisierung
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotalStats();
+            document.getElementById('answer-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkAnswer();
                 }
             });
         });
 
-        // Server Status
-        async function updateServerStatus() {
-            try {
-                const response = await fetch(`https://api.mcsrvstat.us/2/epiccity.eu`);
-                const data = await response.json();
+        function updateTotalStats() {
+            document.getElementById('totalScore').textContent = totalScore;
+            document.getElementById('totalStreak').textContent = totalStreak;
+        }
+
+        function openSubject(subjectId) {
+            currentSubject = subjectId;
+            const subject = subjects[subjectId];
+            
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            
+            document.getElementById('subject-title').textContent = subject.name + ' - Klasse 5';
+            document.getElementById('subject-description').textContent = subject.description;
+            
+            const topicsContainer = document.getElementById('topics-container');
+            topicsContainer.innerHTML = '';
+            
+            subject.topics.forEach(topic => {
+                const topicDiv = document.createElement('div');
+                topicDiv.className = 'topic-card';
+                topicDiv.onclick = () => startTopic(topic.id);
+                topicDiv.innerHTML = `
+                    <h3>${topic.name}</h3>
+                    <p>${topic.description}</p>
+                `;
+                topicsContainer.appendChild(topicDiv);
+            });
+        }
+
+        function startTopic(topicId) {
+            currentTopic = topicId;
+            
+            document.getElementById('subject-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            
+            const subject = subjects[currentSubject];
+            const topic = subject.topics.find(t => t.id === topicId);
+            
+            document.getElementById('quiz-title').textContent = topic.name;
+            document.getElementById('start-btn').classList.remove('hidden');
+            document.getElementById('submit-btn').classList.add('hidden');
+            
+            resetGame();
+        }
+
+        function resetGame() {
+            score = 0;
+            streak = 0;
+            timeLeft = 60;
+            totalQuestions = 0;
+            correctAnswers = 0;
+            gameActive = false;
+            
+            updateGameStats();
+            
+            document.getElementById('question-text').textContent = 'Bereit für deine erste Aufgabe?';
+            document.getElementById('answer-input').value = '';
+            document.getElementById('feedback').classList.add('hidden');
+            
+            if (timer) clearInterval(timer);
+        }
+
+        function startQuiz() {
+            gameActive = true;
+            document.getElementById('start-btn').classList.add('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+            
+            // Timer starten
+            timer = setInterval(() => {
+                timeLeft--;
+                updateGameStats();
                 
-                const statusDot = document.getElementById('statusDot');
-                const playerCount = document.getElementById('playerCount');
-                
-                if (data.online) {
-                    statusDot.classList.remove('offline');
-                    playerCount.innerHTML = `<span class="player-count">${data.players.online}/${data.players.max}</span> Online`;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+            
+            generateQuestion();
+        }
+
+        function generateQuestion() {
+            const topicQuestions = questions[currentSubject]?.[currentTopic];
+            
+            if (!topicQuestions || topicQuestions.length === 0) {
+                // Fallback: Einfache Mathe-Fragen generieren
+                if (currentSubject === 'math') {
+                    const num1 = Math.floor(Math.random() * 50) + 1;
+                    const num2 = Math.floor(Math.random() * 50) + 1;
+                    const operations = ['+', '-', '×'];
+                    const op = operations[Math.floor(Math.random() * operations.length)];
+                    
+                    let answer;
+                    let questionText;
+                    
+                    switch(op) {
+                        case '+':
+                            answer = num1 + num2;
+                            questionText = `Was ist ${num1} + ${num2}?`;
+                            break;
+                        case '-':
+                            answer = Math.abs(num1 - num2);
+                            questionText = `Was ist ${Math.max(num1, num2)} - ${Math.min(num1, num2)}?`;
+                            break;
+                        case '×':
+                            const smallNum1 = Math.floor(Math.random() * 10) + 1;
+                            const smallNum2 = Math.floor(Math.random() * 10) + 1;
+                            answer = smallNum1 * smallNum2;
+                            questionText = `Was ist ${smallNum1} × ${smallNum2}?`;
+                            break;
+                    }
+                    
+                    currentQuestion = {
+                        question: questionText,
+                        answer: answer.toString(),
+                        explanation: `${questionText.replace('Was ist ', '')} = ${answer}`
+                    };
                 } else {
-                    statusDot.classList.add('offline');
-                    playerCount.textContent = 'Offline';
+                    // Andere Fächer: Einfache Beispielfragen
+                    const fallbackQuestions = [
+                        { question: "Das ist eine Beispielfrage für " + subjects[currentSubject].name, answer: "beispiel", explanation: "Das ist eine Beispielantwort" }
+                    ];
+                    currentQuestion = fallbackQuestions[0];
                 }
-            } catch (error) {
-                console.log('Server status fetch failed:', error);
-                document.getElementById('playerCount').textContent = 'Server prüfen...';
+            } else {
+                currentQuestion = topicQuestions[Math.floor(Math.random() * topicQuestions.length)];
+            }
+            
+            document.getElementById('question-text').textContent = currentQuestion.question;
+            document.getElementById('answer-input').value = '';
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('answer-input').focus();
+        }
+
+        function checkAnswer() {
+            if (!gameActive) return;
+            
+            const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+            const correctAnswer = currentQuestion.answer.toLowerCase();
+            
+            totalQuestions++;
+            
+            if (userAnswer === correctAnswer) {
+                // Richtige Antwort
+                correctAnswers++;
+                score += 10;
+                streak++;
+                totalScore += 10;
+                
+                if (streak > totalStreak) {
+                    totalStreak = streak;
+                }
+                
+                showFeedback(true, currentQuestion.explanation);
+                showCelebration('🎉');
+                
+                // Speichere Fortschritt
+                localStorage.setItem('totalScore', totalScore.toString());
+                localStorage.setItem('totalStreak', totalStreak.toString());
+                
+            } else {
+                // Falsche Antwort
+                streak = 0;
+                showFeedback(false, currentQuestion.explanation);
+                showCelebration('❌');
+            }
+            
+            updateGameStats();
+            updateTotalStats();
+            
+            // Nächste Frage nach kurzer Pause
+            setTimeout(() => {
+                generateQuestion();
+            }, 2000);
+        }
+
+        function showFeedback(isCorrect, explanation) {
+            const feedback = document.getElementById('feedback');
+            feedback.classList.remove('hidden', 'correct', 'incorrect');
+            
+            if (isCorrect) {
+                feedback.classList.add('correct');
+                feedback.innerHTML = `<strong>Richtig!</strong> ${explanation}`;
+            } else {
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = `<strong>Falsch!</strong> ${explanation}`;
             }
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            animateOnScroll();
-            updateServerStatus();
+        function showCelebration(emoji) {
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = emoji;
+            document.body.appendChild(celebration);
             
-            // Update server status every 60 seconds
-            setInterval(updateServerStatus, 60000);
+            setTimeout(() => {
+                document.body.removeChild(celebration);
+            }, 1000);
+        }
+
+        function updateGameStats() {
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('current-streak').textContent = streak;
+            document.getElementById('time-left').textContent = timeLeft;
+            
+            // Farbe für Timer ändern
+            const timeElement = document.getElementById('time-left');
+            if (timeLeft <= 10) {
+                timeElement.style.color = '#e53e3e';
+                timeElement.classList.add('pulse');
+            } else if (timeLeft <= 30) {
+                timeElement.style.color = '#d69e2e';
+            } else {
+                timeElement.style.color = '#667eea';
+                timeElement.classList.remove('pulse');
+            }
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            
+            const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            
+            document.getElementById('question-text').innerHTML = `
+                <h3>🎯 Quiz beendet!</h3>
+                <p><strong>Deine Ergebnisse:</strong></p>
+                <p>Punkte: ${score}</p>
+                <p>Richtige Antworten: ${correctAnswers} von ${totalQuestions}</p>
+                <p>Genauigkeit: ${accuracy}%</p>
+                <p>Längste Serie: ${streak}</p>
+                <br>
+                <p>Großartig gemacht! 🌟</p>
+            `;
+            
+            document.getElementById('answer-input').style.display = 'none';
+            document.getElementById('submit-btn').classList.add('hidden');
+            document.getElementById('start-btn').classList.remove('hidden');
+            document.getElementById('start-btn').textContent = 'Nochmal spielen';
+            
+            // Erfolgs-Animation
+            if (accuracy >= 80) {
+                showCelebration('🏆');
+            } else if (accuracy >= 60) {
+                showCelebration('👍');
+            }
+        }
+
+        function nextQuestion() {
+            generateQuestion();
+            document.getElementById('next-btn').classList.add('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+        }
+
+        function goHome() {
+            document.getElementById('subject-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            
+            if (timer) clearInterval(timer);
+            currentSubject = null;
+            currentTopic = null;
+        }
+
+        function goToSubject() {
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            
+            if (timer) clearInterval(timer);
+            currentTopic = null;
+            
+            // Eingabefeld wieder anzeigen
+            document.getElementById('answer-input').style.display = 'block';
+        }
+
+        // Zusätzliche Funktionen für bessere Benutzerfreundlichkeit
+        function addBonusQuestions() {
+            // Erweiterte Fragendatenbank
+            questions.math.fractions = [
+                { question: "Was ist 1/2 + 1/4?", answer: "3/4", explanation: "1/2 + 1/4 = 2/4 + 1/4 = 3/4" },
+                { question: "Was ist größer: 1/3 oder 1/4?", answer: "1/3", explanation: "1/3 ist größer als 1/4" }
+            ];
+            
+            questions.german.spelling = [
+                { question: "Schreibe richtig: 'Das ist ein shöner Tag'", answer: "das ist ein schöner tag", explanation: "Richtig: Das ist ein schöner Tag" },
+                { question: "Schreibe richtig: 'Ich gehe ins Kino'", answer: "ich gehe ins kino", explanation: "Richtig: Ich gehe ins Kino" }
+            ];
+            
+            questions.english.simple_present = [
+                { question: "He ___ to school every day. (go)", answer: "goes", explanation: "He goes to school every day." },
+                { question: "She ___ her homework. (do)", answer: "does", explanation: "She does her homework." }
+            ];
+            
+            questions.science.body = [
+                { question: "Wie viele Knochen hat ein erwachsener Mensch etwa?", answer: "206", explanation: "Ein erwachsener Mensch hat etwa 206 Knochen" },
+                { question: "Welches Organ pumpt das Blut durch den Körper?", answer: "herz", explanation: "Das Herz pumpt das Blut durch den Körper" }
+            ];
+            
+            questions.geography.germany = [
+                { question: "Wie heißt die Hauptstadt von Deutschland?", answer: "berlin", explanation: "Berlin ist die Hauptstadt von Deutschland" },
+                { question: "Welches ist das größte Bundesland?", answer: "bayern", explanation: "Bayern ist das größte Bundesland" }
+            ];
+            
+            questions.history.rome = [
+                { question: "Wie hießen die römischen Soldaten?", answer: "legionäre", explanation: "Die römischen Soldaten hießen Legionäre" },
+                { question: "Welche Stadt war das Zentrum des Römischen Reiches?", answer: "rom", explanation: "Rom war das Zentrum des Römischen Reiches" }
+            ];
+        }
+
+        // Bonus-Fragen hinzufügen
+        addBonusQuestions();
+
+        // Keyboard-Shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('quiz-view').classList.contains('hidden') === false) {
+                    goToSubject();
+                } else if (document.getElementById('subject-view').classList.contains('hidden') === false) {
+                    goHome();
+                }
+            }
         });
 
-        window.addEventListener('scroll', () => {
-            animateOnScroll();
-            handleScroll();
-        });
+        // Motivierende Nachrichten
+        function getMotivationalMessage(streak) {
+            if (streak >= 10) return "Unglaublich! Du bist ein wahrer Mathe-Meister! 🌟";
+            if (streak >= 5) return "Fantastisch! Du bist auf einem super Weg! 🚀";
+            if (streak >= 3) return "Toll gemacht! Du bist richtig gut! 👍";
+            return "Weiter so! Du schaffst das! 💪";
+        }
 
-        // Easter egg for Darcci
-        console.log('Website built by Darcci');
-        console.log('Lel you found an Easter Egg');
+        // Schwierigkeitsgrade
+        function adjustDifficulty() {
+            if (streak >= 5) {
+                // Schwierigere Fragen für fortgeschrittene Spieler
+                return 'hard';
+            } else if (streak >= 3) {
+                return 'medium';
+            }
+            return 'easy';
+        }
+
+        // Lokale Bestenliste
+        function updateLeaderboard() {
+            let leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+            
+            const entry = {
+                subject: subjects[currentSubject].name,
+                topic: subjects[currentSubject].topics.find(t => t.id === currentTopic)?.name,
+                score: score,
+                accuracy: totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0,
+                date: new Date().toLocaleDateString('de-DE')
+            };
+            
+            leaderboard.push(entry);
+            leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard = leaderboard.slice(0, 10); // Top 10
+            
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+        }
+
+        // Fortschritts-Tracking
+        function trackProgress() {
+            let progress = JSON.parse(localStorage.getItem('progress') || '{}');
+            
+            if (!progress[currentSubject]) {
+                progress[currentSubject] = {};
+            }
+            
+            if (!progress[currentSubject][currentTopic]) {
+                progress[currentSubject][currentTopic] = {
+                    attempts: 0,
+                    bestScore: 0,
+                    totalQuestions: 0,
+                    correctAnswers: 0
+                };
+            }
+            
+            const topicProgress = progress[currentSubject][currentTopic];
+            topicProgress.attempts++;
+            topicProgress.bestScore = Math.max(topicProgress.bestScore, score);
+            topicProgress.totalQuestions += totalQuestions;
+            topicProgress.correctAnswers += correctAnswers;
+            
+            localStorage.setItem('progress', JSON.stringify(progress));
+        }
+
+        // Erfolge und Abzeichen
+        function checkAchievements() {
+            let achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+            
+            // Erste Schritte
+            if (totalQuestions >= 1 && !achievements.includes('first_question')) {
+                achievements.push('first_question');
+                showAchievement('🎯', 'Erste Frage beantwortet!');
+            }
+            
+            // Streak-Meister
+            if (streak >= 5 && !achievements.includes('streak_master')) {
+                achievements.push('streak_master');
+                showAchievement('🔥', 'Streak-Meister!');
+            }
+            
+            // Punkte-Sammler
+            if (totalScore >= 100 && !achievements.includes('point_collector')) {
+                achievements.push('point_collector');
+                showAchievement('💎', 'Punkte-Sammler!');
+            }
+            
+            localStorage.setItem('achievements', JSON.stringify(achievements));
+        }
+
+        function showAchievement(emoji, text) {
+            const achievement = document.createElement('div');
+            achievement.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 15px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                animation: slideIn 0.5s ease-out;
+            `;
+            achievement.innerHTML = `${emoji} ${text}`;
+            document.body.appendChild(achievement);
+            
+            setTimeout(() => {
+                achievement.style.animation = 'slideOut 0.5s ease-in';
+                setTimeout(() => {
+                    if (document.body.contains(achievement)) {
+                        document.body.removeChild(achievement);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        // CSS-Animationen für Achievements
+        const achievementCSS = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = achievementCSS;
+        document.head.appendChild(style);
+
+        // Überprüfe Erfolge nach jeder Antwort
+        function enhancedCheckAnswer() {
+            checkAnswer();
+            checkAchievements();
+            
+            if (!gameActive) {
+                updateLeaderboard();
+                trackProgress();
+            }
+        }
+
+        // Ersetze die ursprüngliche checkAnswer Funktion
+        const originalCheckAnswer = checkAnswer;
+        checkAnswer = enhancedCheckAnswer;
+
+        console.log('🫘 Bohncity Schule geladen! Viel Spaß beim Lernen!');
     </script>
 </body>
 </html>
