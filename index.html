@@ -521,55 +521,253 @@
             }
         };
 
-        // Fragen für verschiedene Themen
-        const questions = {
-            math: {
-                addition: [
-                    { question: "Was ist 25 + 17?", answer: "42", explanation: "25 + 17 = 42" },
-                    { question: "Was ist 84 - 29?", answer: "55", explanation: "84 - 29 = 55" },
-                    { question: "Was ist 156 + 78?", answer: "234", explanation: "156 + 78 = 234" },
-                    { question: "Was ist 200 - 85?", answer: "115", explanation: "200 - 85 = 115" }
-                ],
-                multiplication: [
-                    { question: "Was ist 7 × 8?", answer: "56", explanation: "7 × 8 = 56" },
-                    { question: "Was ist 9 × 6?", answer: "54", explanation: "9 × 6 = 54" },
-                    { question: "Was ist 72 ÷ 8?", answer: "9", explanation: "72 ÷ 8 = 9" },
-                    { question: "Was ist 45 ÷ 5?", answer: "9", explanation: "45 ÷ 5 = 9" }
-                ]
-            },
-            german: {
-                word_types: [
-                    { question: "Welche Wortart ist 'Hund'?", answer: "nomen", explanation: "Hund ist ein Nomen (Hauptwort)" },
-                    { question: "Welche Wortart ist 'laufen'?", answer: "verb", explanation: "Laufen ist ein Verb (Tunwort)" },
-                    { question: "Welche Wortart ist 'schön'?", answer: "adjektiv", explanation: "Schön ist ein Adjektiv (Eigenschaftswort)" }
-                ]
-            },
-            english: {
-                vocabulary: [
-                    { question: "Wie heißt 'Hund' auf Englisch?", answer: "dog", explanation: "Hund = dog" },
-                    { question: "Wie heißt 'Katze' auf Englisch?", answer: "cat", explanation: "Katze = cat" },
-                    { question: "Wie heißt 'Haus' auf Englisch?", answer: "house", explanation: "Haus = house" }
-                ]
-            },
-            science: {
-                senses: [
-                    { question: "Mit welchem Organ riechen wir?", answer: "nase", explanation: "Wir riechen mit der Nase" },
-                    { question: "Wie viele Sinne hat der Mensch?", answer: "5", explanation: "Sehen, Hören, Riechen, Schmecken, Tasten" }
-                ]
-            },
-            geography: {
-                directions: [
-                    { question: "Wie heißt die Himmelsrichtung zwischen Nord und Ost?", answer: "nordost", explanation: "Zwischen Nord und Ost liegt Nordost" },
-                    { question: "Welche Himmelsrichtung ist das Gegenteil von Norden?", answer: "süden", explanation: "Das Gegenteil von Norden ist Süden" }
-                ]
-            },
-            history: {
-                egypt: [
-                    { question: "Wie hießen die Herrscher im alten Ägypten?", answer: "pharaonen", explanation: "Die Herrscher Ägyptens waren die Pharaonen" },
-                    { question: "Welcher Fluss fließt durch Ägypten?", answer: "nil", explanation: "Der Nil ist der Fluss Ägyptens" }
-                ]
-            }
-        };
+// Ersetze die gesamte "questions" Variable (ab Zeile ~180) mit diesem Code:
+
+const questions = {
+    math: {
+        addition: [
+            { question: "Was ist 25 + 17?", answer: "42", explanation: "25 + 17 = 42" },
+            { question: "Was ist 84 - 29?", answer: "55", explanation: "84 - 29 = 55" },
+            { question: "Was ist 156 + 78?", answer: "234", explanation: "156 + 78 = 234" },
+            { question: "Was ist 200 - 85?", answer: "115", explanation: "200 - 85 = 115" },
+            { question: "Was ist 47 + 38?", answer: "85", explanation: "47 + 38 = 85" },
+            { question: "Was ist 123 - 67?", answer: "56", explanation: "123 - 67 = 56" }
+        ],
+        multiplication: [
+            { question: "Was ist 7 × 8?", answer: "56", explanation: "7 × 8 = 56" },
+            { question: "Was ist 9 × 6?", answer: "54", explanation: "9 × 6 = 54" },
+            { question: "Was ist 72 ÷ 8?", answer: "9", explanation: "72 ÷ 8 = 9" },
+            { question: "Was ist 45 ÷ 5?", answer: "9", explanation: "45 ÷ 5 = 9" },
+            { question: "Was ist 8 × 7?", answer: "56", explanation: "8 × 7 = 56" },
+            { question: "Was ist 63 ÷ 9?", answer: "7", explanation: "63 ÷ 9 = 7" }
+        ],
+        fractions: [
+            { question: "Was ist 1/2 + 1/4?", answer: "3/4", explanation: "1/2 + 1/4 = 2/4 + 1/4 = 3/4" },
+            { question: "Was ist größer: 1/3 oder 1/4?", answer: "1/3", explanation: "1/3 ist größer als 1/4" },
+            { question: "Was ist 1/2 von 8?", answer: "4", explanation: "1/2 von 8 = 8 ÷ 2 = 4" },
+            { question: "Was ist 1/4 von 12?", answer: "3", explanation: "1/4 von 12 = 12 ÷ 4 = 3" }
+        ],
+        geometry: [
+            { question: "Wie viele Ecken hat ein Dreieck?", answer: "3", explanation: "Ein Dreieck hat 3 Ecken" },
+            { question: "Wie viele Seiten hat ein Rechteck?", answer: "4", explanation: "Ein Rechteck hat 4 Seiten" },
+            { question: "Wie heißt ein Viereck mit 4 gleichen Seiten?", answer: "quadrat", explanation: "Ein Quadrat hat 4 gleiche Seiten" },
+            { question: "Wie viele Ecken hat ein Kreis?", answer: "0", explanation: "Ein Kreis hat keine Ecken" }
+        ],
+        units: [
+            { question: "Wie viele Zentimeter sind 1 Meter?", answer: "100", explanation: "1 Meter = 100 Zentimeter" },
+            { question: "Wie viele Minuten sind 1 Stunde?", answer: "60", explanation: "1 Stunde = 60 Minuten" },
+            { question: "Wie viele Gramm sind 1 Kilogramm?", answer: "1000", explanation: "1 Kilogramm = 1000 Gramm" },
+            { question: "Wie viele Sekunden sind 1 Minute?", answer: "60", explanation: "1 Minute = 60 Sekunden" }
+        ],
+        word_problems: [
+            { question: "Lisa hat 15 Äpfel. Sie gibt 7 weg. Wie viele bleiben?", answer: "8", explanation: "15 - 7 = 8 Äpfel bleiben" },
+            { question: "In einer Klasse sind 12 Jungen und 13 Mädchen. Wie viele Kinder insgesamt?", answer: "25", explanation: "12 + 13 = 25 Kinder" },
+            { question: "Ein Buch kostet 8 Euro. Wie viel kosten 3 Bücher?", answer: "24", explanation: "8 × 3 = 24 Euro" },
+            { question: "24 Bonbons werden gleichmäßig auf 6 Kinder verteilt. Wie viele bekommt jedes?", answer: "4", explanation: "24 ÷ 6 = 4 Bonbons pro Kind" }
+        ]
+    },
+    german: {
+        word_types: [
+            { question: "Welche Wortart ist 'Hund'?", answer: "nomen", explanation: "Hund ist ein Nomen (Hauptwort)" },
+            { question: "Welche Wortart ist 'laufen'?", answer: "verb", explanation: "Laufen ist ein Verb (Tunwort)" },
+            { question: "Welche Wortart ist 'schön'?", answer: "adjektiv", explanation: "Schön ist ein Adjektiv (Eigenschaftswort)" },
+            { question: "Welche Wortart ist 'schnell'?", answer: "adjektiv", explanation: "Schnell ist ein Adjektiv" },
+            { question: "Welche Wortart ist 'spielen'?", answer: "verb", explanation: "Spielen ist ein Verb" },
+            { question: "Welche Wortart ist 'Baum'?", answer: "nomen", explanation: "Baum ist ein Nomen" }
+        ],
+        sentence_parts: [
+            { question: "Was ist das Subjekt im Satz: 'Der Hund bellt'?", answer: "der hund", explanation: "Das Subjekt ist 'Der Hund'" },
+            { question: "Was ist das Prädikat im Satz: 'Maria singt'?", answer: "singt", explanation: "Das Prädikat ist 'singt'" },
+            { question: "Was fragt man nach dem Subjekt?", answer: "wer oder was", explanation: "Nach dem Subjekt fragt man 'Wer oder was?'" },
+            { question: "Was fragt man nach dem Akkusativ-Objekt?", answer: "wen oder was", explanation: "Nach dem Akkusativ-Objekt fragt man 'Wen oder was?'" }
+        ],
+        tenses: [
+            { question: "In welcher Zeitform steht: 'Ich gehe'?", answer: "präsens", explanation: "Das ist Präsens (Gegenwart)" },
+            { question: "In welcher Zeitform steht: 'Ich ging'?", answer: "präteritum", explanation: "Das ist Präteritum (Vergangenheit)" },
+            { question: "Wie heißt die Vergangenheitsform von 'spielen'?", answer: "spielte", explanation: "Die Präteritum-Form von 'spielen' ist 'spielte'" },
+            { question: "Wie heißt die Grundform von 'läuft'?", answer: "laufen", explanation: "Die Grundform von 'läuft' ist 'laufen'" }
+        ],
+        spelling: [
+            { question: "Schreibe richtig: 'Das ist ein shöner Tag'", answer: "das ist ein schöner tag", explanation: "Richtig: Das ist ein schöner Tag" },
+            { question: "Schreibe richtig: 'Ich gehe ins Kino'", answer: "ich gehe ins kino", explanation: "Richtig: Ich gehe ins Kino" },
+            { question: "Wie schreibt man: 'Ich bin glüklich'?", answer: "ich bin glücklich", explanation: "Richtig: Ich bin glücklich (mit ck)" },
+            { question: "Wie schreibt man: 'Das Mädhen spielt'?", answer: "das mädchen spielt", explanation: "Richtig: Das Mädchen spielt (mit ch)" }
+        ],
+        texts: [
+            { question: "Womit beginnt ein Satz?", answer: "großbuchstabe", explanation: "Ein Satz beginnt mit einem Großbuchstaben" },
+            { question: "Womit endet ein Aussagesatz?", answer: "punkt", explanation: "Ein Aussagesatz endet mit einem Punkt" },
+            { question: "Womit endet ein Fragesatz?", answer: "fragezeichen", explanation: "Ein Fragesatz endet mit einem Fragezeichen" },
+            { question: "Wie nennt man eine Geschichte über sich selbst?", answer: "erzählung", explanation: "Eine Geschichte über sich selbst ist eine Erzählung" }
+        ],
+        reading: [
+            { question: "Wer ist der Hauptcharakter in einem Text?", answer: "protagonist", explanation: "Der Hauptcharakter ist der Protagonist" },
+            { question: "Wie nennt man den Anfang einer Geschichte?", answer: "einleitung", explanation: "Der Anfang einer Geschichte ist die Einleitung" },
+            { question: "Was beschreibt die Handlung einer Geschichte?", answer: "plot", explanation: "Die Handlung wird Plot genannt" },
+            { question: "Wie nennt man das Ende einer Geschichte?", answer: "schluss", explanation: "Das Ende einer Geschichte ist der Schluss" }
+        ]
+    },
+    english: {
+        vocabulary: [
+            { question: "Wie heißt 'Hund' auf Englisch?", answer: "dog", explanation: "Hund = dog" },
+            { question: "Wie heißt 'Katze' auf Englisch?", answer: "cat", explanation: "Katze = cat" },
+            { question: "Wie heißt 'Haus' auf Englisch?", answer: "house", explanation: "Haus = house" },
+            { question: "Wie heißt 'Schule' auf Englisch?", answer: "school", explanation: "Schule = school" },
+            { question: "Wie heißt 'Buch' auf Englisch?", answer: "book", explanation: "Buch = book" },
+            { question: "Wie heißt 'Auto' auf Englisch?", answer: "car", explanation: "Auto = car" }
+        ],
+        simple_present: [
+            { question: "He ___ to school every day. (go)", answer: "goes", explanation: "He goes to school every day." },
+            { question: "She ___ her homework. (do)", answer: "does", explanation: "She does her homework." },
+            { question: "I ___ English. (speak)", answer: "speak", explanation: "I speak English." },
+            { question: "We ___ football. (play)", answer: "play", explanation: "We play football." },
+            { question: "The cat ___ milk. (drink)", answer: "drinks", explanation: "The cat drinks milk." }
+        ],
+        pronouns: [
+            { question: "Welches Pronomen steht für 'ich'?", answer: "i", explanation: "Ich = I" },
+            { question: "Welches Pronomen steht für 'du'?", answer: "you", explanation: "Du = you" },
+            { question: "Welches Pronomen steht für 'er'?", answer: "he", explanation: "Er = he" },
+            { question: "Welches Pronomen steht für 'sie' (weiblich)?", answer: "she", explanation: "Sie = she" },
+            { question: "Welches Pronomen steht für 'wir'?", answer: "we", explanation: "Wir = we" }
+        ],
+        questions: [
+            { question: "Mit welchem Wort fragt man nach dem Ort?", answer: "where", explanation: "Where = wo" },
+            { question: "Mit welchem Wort fragt man nach der Zeit?", answer: "when", explanation: "When = wann" },
+            { question: "Mit welchem Wort fragt man nach dem Grund?", answer: "why", explanation: "Why = warum" },
+            { question: "Mit welchem Wort fragt man nach einer Sache?", answer: "what", explanation: "What = was" }
+        ],
+        conversations: [
+            { question: "Wie sagt man 'Hallo' auf Englisch?", answer: "hello", explanation: "Hallo = Hello" },
+            { question: "Wie sagt man 'Auf Wiedersehen' auf Englisch?", answer: "goodbye", explanation: "Auf Wiedersehen = Goodbye" },
+            { question: "Wie sagt man 'Danke' auf Englisch?", answer: "thank you", explanation: "Danke = Thank you" },
+            { question: "Wie sagt man 'Bitte' auf Englisch?", answer: "please", explanation: "Bitte = Please" }
+        ],
+        writing: [
+            { question: "Wie schreibt man eine Begrüßung im Brief?", answer: "dear", explanation: "Dear = Liebe/r" },
+            { question: "Womit beginnt ein Satz auf Englisch?", answer: "capital letter", explanation: "Mit einem Großbuchstaben (capital letter)" },
+            { question: "Wie beendet man einen Brief freundlich?", answer: "yours", explanation: "Yours = Dein/e" },
+            { question: "Was kommt nach 'My name is'?", answer: "name", explanation: "Nach 'My name is' kommt der Name" }
+        ]
+    },
+    science: {
+        senses: [
+            { question: "Mit welchem Organ riechen wir?", answer: "nase", explanation: "Wir riechen mit der Nase" },
+            { question: "Wie viele Sinne hat der Mensch?", answer: "5", explanation: "Sehen, Hören, Riechen, Schmecken, Tasten" },
+            { question: "Mit welchem Organ hören wir?", answer: "ohr", explanation: "Wir hören mit dem Ohr" },
+            { question: "Mit welchem Organ sehen wir?", answer: "auge", explanation: "Wir sehen mit dem Auge" },
+            { question: "Mit welchem Organ schmecken wir?", answer: "zunge", explanation: "Wir schmecken mit der Zunge" }
+        ],
+        body: [
+            { question: "Wie viele Knochen hat ein erwachsener Mensch etwa?", answer: "206", explanation: "Ein erwachsener Mensch hat etwa 206 Knochen" },
+            { question: "Welches Organ pumpt das Blut durch den Körper?", answer: "herz", explanation: "Das Herz pumpt das Blut durch den Körper" },
+            { question: "Womit atmen wir?", answer: "lunge", explanation: "Wir atmen mit der Lunge" },
+            { question: "Welches Organ denkt?", answer: "gehirn", explanation: "Das Gehirn ist für das Denken zuständig" },
+            { question: "Wie viele Zähne hat ein Erwachsener?", answer: "32", explanation: "Ein Erwachsener hat 32 Zähne" }
+        ],
+        animals: [
+            { question: "Welches Tier ist das größte Landtier?", answer: "elefant", explanation: "Der Elefant ist das größte Landtier" },
+            { question: "Welches Tier kann am schnellsten laufen?", answer: "gepard", explanation: "Der Gepard ist das schnellste Landtier" },
+            { question: "Welches Tier legt Eier und gibt Milch?", answer: "schnabeltier", explanation: "Das Schnabeltier legt Eier und gibt Milch" },
+            { question: "Wie nennt man Tiere, die nur Pflanzen fressen?", answer: "pflanzenfresser", explanation: "Pflanzenfresser sind Herbivoren" }
+        ],
+        plants: [
+            { question: "Was brauchen Pflanzen zum Wachsen?", answer: "licht", explanation: "Pflanzen brauchen Licht zum Wachsen" },
+            { question: "Wie nennt man den Vorgang, bei dem Pflanzen Sauerstoff produzieren?", answer: "photosynthese", explanation: "Photosynthese produziert Sauerstoff" },
+            { question: "Was nehmen Pflanzen durch die Wurzeln auf?", answer: "wasser", explanation: "Pflanzen nehmen Wasser durch die Wurzeln auf" },
+            { question: "Welcher Teil der Pflanze ist meist grün?", answer: "blätter", explanation: "Die Blätter sind meist grün" }
+        ],
+        electricity: [
+            { question: "Was braucht man für einen Stromkreis?", answer: "batterie", explanation: "Man braucht eine Batterie oder Stromquelle" },
+            { question: "Wie nennt man den Weg, den der Strom nimmt?", answer: "stromkreis", explanation: "Der Weg des Stroms ist der Stromkreis" },
+            { question: "Was leitet Strom gut?", answer: "metall", explanation: "Metall leitet Strom gut" },
+            { question: "Was leitet Strom nicht?", answer: "plastik", explanation: "Plastik leitet Strom nicht" }
+        ],
+        environment: [
+            { question: "Was kann man recyceln?", answer: "papier", explanation: "Papier kann man recyceln" },
+            { question: "Womit kann man Energie sparen?", answer: "led", explanation: "LED-Lampen sparen Energie" },
+            { question: "Was produziert Sauerstoff?", answer: "bäume", explanation: "Bäume produzieren Sauerstoff" },
+            { question: "Was verschmutzt die Luft?", answer: "abgase", explanation: "Abgase verschmutzen die Luft" }
+        ]
+    },
+    geography: {
+        directions: [
+            { question: "Wie heißt die Himmelsrichtung zwischen Nord und Ost?", answer: "nordost", explanation: "Zwischen Nord und Ost liegt Nordost" },
+            { question: "Welche Himmelsrichtung ist das Gegenteil von Norden?", answer: "süden", explanation: "Das Gegenteil von Norden ist Süden" },
+            { question: "Welche Himmelsrichtung ist das Gegenteil von Osten?", answer: "westen", explanation: "Das Gegenteil von Osten ist Westen" },
+            { question: "Wo geht die Sonne auf?", answer: "osten", explanation: "Die Sonne geht im Osten auf" },
+            { question: "Wo geht die Sonne unter?", answer: "westen", explanation: "Die Sonne geht im Westen unter" }
+        ],
+        continents: [
+            { question: "Wie viele Kontinente gibt es?", answer: "7", explanation: "Es gibt 7 Kontinente" },
+            { question: "Auf welchem Kontinent liegt Deutschland?", answer: "europa", explanation: "Deutschland liegt in Europa" },
+            { question: "Welcher ist der größte Kontinent?", answer: "asien", explanation: "Asien ist der größte Kontinent" },
+            { question: "Welcher ist der kleinste Kontinent?", answer: "australien", explanation: "Australien ist der kleinste Kontinent" },
+            { question: "Auf welchem Kontinent liegt der Nordpol?", answer: "antarktis", explanation: "Der Nordpol liegt in der Antarktis" }
+        ],
+        germany: [
+            { question: "Wie heißt die Hauptstadt von Deutschland?", answer: "berlin", explanation: "Berlin ist die Hauptstadt von Deutschland" },
+            { question: "Welches ist das größte Bundesland?", answer: "bayern", explanation: "Bayern ist das größte Bundesland" },
+            { question: "Wie viele Bundesländer hat Deutschland?", answer: "16", explanation: "Deutschland hat 16 Bundesländer" },
+            { question: "Welcher Fluss fließt durch Deutschland?", answer: "rhein", explanation: "Der Rhein fließt durch Deutschland" },
+            { question: "Wie heißt das höchste Gebirge in Deutschland?", answer: "alpen", explanation: "Die Alpen sind das höchste Gebirge" }
+        ],
+        maps: [
+            { question: "Was zeigt der Maßstab einer Karte?", answer: "größe", explanation: "Der Maßstab zeigt das Größenverhältnis" },
+            { question: "Welche Farbe haben meist Gewässer auf Karten?", answer: "blau", explanation: "Gewässer sind meist blau dargestellt" },
+            { question: "Welche Farbe haben meist Wälder auf Karten?", answer: "grün", explanation: "Wälder sind meist grün dargestellt" },
+            { question: "Was ist eine Legende?", answer: "erklärung", explanation: "Die Legende erklärt die Zeichen der Karte" }
+        ],
+        climate: [
+            { question: "Wie nennt man das Wetter über längere Zeit?", answer: "klima", explanation: "Das Klima ist das Wetter über längere Zeit" },
+            { question: "Was misst ein Thermometer?", answer: "temperatur", explanation: "Ein Thermometer misst die Temperatur" },
+            { question: "Wie heißt gefrorenes Wasser?", answer: "eis", explanation: "Gefrorenes Wasser ist Eis" },
+            { question: "Bei wie viel Grad gefriert Wasser?", answer: "0", explanation: "Wasser gefriert bei 0 Grad Celsius" }
+        ],
+        cities: [
+            { question: "Wie heißt die Hauptstadt von Frankreich?", answer: "paris", explanation: "Paris ist die Hauptstadt von Frankreich" },
+            { question: "Wie heißt die Hauptstadt von Italien?", answer: "rom", explanation: "Rom ist die Hauptstadt von Italien" },
+            { question: "Wie heißt die Hauptstadt von Spanien?", answer: "madrid", explanation: "Madrid ist die Hauptstadt von Spanien" },
+            { question: "Wie heißt die Hauptstadt von England?", answer: "london", explanation: "London ist die Hauptstadt von England" }
+        ]
+    },
+    history: {
+        timeline: [
+            { question: "Was bedeutet 'v. Chr.'?", answer: "vor christus", explanation: "v. Chr. bedeutet 'vor Christus'" },
+            { question: "Was bedeutet 'n. Chr.'?", answer: "nach christus", explanation: "n. Chr. bedeutet 'nach Christus'" },
+            { question: "In welchem Jahr wurde Jesus geboren?", answer: "0", explanation: "Jesus wurde im Jahr 0 geboren (Zeitrechnung)" },
+            { question: "Wie nennt man die Zeit vor der Schrift?", answer: "urgeschichte", explanation: "Die Zeit vor der Schrift ist die Urgeschichte" }
+        ],
+        egypt: [
+            { question: "Wie hießen die Herrscher im alten Ägypten?", answer: "pharaonen", explanation: "Die Herrscher Ägyptens waren die Pharaonen" },
+            { question: "Welcher Fluss fließt durch Ägypten?", answer: "nil", explanation: "Der Nil ist der Fluss Ägyptens" },
+            { question: "Wie heißen die großen Grabmäler der Pharaonen?", answer: "pyramiden", explanation: "Die Grabmäler sind die Pyramiden" },
+            { question: "Welche Schrift verwendeten die Ägypter?", answer: "hieroglyphen", explanation: "Die Ägypter verwendeten Hieroglyphen" }
+        ],
+        greece: [
+            { question: "Wer erfand die Demokratie?", answer: "griechen", explanation: "Die Griechen erfanden die Demokratie" },
+            { question: "Wie hieß der oberste Gott der Griechen?", answer: "zeus", explanation: "Zeus war der oberste Gott" },
+            { question: "Wo fanden die ersten Olympischen Spiele statt?", answer: "olympia", explanation: "Die ersten Olympischen Spiele fanden in Olympia statt" },
+            { question: "Wie heißt die Hauptstadt von Griechenland?", answer: "athen", explanation: "Athen ist die Hauptstadt von Griechenland" }
+        ],
+        rome: [
+            { question: "Wie hießen die römischen Soldaten?", answer: "legionäre", explanation: "Die römischen Soldaten hießen Legionäre" },
+            { question: "Welche Stadt war das Zentrum des Römischen Reiches?", answer: "rom", explanation: "Rom war das Zentrum des Römischen Reiches" },
+            { question: "Wie hießen die Kämpfer in der Arena?", answer: "gladiatoren", explanation: "Die Kämpfer waren Gladiatoren" },
+            { question: "Wie hieß das berühmte Amphitheater in Rom?", answer: "kolosseum", explanation: "Das Kolosseum war das berühmte Amphitheater" }
+        ],
+        medieval: [
+            { question: "Wie nannte man die Krieger im Mittelalter?", answer: "ritter", explanation: "Die Krieger waren Ritter" },
+            { question: "Wo lebten die Ritter?", answer: "burgen", explanation: "Die Ritter lebten auf Burgen" },
+            { question: "Wie hießen die Bauern im Mittelalter?", answer: "leibeigene", explanation: "Die Bauern waren Leibeigene" },
+            { question: "Wer hatte im Mittelalter viel Macht?", answer: "kirche", explanation: "Die Kirche hatte viel Macht" }
+        ],
+        sources: [
+            { question: "Wie nennt man alte Gegenstände aus der Vergangenheit?", answer: "funde", explanation: "Alte Gegenstände sind archäologische Funde" },
+            { question: "Wer gräbt nach alten Gegenständen?", answer: "archäologen", explanation: "Archäologen graben nach alten Gegenständen" },
+            { question: "Wie nennt man schriftliche Berichte aus der Vergangenheit?", answer: "quellen", explanation: "Schriftliche Berichte sind historische Quellen" },
+            { question: "Was sind Überreste von Gebäuden?", answer: "ruinen", explanation: "Überreste von Gebäuden sind Ruinen" }
+        ]
+    }
+};
 
         // Initialisierung
         document.addEventListener('DOMContentLoaded', function() {
