@@ -6,24 +6,188 @@
     <title>Bohncity Schule - Klasse 5</title>
     <style>
         /* Grundlegende Stildefinitionen */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --background-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --background-dark: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            --text-color-light: #333;
+            --text-color-dark: #f0f0f0;
+            --card-background-light: white;
+            --card-background-dark: #3a3a3a;
+            --header-background-light: rgba(255, 255, 255, 0.95);
+            --header-background-dark: rgba(25, 25, 25, 0.95);
+            --nav-button-color-light: #718096;
+            --nav-button-color-dark: #bbbbbb;
+            --nav-button-hover-bg-light: #edf2f7;
+            --nav-button-hover-bg-dark: #555;
+            --nav-button-active-bg-light: linear-gradient(45deg, #667eea, #764ba2);
+            --nav-button-active-bg-dark: linear-gradient(45deg, #4a5568, #2d3748);
+            --subject-card-border-light: #e2e8f0;
+            --subject-card-border-dark: #555;
+            --topic-card-bg-light: #f7fafc;
+            --topic-card-bg-dark: #444;
+            --topic-card-border-light: #e2e8f0;
+            --topic-card-border-dark: #666;
+            --input-border-light: #e2e8f0;
+            --input-border-dark: #666;
+            --input-focus-shadow-light: rgba(102, 126, 234, 0.1);
+            --input-focus-shadow-dark: rgba(100, 100, 200, 0.3);
+            --feedback-correct-bg-light: #c6f6d5;
+            --feedback-correct-bg-dark: #2f855a;
+            --feedback-correct-color-light: #22543d;
+            --feedback-correct-color-dark: #c6f6d5;
+            --feedback-correct-border-light: #68d391;
+            --feedback-correct-border-dark: #38a169;
+            --feedback-incorrect-bg-light: #fed7d7;
+            --feedback-incorrect-bg-dark: #c53030;
+            --feedback-incorrect-color-light: #742a2a;
+            --feedback-incorrect-color-dark: #fed7d7;
+            --feedback-incorrect-border-light: #fc8181;
+            --feedback-incorrect-border-dark: #e53e3e;
+            --game-stats-bg-light: #f7fafc;
+            --game-stats-bg-dark: #444;
+            --game-stat-label-color-light: #718096;
+            --game-stat-label-color-dark: #bbb;
         }
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--background-light);
             min-height: 100vh;
-            color: #333;
+            color: var(--text-color-light);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             padding: 20px;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: var(--background-dark);
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .header,
+        body.dark-mode .navigation,
+        body.dark-mode .topic-view,
+        body.dark-mode .quiz-container,
+        body.dark-mode .worksheets-container,
+        body.dark-mode .quiz-end-screen {
+            background: var(--header-background-dark);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .header h1,
+        body.dark-mode .subject-title,
+        body.dark-mode .topic-card h3,
+        body.dark-mode .quiz-end-screen h2,
+        body.dark-mode .worksheets-container h2,
+        body.dark-mode .worksheet-card h3 {
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .stat-item,
+        body.dark-mode .subject-card {
+            background: var(--card-background-dark);
+            color: var(--text-color-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .stat-item {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .nav-button {
+            color: var(--nav-button-color-dark);
+        }
+
+        body.dark-mode .nav-button:hover {
+            color: var(--text-color-dark);
+            background: var(--nav-button-hover-bg-dark);
+        }
+
+        body.dark-mode .nav-button.active {
+            background: var(--nav-button-active-bg-dark);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .subject-description,
+        body.dark-mode .topic-card p,
+        body.dark-mode .quiz-end-screen p,
+        body.dark-mode .quiz-progress,
+        body.dark-mode .game-stat-label,
+        body.dark-mode .worksheets-container p,
+        body.dark-mode .worksheet-card p {
+            color: var(--nav-button-color-dark);
+        }
+
+        body.dark-mode .btn {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .btn:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .back-btn {
+            background: #4a5568;
+        }
+
+        body.dark-mode .back-btn:hover {
+            background: #2d3748;
+        }
+
+        body.dark-mode .topic-card {
+            background: var(--topic-card-bg-dark);
+            border: 2px solid var(--topic-card-border-dark);
+        }
+
+        body.dark-mode .topic-card:hover {
+            border-color: #667eea; /* Can remain bright for highlight */
+            background: #555;
+        }
+
+        body.dark-mode .question-card,
+        body.dark-mode .game-stats,
+        body.dark-mode .worksheet-card {
+            background: var(--game-stats-bg-dark);
+            border: 2px solid var(--topic-card-border-dark);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .worksheet-card:hover {
+            border-color: #667eea;
+            background: #555;
+        }
+
+        body.dark-mode .answer-input {
+            background: #555;
+            color: var(--text-color-dark);
+            border: 2px solid var(--input-border-dark);
+        }
+
+        body.dark-mode .answer-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-dark);
+        }
+
+        body.dark-mode .feedback.correct {
+            background: var(--feedback-correct-bg-dark);
+            color: var(--feedback-correct-color-dark);
+            border: 2px solid var(--feedback-correct-border-dark);
+        }
+
+        body.dark-mode .feedback.incorrect {
+            background: var(--feedback-incorrect-bg-dark);
+            color: var(--feedback-incorrect-color-dark);
+            border: 2px solid var(--feedback-incorrect-border-dark);
+        }
+
+
+        /* Standard-Stile (beibehalten) */
         .container {
             max-width: 1200px;
             margin: auto;
@@ -33,19 +197,21 @@
 
         /* Header Bereich */
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--header-background-light);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .header h1 {
             font-size: 2.5rem;
             color: #2d3748;
             margin-bottom: 10px;
+            transition: color 0.5s ease;
         }
 
         .bean-logo {
@@ -78,11 +244,12 @@
             gap: 8px;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
         }
 
         /* Navigationsleiste */
         .navigation {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--header-background-light);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             margin-bottom: 30px;
@@ -92,6 +259,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .nav-button {
@@ -100,7 +268,7 @@
             padding: 10px 20px;
             font-size: 1.1rem;
             font-weight: bold;
-            color: #718096;
+            color: var(--nav-button-color-light);
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 15px;
@@ -108,11 +276,11 @@
 
         .nav-button:hover {
             color: #4a5568;
-            background: #edf2f7;
+            background: var(--nav-button-hover-bg-light);
         }
 
         .nav-button.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--nav-button-active-bg-light);
             color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -126,7 +294,7 @@
         }
 
         .subject-card {
-            background: white;
+            background: var(--card-background-light);
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -192,11 +360,12 @@
 
         /* Ansichten (Fach, Quiz, Arbeitsblätter) */
         .topic-view, .quiz-container, .worksheets-container {
-            background: white;
+            background: var(--card-background-light);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .back-btn {
@@ -225,8 +394,8 @@
         }
 
         .topic-card {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
+            background: var(--topic-card-bg-light);
+            border: 2px solid var(--topic-card-border-light);
             border-radius: 15px;
             padding: 20px;
             cursor: pointer;
@@ -265,7 +434,7 @@
         }
 
         .question-card {
-            background: #f7fafc;
+            background: var(--topic-card-bg-light);
             border-radius: 15px;
             padding: 25px;
             margin: 20px auto;
@@ -276,24 +445,28 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
 
         .answer-input {
             width: 100%;
             max-width: 400px;
             padding: 15px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--input-border-light);
             border-radius: 10px;
             font-size: 1.1rem;
             margin: 20px auto;
             text-align: center;
             display: block;
+            background: var(--card-background-light);
+            color: var(--text-color-light);
+            transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
         }
 
         .answer-input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
         }
 
         .feedback {
@@ -315,27 +488,28 @@
         }
 
         .feedback.correct {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 2px solid #68d391;
+            background: var(--feedback-correct-bg-light);
+            color: var(--feedback-correct-color-light);
+            border: 2px solid var(--feedback-correct-border-light);
         }
 
         .feedback.incorrect {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 2px solid #fc8181;
+            background: var(--feedback-incorrect-bg-light);
+            color: var(--feedback-incorrect-color-light);
+            border: 2px solid var(--feedback-incorrect-border-light);
         }
 
         .game-stats {
             display: flex;
             justify-content: space-around;
             margin: 20px 0;
-            background: #f7fafc;
+            background: var(--game-stats-bg-light);
             padding: 15px;
             border-radius: 15px;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
             flex-wrap: wrap;
             gap: 10px;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .game-stat {
@@ -346,11 +520,11 @@
         .game-stat-value {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: #667eea; /* This color often stays the same for highlights */
         }
 
         .game-stat-label {
-            color: #718096;
+            color: var(--game-stat-label-color-light);
             font-size: 0.9rem;
         }
 
@@ -391,10 +565,11 @@
         .quiz-end-screen {
             text-align: center;
             padding: 30px;
-            background: white;
+            background: var(--card-background-light);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .quiz-end-screen h2 {
@@ -426,8 +601,8 @@
         }
 
         .worksheet-card {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
+            background: var(--topic-card-bg-light);
+            border: 2px solid var(--topic-card-border-light);
             border-radius: 15px;
             padding: 20px;
             text-align: center;
@@ -464,6 +639,53 @@
         .worksheet-card .btn {
             width: auto;
             padding: 10px 20px;
+        }
+
+        /* Dark Mode Switcher Styles */
+        .theme-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark-mode .theme-switcher {
+            background: rgba(25, 25, 25, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switcher button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            color: #718096;
+        }
+
+        body.dark-mode .theme-switcher button {
+            color: #bbbbbb;
+        }
+
+        .theme-switcher button.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .theme-switcher button.active {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive Anpassungen */
@@ -517,11 +739,28 @@
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
+
+            .theme-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 5px 10px;
+                font-size: 0.9rem;
+            }
+
+            .theme-switcher button {
+                font-size: 1rem;
+                padding: 3px 8px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="theme-switcher">
+            <button id="light-mode-btn" class="active">☀️</button>
+            <button id="dark-mode-btn">🌙</button>
+        </div>
+
         <div class="header">
             <div class="bean-logo">🫘</div>
             <h1>Bohncity Schule</h1>
@@ -914,487 +1153,442 @@
                     { question: "Welches Pronomen steht für 'du'?", answer: "you", explanation: "'Du' auf Englisch ist 'you'." },
                     { question: "Welches Pronomen steht für 'er'?", answer: "he", explanation: "'Er' auf Englisch ist 'he'." },
                     { question: "Welches Pronomen steht für 'sie' (weiblich)?", answer: "she", explanation: "'Sie' (weiblich) auf Englisch ist 'she'." },
+                    { question: "Welches Pronomen steht für 'es'?", answer: "it", explanation: "'Es' auf Englisch ist 'it'." },
                     { question: "Welches Pronomen steht für 'wir'?", answer: "we", explanation: "'Wir' auf Englisch ist 'we'." },
-                    { question: "Welches Pronomen steht für 'es' (Sachen/Tiere)?", answer: "it", explanation: "'Es' für Sachen oder Tiere ist 'it'." },
-                    { question: "Welches Pronomen steht für 'sie' (Plural)?", answer: "they", explanation: "'Sie' (Plural, für Personen oder Dinge) ist 'they'." }
+                    { question: "Welches Pronomen steht für 'ihr' (plural)?", answer: "you", explanation: "'Ihr' (plural) auf Englisch ist 'you'." },
+                    { question: "Welches Pronomen steht für 'sie' (plural)?", answer: "they", explanation: "'Sie' (plural) auf Englisch ist 'they'." }
                 ],
                 questions: [
-                    { question: "Mit welchem Wort fragt man nach dem Ort?", answer: "where", explanation: "'Where' bedeutet 'wo'." },
-                    { question: "Mit welchem Wort fragt man nach der Zeit?", answer: "when", explanation: "'When' bedeutet 'wann'." },
-                    { question: "Mit welchem Wort fragt man nach dem Grund?", answer: "why", explanation: "'Why' bedeutet 'warum'." },
-                    { question: "Mit welchem Wort fragt man nach einer Sache?", answer: "what", explanation: "'What' bedeutet 'was'." },
-                    { question: "Mit welchem Wort fragt man nach einer Person?", answer: "who", explanation: "'Who' bedeutet 'wer'." },
-                    { question: "Mit welchem Wort fragt man nach der Art und Weise?", answer: "how", explanation: "'How' bedeutet 'wie'." }
+                    { question: "Wie fragt man: 'Was ist das?'", answer: "what is that", explanation: "Die korrekte Frage ist 'What is that?'." },
+                    { question: "Wie fragt man: 'Wo ist die Schule?'", answer: "where is the school", explanation: "Die korrekte Frage ist 'Where is the school?'." },
+                    { question: "Wie fragt man: 'Wann gehst du?'", answer: "when do you go", explanation: "Die korrekte Frage ist 'When do you go?'." },
+                    { question: "Wie fragt man: 'Warum weinst du?'", answer: "why do you cry", explanation: "Die korrekte Frage ist 'Why do you cry?'." },
+                    { question: "Wie fragt man nach einer Person?", answer: "who", explanation: "Man fragt mit 'Who' nach einer Person." },
+                    { question: "Wie fragt man nach einer Sache?", answer: "what", explanation: "Man fragt mit 'What' nach einer Sache." }
                 ],
                 conversations: [
-                    { question: "Wie sagt man 'Hallo' auf Englisch?", answer: "hello", explanation: "'Hello' ist eine gängige Begrüßung." },
-                    { question: "Wie sagt man 'Auf Wiedersehen' auf Englisch?", answer: "goodbye", explanation: "'Goodbye' bedeutet 'Auf Wiedersehen'." },
-                    { question: "Wie sagt man 'Danke' auf Englisch?", answer: "thank you", explanation: "'Thank you' ist die englische Entsprechung für 'Danke'." },
-                    { question: "Wie sagt man 'Bitte' auf Englisch?", answer: "please", explanation: "'Please' bedeutet 'Bitte'." },
-                    { question: "Wie antwortet man auf 'How are you?'", answer: "i am fine", explanation: "Eine typische Antwort ist 'I am fine' oder 'I'm good'." },
-                    { question: "Wie fragt man nach dem Namen einer Person?", answer: "what is your name", explanation: "Die Frage 'What is your name?' bedeutet 'Wie heißt du?'." }
+                    { question: "Wie begrüßt man jemanden am Morgen?", answer: "good morning", explanation: "'Good morning' ist die typische Begrüßung am Morgen." },
+                    { question: "Wie verabschiedet man sich am Abend?", answer: "good night", explanation: "'Good night' sagt man zur Verabschiedung am Abend." },
+                    { question: "Wie fragt man jemanden nach seinem Namen?", answer: "what is your name", explanation: "Die Frage 'What is your name?' wird verwendet." },
+                    { question: "Wie antwortet man auf 'How are you?'", answer: "i am fine", explanation: "Eine typische Antwort ist 'I am fine, thank you.'." },
+                    { question: "Wie entschuldigt man sich?", answer: "i am sorry", explanation: "Man entschuldigt sich mit 'I am sorry'." },
+                    { question: "Wie bedankt man sich?", answer: "thank you", explanation: "Man bedankt sich mit 'Thank you'." }
                 ],
                 writing: [
-                    { question: "Wie schreibt man eine Begrüßung im Brief?", answer: "dear", explanation: "Eine übliche Begrüßung ist 'Dear [Name]'." },
-                    { question: "Womit beginnt ein Satz auf Englisch?", answer: "capital letter", explanation: "Ein Satz beginnt mit einem Großbuchstaben (capital letter)." },
-                    { question: "Wie beendet man einen Brief freundlich?", answer: "yours", explanation: "Man beendet oft mit 'Yours' oder 'Sincerely'." },
-                    { question: "Was kommt nach 'My name is'?", answer: "name", explanation: "Nach 'My name is' kommt der eigene Name." },
-                    { question: "Was ist ein Komma auf Englisch?", answer: "comma", explanation: "Komma ist 'comma'." },
-                    { question: "Was ist ein Punkt am Satzende auf Englisch?", answer: "full stop", explanation: "Ein Punkt am Satzende heißt 'full stop' (BE) oder 'period' (AE)." }
+                    { question: "Wie beginnt man einen einfachen Satz auf Englisch?", answer: "subjekt verb", explanation: "Ein einfacher Satz beginnt oft mit Subjekt, gefolgt vom Verb (z.B. I play)." },
+                    { question: "Was ist ein 'full stop'?", answer: "punkt", explanation: "Ein 'full stop' ist ein Punkt (.) am Ende eines Satzes." },
+                    { question: "Was ist ein 'comma'?", answer: "komma", explanation: "Ein 'comma' ist ein Komma (,)." },
+                    { question: "Wie schreibt man das Wort 'colour' (UK) auf US-Englisch?", answer: "color", explanation: "Auf US-Englisch wird 'colour' zu 'color'." },
+                    { question: "Welcher Buchstabe ist im Englischen immer groß?", answer: "i", explanation: "Das Pronomen 'I' (ich) wird immer großgeschrieben." }
                 ]
             },
             science: {
                 senses: [
-                    { question: "Mit welchem Organ riechen wir?", answer: "nase", explanation: "Die Nase ist unser Riechorgan." },
-                    { question: "Wie viele Sinne hat der Mensch?", answer: "5", explanation: "Der Mensch hat fünf Sinne: Sehen, Hören, Riechen, Schmecken, Tasten." },
-                    { question: "Mit welchem Organ hören wir?", answer: "ohr", explanation: "Das Ohr ist unser Hörorgan." },
-                    { question: "Mit welchem Organ sehen wir?", answer: "auge", explanation: "Das Auge ist unser Sehorgan." },
-                    { question: "Mit welchem Organ schmecken wir?", answer: "zunge", explanation: "Die Zunge ist unser Geschmacksorgan." },
-                    { question: "Welcher Sinn hilft uns, Dinge zu fühlen?", answer: "tastsinn", explanation: "Der Tastsinn ist die Wahrnehmung durch Berührung." }
+                    { question: "Mit welchem Sinn nehmen wir Farben wahr?", answer: "sehen", explanation: "Wir nehmen Farben mit dem Sehsinn wahr (Augen)." },
+                    { question: "Mit welchem Organ hören wir?", answer: "ohren", explanation: "Wir hören mit den Ohren." },
+                    { question: "Welcher Sinn hilft uns, Gerüche zu erkennen?", answer: "riechen", explanation: "Der Geruchssinn (Nase) hilft uns dabei." },
+                    { question: "Welche Geschmacksrichtungen gibt es (mindestens 4)?", answer: "süss salzig sauer bitter", explanation: "Die vier Grundgeschmacksrichtungen sind süß, salzig, sauer, bitter (und umami)." },
+                    { question: "Welches Organ ist für den Geschmack zuständig?", answer: "zunge", explanation: "Die Zunge ist das Geschmacksorgan." },
+                    { question: "Welcher Sinn schützt uns vor zu großer Hitze?", answer: "tastsinn", explanation: "Der Tastsinn (Haut) warnt uns vor Hitze und Kälte." }
                 ],
                 body: [
-                    { question: "Wie viele Knochen hat ein erwachsener Mensch etwa?", answer: "206", explanation: "Ein erwachsener Mensch hat durchschnittlich 206 Knochen." },
-                    { question: "Welches Organ pumpt das Blut durch den Körper?", answer: "herz", explanation: "Das Herz pumpt das Blut durch den Blutkreislauf." },
-                    { question: "Womit atmen wir?", answer: "lunge", explanation: "Die Lunge ist unser Atmungsorgan." },
-                    { question: "Welches Organ denkt?", answer: "gehirn", explanation: "Das Gehirn ist das Zentrum des Nervensystems und des Denkens." },
-                    { question: "Wie viele Zähne hat ein Erwachsener?", answer: "32", explanation: "Ein erwachsener Mensch hat normalerweise 32 Zähne (inkl. Weisheitszähne)." },
-                    { question: "Welches Organ ist für die Verdauung zuständig?", answer: "magen", explanation: "Der Magen ist ein zentrales Organ für die Verdauung." }
+                    { question: "Welches Organ pumpt Blut durch den Körper?", answer: "herz", explanation: "Das Herz pumpt Blut und versorgt den Körper." },
+                    { question: "Welches Organ verarbeitet unsere Nahrung?", answer: "magen", explanation: "Der Magen zersetzt die Nahrung." },
+                    { question: "Wie heißen die Organe, mit denen wir atmen?", answer: "lunge", explanation: "Wir atmen mit der Lunge (oder Lungen)." },
+                    { question: "Woraus besteht unser Skelett?", answer: "knochen", explanation: "Das Skelett besteht aus vielen Knochen." },
+                    { question: "Welches Organ ist die Steuerzentrale unseres Körpers?", answer: "gehirn", explanation: "Das Gehirn steuert alle Körperfunktionen." },
+                    { question: "Welches Gelenk verbindet Ober- und Unterschenkel?", answer: "knie", explanation: "Das Kniegelenk verbindet Ober- und Unterschenkel." }
                 ],
                 animals: [
-                    { question: "Welches Tier ist das größte Landtier?", answer: "elefant", explanation: "Der Afrikanische Elefant ist das größte Landtier." },
-                    { question: "Welches Tier kann am schnellsten laufen?", answer: "gepard", explanation: "Der Gepard ist das schnellste Landtier." },
-                    { question: "Welches Tier legt Eier und gibt Milch?", answer: "schnabeltier", explanation: "Das Schnabeltier ist eines der wenigen Säugetiere, die Eier legen." },
-                    { question: "Wie nennt man Tiere, die nur Pflanzen fressen?", answer: "pflanzenfresser", explanation: "Pflanzenfresser werden auch Herbivoren genannt." },
-                    { question: "Wie nennt man Tiere, die Fleisch fressen?", answer: "fleischfresser", explanation: "Fleischfresser werden auch Karnivoren genannt." },
-                    { question: "Nenne ein Tier, das Winterschlaf hält.", answer: "igel", explanation: "Igel, Bären und Murmeltiere halten Winterschlaf." }
+                    { question: "Welches Tier ist ein Säugetier und kann fliegen?", answer: "fledermaus", explanation: "Die Fledermaus ist das einzige fliegende Säugetier." },
+                    { question: "Welches Tier legt Eier und hat Federn?", answer: "vogel", explanation: "Vögel legen Eier und haben Federn." },
+                    { question: "Welches Tier lebt im Wasser und atmet durch Kiemen?", answer: "fisch", explanation: "Fische leben im Wasser und atmen mit Kiemen." },
+                    { question: "Nenne ein Tier, das Winterschlaf hält.", answer: "igel", explanation: "Igel, Bären und Murmeltiere halten Winterschlaf." },
+                    { question: "Welches Insekt produziert Honig?", answer: "biene", explanation: "Bienen produzieren Honig." },
+                    { question: "Wie nennt man die Entwicklung vom Ei zur Raupe zum Schmetterling?", answer: "metamorphose", explanation: "Dieser Prozess wird Metamorphose genannt." }
                 ],
                 plants: [
-                    { question: "Was brauchen Pflanzen zum Wachsen?", answer: "licht", explanation: "Pflanzen benötigen Sonnenlicht für die Photosynthese." },
-                    { question: "Wie nennt man den Vorgang, bei dem Pflanzen Sauerstoff produzieren?", answer: "photosynthese", explanation: "Pflanzen produzieren durch Photosynthese Sauerstoff und Zucker." },
-                    { question: "Was nehmen Pflanzen durch die Wurzeln auf?", answer: "wasser", explanation: "Pflanzen nehmen Wasser und Nährstoffe durch die Wurzeln auf." },
-                    { question: "Welcher Teil der Pflanze ist meist grün?", answer: "blätter", explanation: "Die Blätter sind oft grün durch das Chlorophyll." },
-                    { question: "Was entsteht aus der Blüte einer Pflanze?", answer: "frucht", explanation: "Aus der Blüte entwickelt sich die Frucht (z.B. Apfel, Tomate)." },
-                    { question: "Wie nennt man den Teil der Pflanze, der unter der Erde ist?", answer: "wurzel", explanation: "Die Wurzel verankert die Pflanze und nimmt Wasser auf." }
+                    { question: "Welches Teil der Pflanze wächst unter der Erde und nimmt Wasser auf?", answer: "wurzel", explanation: "Die Wurzeln nehmen Wasser und Nährstoffe auf." },
+                    { question: "Welches Gas nehmen Pflanzen zum Wachsen auf?", answer: "kohlendioxid", explanation: "Pflanzen nehmen Kohlendioxid auf und geben Sauerstoff ab (Photosynthese)." },
+                    { question: "Wie heißt der Vorgang, bei dem Pflanzen Nahrung aus Licht herstellen?", answer: "photosynthese", explanation: "Dies ist die Photosynthese." },
+                    { question: "Welche Farbe hat das Chlorophyll in Pflanzen?", answer: "grün", explanation: "Chlorophyll ist der grüne Farbstoff in Pflanzen." },
+                    { question: "Wozu dienen Blüten einer Pflanze?", answer: "fortpflanzung", explanation: "Blüten dienen der Fortpflanzung der Pflanze." },
+                    { question: "Nenne ein Gemüse, das unter der Erde wächst.", answer: "karotte", explanation: "Karotten, Kartoffeln oder Radieschen wachsen unter der Erde." }
                 ],
                 electricity: [
-                    { question: "Was braucht man für einen Stromkreis?", answer: "stromquelle", explanation: "Eine Stromquelle (z.B. Batterie) liefert die Energie." },
-                    { question: "Woraus besteht ein elektrischer Leiter?", answer: "metall", explanation: "Metalle wie Kupfer sind gute elektrische Leiter." },
-                    { question: "Was schützt uns vor Stromschlägen?", answer: "isolation", explanation: "Isolation (z.B. Plastik um Kabel) verhindert den Kontakt mit Strom." },
-                    { question: "Was fließt in einem Stromkreis?", answer: "strom", explanation: "Elektrischer Strom fließt in einem geschlossenen Stromkreis." },
-                    { question: "Nenne ein Gerät, das Strom braucht.", answer: "lampe", explanation: "Eine Lampe, ein Föhn oder ein Radio benötigen Strom." },
-                    { question: "Was ist ein Kurzschluss?", answer: "direktverbindung", explanation: "Ein Kurzschluss ist eine unbeabsichtigte, niederohmige Verbindung in einem Stromkreis." }
+                    { question: "Was fließt in einem Stromkreis?", answer: "strom", explanation: "Strom oder Elektrizität fließt in einem Stromkreis." },
+                    { question: "Nenne ein Material, das Strom gut leitet.", answer: "kupfer", explanation: "Metalle wie Kupfer oder Aluminium leiten Strom gut." },
+                    { question: "Nenne ein Material, das Strom nicht leitet (Isolator).", answer: "plastik", explanation: "Plastik, Gummi oder Holz leiten Strom nicht gut (sind Isolatoren)." },
+                    { question: "Was schützt uns vor Stromschlägen in einem Kabel?", answer: "isolierung", explanation: "Die Isolierung um das Kabel schützt uns." },
+                    { question: "Was ist eine Energiequelle für Strom (außer Steckdose)?", answer: "batterie", explanation: "Batterien, Solarenergie, Windkraft sind Energiequellen." },
+                    { question: "Was erzeugt Licht in einer Lampe?", answer: "glühbirne", explanation: "Die Glühbirne (oder LED) erzeugt Licht." }
                 ],
                 environment: [
-                    { question: "Was ist ein Treibhauseffekt?", answer: "erwärmung", explanation: "Der Treibhauseffekt beschreibt die Erwärmung der Erdatmosphäre durch bestimmte Gase." },
-                    { question: "Was schützt die Erde vor UV-Strahlung?", answer: "ozonschicht", explanation: "Die Ozonschicht in der Stratosphäre schützt vor schädlicher UV-Strahlung." },
-                    { question: "Welche Energiequelle ist erneuerbar?", answer: "sonnenenergie", explanation: "Sonnenenergie, Windenergie und Wasserkraft sind erneuerbare Energiequellen." },
-                    { question: "Was hilft, Müll zu reduzieren?", answer: "recycling", explanation: "Recycling ist ein wichtiger Schritt, um Müll zu reduzieren und Ressourcen zu schonen." },
-                    { question: "Warum ist es wichtig, Wasser zu sparen?", answer: "ressource", explanation: "Wasser ist eine begrenzte und wertvolle Ressource für alle Lebewesen." },
-                    { question: "Was passiert beim Kompostieren?", answer: "verrottung", explanation: "Beim Kompostieren werden organische Abfälle zu Humus zersetzt." }
+                    { question: "Was passiert, wenn man zu viel Müll in die Natur wirft?", answer: "verschmutzung", explanation: "Das führt zu Umweltverschmutzung." },
+                    { question: "Wie kann man Müll reduzieren?", answer: "recycling", explanation: "Durch Recycling, Wiederverwendung und Müllvermeidung." },
+                    { question: "Welches Gas ist für den Treibhauseffekt mitverantwortlich?", answer: "kohlendioxid", explanation: "Kohlendioxid (CO2) ist ein Treibhausgas." },
+                    { question: "Warum ist es wichtig, Wasser zu sparen?", answer: "ressource", explanation: "Wasser ist eine wichtige und begrenzte Ressource." },
+                    { question: "Nenne ein Beispiel für erneuerbare Energie.", answer: "sonnenenergie", explanation: "Sonnenenergie (Solar), Windenergie, Wasserkraft sind erneuerbare Energien." },
+                    { question: "Was ist der Lebensraum vieler Tiere und Pflanzen im Wald?", answer: "ökosystem", explanation: "Der Wald ist ein wichtiges Ökosystem." }
                 ]
             },
             geography: {
                 directions: [
-                    { question: "Was ist die entgegengesetzte Richtung von Norden?", answer: "süden", explanation: "Die vier Himmelsrichtungen sind Nord, Süd, Ost, West." },
-                    { question: "In welcher Himmelsrichtung geht die Sonne auf?", answer: "osten", explanation: "Die Sonne geht im Osten auf und im Westen unter." },
-                    { question: "Wie viele Himmelsrichtungen gibt es?", answer: "4", explanation: "Es gibt vier Haupt-Himmelsrichtungen." },
-                    { question: "In welcher Himmelsrichtung liegt Deutschland von Frankreich aus gesehen?", answer: "osten", explanation: "Deutschland liegt östlich von Frankreich." },
-                    { question: "Wenn du nach Norden gehst, wohin gehst du, wenn du dich umdrehst?", answer: "süden", explanation: "Wenn du dich umdrehst, gehst du in die entgegengesetzte Richtung." }
+                    { question: "Gegenüber von Norden ist...", answer: "süden", explanation: "Gegenüber von Norden ist Süden." },
+                    { question: "Zwischen Norden und Osten liegt...", answer: "nordosten", explanation: "Zwischen Norden und Osten liegt Nordosten." },
+                    { question: "In welche Himmelsrichtung geht die Sonne auf?", answer: "osten", explanation: "Die Sonne geht im Osten auf." },
+                    { question: "In welche Himmelsrichtung geht die Sonne unter?", answer: "westen", explanation: "Die Sonne geht im Westen unter." },
+                    { question: "Wenn du nach Norden schaust, was ist dann rechts?", answer: "osten", explanation: "Wenn du nach Norden schaust, ist Osten rechts." },
+                    { question: "Wenn du nach Süden schaust, was ist dann links?", answer: "osten", explanation: "Wenn du nach Süden schaust, ist Osten links." }
                 ],
                 continents: [
-                    { question: "Wie viele Kontinente gibt es?", answer: "7", explanation: "Es gibt sieben Kontinente: Asien, Afrika, Nordamerika, Südamerika, Antarktis, Europa, Australien." },
-                    { question: "Auf welchem Kontinent leben Pinguine (natürlich)?", answer: "antarktis", explanation: "Pinguine leben hauptsächlich in der Antarktis und auf südlichen Inseln." },
-                    { question: "Welcher ist der größte Kontinent?", answer: "asien", explanation: "Asien ist der größte Kontinent sowohl nach Fläche als auch nach Bevölkerung." },
-                    { question: "Welcher Kontinent ist bekannt für seine Kängurus?", answer: "australien", explanation: "Kängurus sind typische Tiere Australiens." },
-                    { question: "Auf welchem Kontinent liegt Ägypten?", answer: "afrika", explanation: "Ägypten liegt im Nordosten Afrikas." },
-                    { question: "Welcher Kontinent ist der kleinste?", answer: "australien", explanation: "Australien ist der kleinste Kontinent." }
+                    { question: "Nenne den größten Kontinent der Erde.", answer: "asien", explanation: "Asien ist der größte Kontinent." },
+                    { question: "Auf welchem Kontinent leben Pinguine (natürlich)?", answer: "antarktis", explanation: "Pinguine leben natürlich in der Antarktis." },
+                    { question: "Nenne einen Kontinent, der vollständig auf der Südhalbkugel liegt.", answer: "australien", explanation: "Australien ist vollständig auf der Südhalbkugel." },
+                    { question: "Wie viele Kontinente gibt es auf der Erde?", answer: "7", explanation: "Es gibt 7 Kontinente (Asien, Afrika, Nordamerika, Südamerika, Antarktis, Europa, Australien)." },
+                    { question: "Welcher Kontinent ist als 'Wiege der Menschheit' bekannt?", answer: "afrika", explanation: "Afrika gilt als die Wiege der Menschheit." },
+                    { question: "Welcher Kontinent ist sehr kalt und hat viel Eis?", answer: "antarktis", explanation: "Die Antarktis ist ein eisiger Kontinent." }
                 ],
                 germany: [
-                    { question: "Wie heißt die Hauptstadt von Deutschland?", answer: "berlin", explanation: "Berlin ist die Hauptstadt und größte Stadt Deutschlands." },
-                    { question: "Wie viele Bundesländer hat Deutschland?", answer: "16", explanation: "Deutschland ist in 16 Bundesländer unterteilt." },
-                    { question: "Welcher Fluss fließt durch Köln?", answer: "rhein", explanation: "Der Rhein ist einer der längsten Flüsse Europas und fließt durch Köln." },
-                    { question: "Wie heißt das höchste Gebirge Deutschlands?", answer: "alpen", explanation: "Die Alpen (mit der Zugspitze als höchstem Gipfel) sind das höchste Gebirge in Deutschland." },
-                    { question: "Wie nennt man die Nord- und Ostsee?", answer: "meere", explanation: "Nord- und Ostsee sind Randmeere des Atlantischen Ozeans." },
-                    { question: "Welches Bundesland ist das größte flächenmäßig?", answer: "bayern", explanation: "Bayern ist das größte Bundesland Deutschlands nach Fläche." }
+                    { question: "Wie heißt die Hauptstadt von Deutschland?", answer: "berlin", explanation: "Berlin ist die Hauptstadt von Deutschland." },
+                    { question: "Nenne ein großes Gebirge in Süddeutschland.", answer: "alpen", explanation: "Die Alpen sind ein großes Gebirge im Süden Deutschlands." },
+                    { question: "Wie viele Bundesländer hat Deutschland?", answer: "16", explanation: "Deutschland hat 16 Bundesländer." },
+                    { question: "Welcher große Fluss fließt durch Köln und Düsseldorf?", answer: "rhein", explanation: "Der Rhein fließt durch diese Städte." },
+                    { question: "Nenne das nördlichste Bundesland.", answer: "schleswig-holstein", explanation: "Schleswig-Holstein ist das nördlichste Bundesland." },
+                    { question: "Nenne die größte Insel Deutschlands.", answer: "rügen", explanation: "Rügen ist die größte Insel Deutschlands." }
                 ],
                 maps: [
-                    { question: "Was zeigt ein Maßstab auf einer Karte an?", answer: "verhältnis", explanation: "Der Maßstab gibt das Verhältnis zwischen der Entfernung auf der Karte und der tatsächlichen Entfernung an." },
-                    { question: "Welche Farbe steht auf einer physischen Karte oft für Wasser?", answer: "blau", explanation: "Blau wird auf Karten häufig für Gewässer verwendet." },
-                    { question: "Welche Farbe steht auf einer Karte oft für Berge?", answer: "braun", explanation: "Braun wird oft für Gebirge und Höhenlagen verwendet." },
-                    { question: "Was sind Breiten- und Längengrade?", answer: "koordinaten", explanation: "Breiten- und Längengrade sind gedachte Linien, die zur Positionsbestimmung auf der Erde dienen." },
-                    { question: "Was ist eine Legende auf einer Karte?", answer: "erklärung", explanation: "Die Legende (oder Zeichenerklärung) erklärt die auf der Karte verwendeten Symbole und Farben." },
-                    { question: "Welche Art von Karte zeigt politische Grenzen?", answer: "politische karte", explanation: "Eine politische Karte zeigt Grenzen von Ländern, Bundesländern oder anderen administrativen Einheiten." }
+                    { question: "Was zeigt die Farbe Blau auf einer Karte an?", answer: "wasser", explanation: "Blau zeigt Wasserflächen (Flüsse, Seen, Meere) an." },
+                    { question: "Was ist ein Maßstab auf einer Karte?", answer: "verhältnis", explanation: "Der Maßstab zeigt das Verhältnis zwischen Karte und Wirklichkeit an." },
+                    { question: "Was sind Breiten- und Längengrade?", answer: "koordinaten", explanation: "Das sind Linien, die zur Positionsbestimmung auf der Erde dienen." },
+                    { question: "Was ist eine Legende auf einer Karte?", answer: "zeichenerklärung", explanation: "Die Legende erklärt die Symbole und Farben auf der Karte." },
+                    { question: "Was zeigt eine politische Karte?", answer: "grenzen", explanation: "Eine politische Karte zeigt Ländergrenzen und Hauptstädte." },
+                    { question: "Was zeigt eine physische Karte?", answer: "landschaft", explanation: "Eine physische Karte zeigt natürliche Merkmale wie Berge und Flüsse." }
                 ],
                 climate: [
-                    { question: "Was ist der Unterschied zwischen Wetter und Klima?", answer: "zeitraum", explanation: "Wetter ist der kurzfristige Zustand der Atmosphäre, Klima ist der langfristige Durchschnitt des Wetters." },
-                    { question: "Welche Klimazone ist sehr heiß und trocken?", answer: "wüste", explanation: "Wüstengebiete sind typischerweise sehr heiß und haben wenig Niederschlag." },
-                    { question: "Was ist ein Monsun?", answer: "regenzeit", explanation: "Ein Monsun ist ein saisonaler Wind, der in bestimmten Regionen der Erde zu ausgeprägten Regen- und Trockenzeiten führt." },
-                    { question: "Was ist globale Erwärmung?", answer: "temperaturanstieg", explanation: "Globale Erwärmung bezeichnet den Anstieg der durchschnittlichen Temperatur der Erdatmosphäre und der Ozeane." },
-                    { question: "Welches Gas ist das wichtigste Treibhausgas?", answer: "co2", explanation: "Kohlendioxid (CO2) ist das wichtigste anthropogene Treibhausgas." },
-                    { question: "Was ist der natürliche Treibhauseffekt?", answer: "natürliche erwärmung", explanation: "Der natürliche Treibhauseffekt sorgt dafür, dass die Erde eine bewohnbare Temperatur hat." }
+                    { question: "Was ist der Unterschied zwischen Wetter und Klima?", answer: "zeitraum", explanation: "Wetter ist kurzfristig, Klima ist langfristig." },
+                    { question: "Welches Wetterphänomen entsteht bei Gewittern?", answer: "blitz", explanation: "Blitze und Donner sind typisch für Gewitter." },
+                    { question: "Wie nennt man eine lange Zeit ohne Regen?", answer: "dürre", explanation: "Eine Dürre ist eine lange Trockenperiode." },
+                    { question: "Was sind die Jahreszeiten?", answer: "frühling sommer herbst winter", explanation: "Das sind Frühling, Sommer, Herbst und Winter." },
+                    { question: "Was ist die Klimazone, in der es immer warm ist und viel regnet?", answer: "tropen", explanation: "Das ist die tropische Klimazone." },
+                    { question: "Was ist der Wind?", answer: "luftbewegung", explanation: "Wind ist bewegte Luft." }
                 ],
                 cities: [
-                    { question: "Wie heißt die Hauptstadt von Frankreich?", answer: "paris", explanation: "Paris ist die Hauptstadt Frankreichs und eine Weltmetropole." },
-                    { question: "Wie heißt die Hauptstadt von Italien?", answer: "rom", explanation: "Rom ist die Hauptstadt Italiens und auch als 'Ewige Stadt' bekannt." },
-                    { question: "In welchem Land liegt die Stadt London?", answer: "england", explanation: "London ist die Hauptstadt Englands und des Vereinigten Königreichs." },
-                    { question: "Welche Stadt ist bekannt für die Freiheitsstatue?", answer: "new york", explanation: "Die Freiheitsstatue ist ein Wahrzeichen von New York City in den USA." },
-                    { question: "Wie heißt die Hauptstadt von Spanien?", answer: "madrid", explanation: "Madrid ist die Hauptstadt Spaniens und liegt im Zentrum des Landes." },
-                    { question: "Welche deutsche Stadt ist bekannt für das Oktoberfest?", answer: "münchen", explanation: "München ist die Hauptstadt Bayerns und weltweit bekannt für das Oktoberfest." }
+                    { question: "Wie heißt die Hauptstadt von Frankreich?", answer: "paris", explanation: "Die Hauptstadt Frankreichs ist Paris." },
+                    { question: "Wie heißt die Hauptstadt von Italien?", answer: "rom", explanation: "Die Hauptstadt Italiens ist Rom." },
+                    { question: "Wie heißt die Hauptstadt von Spanien?", answer: "madrid", explanation: "Die Hauptstadt Spaniens ist Madrid." },
+                    { question: "Wie heißt die Hauptstadt des Vereinigten Königreichs?", answer: "london", explanation: "Die Hauptstadt des Vereinigten Königreichs ist London." },
+                    { question: "Wie heißt die Hauptstadt der USA?", answer: "washington", explanation: "Die Hauptstadt der USA ist Washington, D.C." },
+                    { question: "Wie heißt die Hauptstadt von Japan?", answer: "tokio", explanation: "Die Hauptstadt Japans ist Tokio." }
                 ]
             },
             history: {
                 timeline: [
-                    { question: "Was bedeutet 'v. Chr.'?", answer: "vor christus", explanation: "v. Chr. steht für 'vor Christus' und bezieht sich auf die Zeit vor Christi Geburt." },
-                    { question: "Was bedeutet 'n. Chr.'?", answer: "nach christus", explanation: "n. Chr. steht für 'nach Christus' und bezieht sich auf die Zeit nach Christi Geburt." },
-                    { question: "Wie viele Jahre hat ein Jahrhundert?", answer: "100", explanation: "Ein Jahrhundert umfasst einen Zeitraum von 100 Jahren." },
-                    { question: "Wie viele Jahre hat ein Jahrtausend?", answer: "1000", explanation: "Ein Jahrtausend umfasst einen Zeitraum von 1000 Jahren." },
-                    { question: "Was ist eine Epoche?", answer: "zeitabschnitt", explanation: "Eine Epoche ist ein längerer, durch bestimmte Merkmale geprägter Zeitabschnitt der Geschichte." },
-                    { question: "Was ist der Unterschied zwischen Geschichte und Vorgeschichte?", answer: "schrift", explanation: "Die Geschichte beginnt mit den ersten Schriftzeugnissen, die Vorgeschichte davor." }
+                    { question: "Wofür steht 'v. Chr.'?", answer: "vor christus", explanation: "Es bedeutet 'vor Christus'." },
+                    { question: "Wofür steht 'n. Chr.'?", answer: "nach christus", explanation: "Es bedeutet 'nach Christus'." },
+                    { question: "Was kam zuerst: Steinzeit oder Römerzeit?", answer: "steinzeit", explanation: "Die Steinzeit war lange vor der Römerzeit." },
+                    { question: "Wie viele Jahre sind ein Jahrhundert?", answer: "100", explanation: "Ein Jahrhundert sind 100 Jahre." },
+                    { question: "Wie viele Jahre sind ein Jahrtausend?", answer: "1000", explanation: "Ein Jahrtausend sind 1000 Jahre." },
+                    { question: "In welchem Jahrhundert leben wir?", answer: "21", explanation: "Wir leben im 21. Jahrhundert." }
                 ],
                 egypt: [
-                    { question: "Wie heißt der berühmte Fluss in Ägypten?", answer: "nil", explanation: "Der Nil ist der längste Fluss Afrikas und prägte die altägyptische Kultur." },
-                    { question: "Wer waren die Herrscher im Alten Ägypten?", answer: "pharaonen", explanation: "Pharaonen waren die Könige und religiösen Oberhäupter des Alten Ägypten." },
-                    { question: "Was bauten die Ägypter für ihre Pharaonen?", answer: "pyramiden", explanation: "Die Pyramiden dienten als Grabstätten für die Pharaonen." },
-                    { question: "Wie heißt die Schrift der alten Ägypter?", answer: "hieroglyphen", explanation: "Hieroglyphen sind die Bilderschrift der alten Ägypter." },
-                    { question: "Wer war Tutanchamun?", answer: "pharao", explanation: "Tutanchamun war ein junger Pharao der 18. Dynastie." },
-                    { question: "Was ist eine Mumie?", answer: "einbalsamierter körper", explanation: "Eine Mumie ist ein konservierter (einbalsamierter) Körper, um ihn für das Jenseits zu erhalten." }
+                    { question: "Wie hieß der König des Alten Ägyptens?", answer: "pharao", explanation: "Der König hieß Pharao." },
+                    { question: "Welcher Fluss war lebenswichtig für Ägypten?", answer: "nil", explanation: "Der Nil brachte Wasser und fruchtbaren Schlamm." },
+                    { question: "Wie nennt man die großen Bauwerke, in denen Pharaonen begraben wurden?", answer: "pyramiden", explanation: "Das sind die Pyramiden." },
+                    { question: "Wie heißt die Schrift der alten Ägypter?", answer: "hieroglyphen", explanation: "Die Schrift hieß Hieroglyphen." },
+                    { question: "Was ist eine Mumie?", answer: "toter körper", explanation: "Ein einbalsamierter und bandagierter Toter." },
+                    { question: "Welches Tier war in Ägypten heilig und wurde oft als Gottheit verehrt?", answer: "katze", explanation: "Katzen galten als heilig." }
                 ],
                 greece: [
-                    { question: "Woher kommt die Idee der Demokratie?", answer: "griechenland", explanation: "Die Demokratie entstand im antiken Griechenland, insbesondere in Athen." },
-                    { question: "Wer war der Hauptgott der Griechen?", answer: "zeus", explanation: "Zeus war der Vater der Götter und Menschen und Herrscher des Olymps." },
-                    { question: "Wie hießen die griechischen Krieger aus Sparta?", answer: "spartaner", explanation: "Die Spartaner waren bekannt für ihre Disziplin und militärische Stärke." },
-                    { question: "Welche Stadt war ein wichtiger Stadtstaat in Griechenland?", answer: "athen", explanation: "Athen war ein bedeutender Stadtstaat und Zentrum der Philosophie und Kultur." },
-                    { question: "Was sind die Olympischen Spiele?", answer: "sportwettkämpfe", explanation: "Die Olympischen Spiele waren religiöse und sportliche Wettkämpfe zu Ehren der Götter." },
-                    { question: "Wer war Alexander der Große?", answer: "feldherr", explanation: "Alexander der Große war ein makedonischer König und einer der größten Feldherren der Geschichte." }
+                    { question: "Woher kommt die Idee der Demokratie?", answer: "griechenland", explanation: "Die Demokratie entstand im antiken Griechenland (Athen)." },
+                    { question: "Wie hießen die berühmten griechischen Stadtstaaten?", answer: "athen sparta", explanation: "Athen und Sparta waren bekannte Stadtstaaten." },
+                    { question: "Welches große Bauwerk steht auf dem Berg in Athen?", answer: "parthenon", explanation: "Das Parthenon ist ein Tempel auf der Akropolis." },
+                    { question: "Wer war ein berühmter griechischer Philosoph?", answer: "sokrates", explanation: "Sokrates, Platon, Aristoteles waren berühmte Philosophen." },
+                    { question: "Wie nennt man die Geschichten über Götter und Helden in Griechenland?", answer: "mythologie", explanation: "Das ist die griechische Mythologie." },
+                    { question: "Welche Wettkämpfe wurden im antiken Griechenland abgehalten?", answer: "olympische spiele", explanation: "Die Olympischen Spiele." }
                 ],
                 rome: [
-                    { question: "Wer war der erste römische Kaiser?", answer: "augustus", explanation: "Augustus war der erste römische Kaiser und herrschte von 27 v. Chr. bis 14 n. Chr." },
-                    { question: "Wie nennt man die römischen Soldaten?", answer: "legionäre", explanation: "Römische Soldaten wurden Legionäre genannt und waren Teil einer Legion." },
-                    { question: "Was bauten die Römer für den Wassertransport?", answer: "aquädukte", explanation: "Aquädukte waren römische Wasserleitungen, oft als beeindruckende Bogenbrücken gebaut." },
-                    { question: "Wo kämpften Gladiatoren?", answer: "kolosseum", explanation: "Gladiatoren kämpften im Kolosseum, einem riesigen Amphitheater in Rom." },
-                    { question: "Wie nannte man die Herrscher im Römischen Reich vor den Kaisern?", answer: "konsuln", explanation: "In der Römischen Republik waren Konsuln die höchsten Staatsbeamten." },
-                    { question: "Was war das Forum Romanum?", answer: "zentrum", explanation: "Das Forum Romanum war das politische, wirtschaftliche und religiöse Zentrum des antiken Roms." }
+                    { question: "Wie heißt der berühmte Anführer, der über die Alpen zog?", answer: "hannibal", explanation: "Hannibal war ein karthagischer Feldherr." },
+                    { question: "Wie nennt man die römischen Soldaten?", answer: "legionäre", explanation: "Sie hießen Legionäre." },
+                    { question: "Welches große Bauwerk diente in Rom für Gladiatorenkämpfe?", answer: "kolosseum", explanation: "Das Kolosseum war eine Arena." },
+                    { question: "Wer war der erste römische Kaiser?", answer: "augustus", explanation: "Augustus war der erste römische Kaiser." },
+                    { question: "Was ist Latein?", answer: "sprache", explanation: "Latein war die Sprache der Römer." },
+                    { question: "Was bauten die Römer, um Wasser in die Städte zu leiten?", answer: "aquädukte", explanation: "Sie bauten Aquädukte." }
                 ],
                 medieval: [
-                    { question: "Wer lebte in Burgen?", answer: "ritter", explanation: "Ritter und Adlige lebten in Burgen, die als Wohnsitz und Verteidigungsanlage dienten." },
-                    { question: "Wie nannte man die Zeit nach dem Römischen Reich bis zur Neuzeit?", answer: "mittelalter", explanation: "Das Mittelalter ist der Zeitraum zwischen Antike und Neuzeit (ca. 500-1500 n. Chr.)." },
-                    { question: "Was war eine wichtige Institution im Mittelalter?", answer: "kirche", explanation: "Die Kirche hatte im Mittelalter eine immense Macht und Einfluss." },
-                    { question: "Wie nannte man die Bauern, die an das Land gebunden waren?", answer: "leibeigene", explanation: "Leibeigene Bauern waren nicht frei und an das Land ihres Herrn gebunden." },
-                    { question: "Was war die Haupteinnahmequelle im Mittelalter?", answer: "landwirtschaft", explanation: "Die Landwirtschaft war die Grundlage der Wirtschaft im Mittelalter." },
-                    { question: "Was ist ein Mönch?", answer: "religiöser mann", explanation: "Ein Mönch ist ein Mann, der in einem Kloster lebt und sich einem religiösen Leben widmet." }
+                    { question: "Wer lebte auf einer Burg im Mittelalter?", answer: "ritter", explanation: "Ritter, Fürsten und ihre Familien lebten auf Burgen." },
+                    { question: "Wie nannte man die Bauern im Mittelalter?", answer: "leibeigene", explanation: "Oft Leibeigene oder Untertanen." },
+                    { question: "Was war im Mittelalter die wichtigste Kirche?", answer: "katholische kirche", explanation: "Die katholische Kirche." },
+                    { question: "Wozu dienten Klöster im Mittelalter?", answer: "bildung", explanation: "Klöster waren Orte der Bildung, Gebets und der Arbeit." },
+                    { question: "Was ist ein Wappen?", answer: "emblem", explanation: "Ein Wappen ist ein Erkennungszeichen für Familien oder Ritter." },
+                    { question: "Nenne ein wichtiges Handwerk im Mittelalter.", answer: "schmied", explanation: "Schmied, Bäcker, Weber, Schuster waren wichtige Handwerke." }
                 ],
                 sources: [
-                    { question: "Was sind Quellen in der Geschichte?", answer: "informationen", explanation: "Quellen sind alle Überreste oder Zeugnisse aus der Vergangenheit, die uns Informationen liefern." },
-                    { question: "Nenne ein Beispiel für eine schriftliche Quelle.", answer: "buch", explanation: "Beispiele sind Bücher, Briefe, Urkunden, Zeitungen, Tagebücher." },
-                    { question: "Nenne ein Beispiel für eine gegenständliche Quelle.", answer: "werkzeug", explanation: "Beispiele sind Werkzeuge, Münzen, Gebäude, Waffen, Kleidung." },
-                    { question: "Warum sind Quellen wichtig für Historiker?", answer: "beweise", explanation: "Quellen sind die Basis der Geschichtsforschung, sie liefern Beweise und ermöglichen Rückschlüsse." },
-                    { question: "Was ist eine Primärquelle?", answer: "originaldokument", explanation: "Eine Primärquelle ist ein Originaldokument oder Objekt aus der Zeit, die direkt von einem Ereignis zeugt." },
-                    { question: "Was ist eine Sekundärquelle?", answer: "darstellung", explanation: "Eine Sekundärquelle ist eine Darstellung, Analyse oder Interpretation von Primärquellen (z.B. ein Geschichtsbuch, Artikel)." }
+                    { question: "Was ist eine schriftliche Quelle aus der Geschichte?", answer: "brief", explanation: "Briefe, Bücher, Urkunden sind schriftliche Quellen." },
+                    { question: "Was ist eine mündliche Quelle?", answer: "erzählung", explanation: "Geschichten, Legenden, Augenzeugenberichte sind mündliche Quellen." },
+                    { question: "Was ist eine Sachquelle?", answer: "werkzeug", explanation: "Werkzeuge, Gebäude, Kleidung sind Sachquellen." },
+                    { question: "Warum sind Quellen wichtig für die Geschichte?", answer: "beweise", explanation: "Sie sind Beweismittel, um die Vergangenheit zu erforschen." },
+                    { question: "Was ist der Unterschied zwischen einer Quelle und einer Darstellung?", answer: "zeitlich", explanation: "Eine Quelle ist aus der Zeit, eine Darstellung ist über die Zeit." },
+                    { question: "Was ist eine Primärquelle?", answer: "originaldokument", explanation: "Eine Primärquelle ist ein Originaldokument oder Artefakt aus der untersuchten Zeit." }
                 ]
             }
         };
 
-
-        // --- UI Hilfsfunktionen ---
-        function showView(viewId) {
-            // Alle Hauptansichten ausblenden
+        // Funktionen zur Ansichtsverwaltung
+        function showHomeView(viewType) {
             document.getElementById('home-subjects-view').classList.add('hidden');
             document.getElementById('home-worksheets-view').classList.add('hidden');
             document.getElementById('subject-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.add('hidden');
-            document.getElementById('quiz-end-screen').classList.add('hidden'); // Immer ausblenden beim Wechsel der Hauptansicht
 
-            // Gewünschte Ansicht einblenden
-            document.getElementById(viewId).classList.remove('hidden');
-            updateGlobalStats(); // Globale Statistiken immer aktualisieren
-        }
-
-        function updateGlobalStats() {
-            // Gesamtpunkte und Streak aus localStorage laden und anzeigen
-            document.getElementById('totalScore').textContent = localStorage.getItem('totalScore') || '0';
-            document.getElementById('totalStreak').textContent = localStorage.getItem('totalStreak') || '0';
-        }
-
-        function playCelebration() {
-            const celebrationEl = document.createElement('div');
-            celebrationEl.classList.add('celebration');
-            celebrationEl.textContent = '🎉';
-            document.body.appendChild(celebrationEl);
-            // Animation starten und Element nach Beendigung entfernen
-            celebrationEl.addEventListener('animationend', () => {
-                celebrationEl.remove();
-            });
-        }
-
-        function animateStatUpdate(elementId, value) {
-            const el = document.getElementById(elementId);
-            const oldValue = parseInt(el.textContent);
-            if (oldValue !== value) {
-                el.textContent = value;
-                el.classList.add('pulse'); // Pulse-Animation hinzufügen
-                el.addEventListener('animationend', () => {
-                    el.classList.remove('pulse'); // Animation nach Ende entfernen
-                }, { once: true }); // Event Listener nur einmal ausführen
-            }
-        }
-
-        // --- Navigation ---
-        function showHomeView(type) {
-            clearInterval(timer); // Timer stoppen, falls ein Quiz läuft
-            gameActive = false; // Spielzustand zurücksetzen
-
-            // Aktiven Navigationsbutton hervorheben
             document.getElementById('nav-subjects').classList.remove('active');
             document.getElementById('nav-worksheets').classList.remove('active');
 
-            if (type === 'subjects') {
-                showView('home-subjects-view');
+            if (viewType === 'subjects') {
+                document.getElementById('home-subjects-view').classList.remove('hidden');
                 document.getElementById('nav-subjects').classList.add('active');
-            } else if (type === 'worksheets') {
-                generateWorksheetsList(); // Arbeitsblätter dynamisch generieren
-                showView('home-worksheets-view');
+            } else if (viewType === 'worksheets') {
+                document.getElementById('home-worksheets-view').classList.remove('hidden');
                 document.getElementById('nav-worksheets').classList.add('active');
+                generateWorksheetsList(); // Arbeitsblätterliste nur bei Bedarf generieren
             }
-            currentSubject = null;
-            currentTopic = null; // Aktuelles Thema zurücksetzen
+            updateGlobalStats();
         }
 
         function openSubject(subjectId) {
-            currentSubject = subjects[subjectId];
-            document.getElementById('subject-title').textContent = currentSubject.name;
-            document.getElementById('subject-description').textContent = currentSubject.description;
+            currentSubject = subjectId;
+            document.getElementById('home-subjects-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            
+            const subjectData = subjects[subjectId];
+            document.getElementById('subject-title').textContent = subjectData.name;
+            document.getElementById('subject-description').textContent = subjectData.description;
             
             const topicsContainer = document.getElementById('topics-container');
-            topicsContainer.innerHTML = ''; // Vorherige Themen entfernen
-
-            // Themenkarten für das ausgewählte Fach erstellen
-            currentSubject.topics.forEach(topic => {
+            topicsContainer.innerHTML = '';
+            subjectData.topics.forEach(topic => {
                 const topicCard = document.createElement('div');
-                topicCard.classList.add('topic-card');
+                topicCard.className = 'topic-card';
                 topicCard.innerHTML = `
                     <h3>${topic.name}</h3>
                     <p>${topic.description}</p>
-                    <button class="btn" onclick="openQuiz('${subjectId}', '${topic.id}')">Quiz starten</button>
+                    <button class="btn" onclick="startTopicQuiz('${subjectId}', '${topic.id}')">Quiz starten</button>
                 `;
                 topicsContainer.appendChild(topicCard);
             });
-            showView('subject-view');
         }
 
         function goToSubject() {
-            clearInterval(timer);
-            gameActive = false;
-            showView('subject-view'); // Zurück zur Fach-Ansicht
-            // Quiz-UI-Elemente auf Anfangszustand zurücksetzen
-            document.getElementById('start-btn').classList.remove('hidden');
-            document.getElementById('answer-input').classList.add('hidden');
-            document.getElementById('submit-btn').classList.add('hidden');
-            document.getElementById('next-btn').classList.add('hidden');
-            document.getElementById('feedback').classList.remove('show').classList.add('hidden'); // Feedback ausblenden
-            document.getElementById('question-text').textContent = 'Bereit für deine erste Aufgabe?'; // Standardtext
-            document.getElementById('quiz-end-screen').classList.add('hidden'); // End-Screen ausblenden
-            document.getElementById('quiz-progress-text').classList.add('hidden'); // Fortschrittstext ausblenden
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            // reset quiz state
+            resetQuiz();
         }
 
-        function openQuiz(subjectId, topicId) {
-            currentSubject = subjects[subjectId];
+        function startTopicQuiz(subjectId, topicId) {
+            currentSubject = subjectId; // Sicherstellen, dass currentSubject gesetzt ist
             currentTopic = topicId;
-            document.getElementById('quiz-title').textContent = `${currentSubject.name} - ${subjects[subjectId].topics.find(t => t.id === topicId).name}`;
+            document.getElementById('subject-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            document.getElementById('quiz-title').textContent = `${subjects[subjectId].name} - ${subjects[subjectId].topics.find(t => t.id === topicId).name} Quiz`;
             
-            // Quiz-Zustand zurücksetzen
-            score = 0;
-            streak = 0;
-            timeLeft = 60;
-            gameActive = false;
-            currentQuestion = null;
-            questionIndex = 0;
-            totalQuestionsAttempted = 0;
-            correctAnswersCount = 0;
-            clearInterval(timer);
-
-            // Fragen für das Quiz vorbereiten (kopieren und mischen)
-            // Sicherstellen, dass genügend Fragen vorhanden sind, sonst nur die vorhandenen nutzen
-            const availableTopicQuestions = questions[subjectId][topicId] || [];
-            questionsForQuiz = [...availableTopicQuestions].sort(() => Math.random() - 0.5);
-            
-            // UI-Elemente für den Start des Quiz vorbereiten
-            document.getElementById('question-text').textContent = 'Klicke auf "Quiz starten", um loszulegen!';
-            document.getElementById('answer-input').value = '';
-            document.getElementById('feedback').classList.remove('show', 'correct', 'incorrect');
-            document.getElementById('submit-btn').classList.add('hidden');
-            document.getElementById('next-btn').classList.add('hidden');
-            document.getElementById('start-btn').classList.remove('hidden'); // Start-Button anzeigen
-            document.getElementById('quiz-end-screen').classList.add('hidden'); // End-Screen verstecken
-            document.getElementById('quiz-progress-text').classList.add('hidden'); // Fortschrittstext ausblenden
-
-            updateQuizStats(); // Quiz-Statistiken zurücksetzen/anzeigen
-            showView('quiz-view');
-        }
-
-        // --- Quiz Logik ---
-        function startQuiz() {
-            if (questionsForQuiz.length === 0) {
-                document.getElementById('question-text').textContent = 'Keine Fragen für dieses Thema gefunden. Bitte wähle ein anderes Thema.';
-                document.getElementById('start-btn').classList.add('hidden');
+            questionsForQuiz = questions[subjectId][topicId];
+            if (!questionsForQuiz || questionsForQuiz.length === 0) {
+                document.getElementById('question-text').textContent = "Keine Fragen für dieses Thema verfügbar.";
                 document.getElementById('answer-input').classList.add('hidden');
                 document.getElementById('submit-btn').classList.add('hidden');
                 document.getElementById('next-btn').classList.add('hidden');
-                document.getElementById('feedback').classList.remove('show').classList.add('hidden');
-                document.getElementById('quiz-progress-text').classList.add('hidden');
+                document.getElementById('start-btn').classList.add('hidden'); // Quiz starten Button ausblenden, wenn keine Fragen
                 return;
             }
 
-            // Initialisiere Werte für ein neues Quiz
-            score = 0;
-            streak = 0;
-            timeLeft = 60;
-            gameActive = true;
+            // Mische die Fragen, damit sie nicht immer in der gleichen Reihenfolge kommen
+            questionsForQuiz = shuffleArray(questionsForQuiz);
             questionIndex = 0;
-            totalQuestionsAttempted = 0;
-            correctAnswersCount = 0;
-            
-            // UI anpassen: Start-Button ausblenden, Eingabe und Prüf-Button anzeigen
-            document.getElementById('start-btn').classList.add('hidden');
-            document.getElementById('answer-input').classList.remove('hidden');
-            document.getElementById('submit-btn').classList.remove('hidden');
-            document.getElementById('quiz-end-screen').classList.add('hidden');
-            document.getElementById('question-container').classList.remove('hidden'); // Frage anzeigen
-            document.getElementById('quiz-progress-text').classList.remove('hidden'); // Fortschrittstext anzeigen
-
-            startTimer(); // Timer starten
-            loadQuestion(); // Erste Frage laden
+            resetQuiz(); // Setzt Quiz-Statistiken zurück und zeigt Start-Button
+            document.getElementById('quiz-end-screen').classList.add('hidden'); // Ende-Bildschirm ausblenden
         }
 
-        function startTimer() {
-            clearInterval(timer); // Vorherigen Timer löschen
-            timer = setInterval(() => {
-                timeLeft--;
-                animateStatUpdate('time-left', timeLeft); // Zeit aktualisieren und pulsieren lassen
-                if (timeLeft <= 0) {
-                    endQuiz(); // Quiz beenden, wenn Zeit abgelaufen
-                }
-            }, 1000);
+        function startQuiz() {
+            score = 0;
+            streak = 0;
+            totalQuestionsAttempted = 0;
+            correctAnswersCount = 0;
+            questionIndex = 0; // Fragen neu beginnen
+
+            updateCurrentStats();
+            document.getElementById('feedback').classList.remove('show', 'correct', 'incorrect');
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('answer-input').value = '';
+            document.getElementById('answer-input').classList.remove('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            document.getElementById('start-btn').classList.add('hidden'); // Start-Button ausblenden
+            document.getElementById('quiz-end-screen').classList.add('hidden'); // Ende-Bildschirm ausblenden
+
+            gameActive = true;
+            startTimer();
+            loadQuestion();
         }
 
         function loadQuestion() {
-            document.getElementById('answer-input').value = ''; // Eingabefeld leeren
-            document.getElementById('answer-input').focus(); // Fokus auf Eingabefeld
-            document.getElementById('feedback').classList.remove('show', 'correct', 'incorrect'); // Feedback ausblenden und Klassen entfernen
-            document.getElementById('submit-btn').classList.remove('hidden'); // Prüf-Button anzeigen
-            document.getElementById('next-btn').classList.add('hidden'); // Nächste-Frage-Button ausblenden
-
-            if (questionIndex >= questionsForQuiz.length) {
-                // Wenn alle Fragen durch sind, Quiz beenden
+            if (questionIndex < questionsForQuiz.length) {
+                currentQuestion = questionsForQuiz[questionIndex];
+                document.getElementById('question-text').textContent = currentQuestion.question;
+                document.getElementById('answer-input').value = '';
+                document.getElementById('answer-input').focus();
+                document.getElementById('submit-btn').classList.remove('hidden');
+                document.getElementById('next-btn').classList.add('hidden');
+                document.getElementById('feedback').classList.remove('show', 'correct', 'incorrect');
+                document.getElementById('quiz-progress-text').textContent = `Frage ${questionIndex + 1} von ${questionsForQuiz.length}`;
+            } else {
                 endQuiz();
-                return;
             }
-
-            currentQuestion = questionsForQuiz[questionIndex]; // Nächste Frage laden
-            document.getElementById('question-text').textContent = currentQuestion.question;
-            document.getElementById('quiz-progress-text').textContent = `Frage ${questionIndex + 1} von ${questionsForQuiz.length}`;
-            totalQuestionsAttempted++; // Anzahl der gestellten Fragen erhöhen
         }
 
         function checkAnswer() {
-            if (!gameActive) return; // Nur prüfen, wenn Quiz aktiv
+            if (!gameActive) return;
 
             const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
             const correctAnswer = currentQuestion.answer.toLowerCase();
             const feedbackElement = document.getElementById('feedback');
 
+            totalQuestionsAttempted++;
+
             if (userAnswer === correctAnswer) {
-                feedbackElement.textContent = `Richtig! 🎉 ${currentQuestion.explanation || ''}`;
-                feedbackElement.classList.remove('incorrect');
-                feedbackElement.classList.add('correct', 'show'); // Feedback anzeigen
-                score += 10; // Punkte erhöhen
-                streak++; // Streak erhöhen
-                correctAnswersCount++; // Richtige Antworten zählen
-                playCelebration(); // Konfetti-Animation
+                score += 10;
+                streak++;
+                correctAnswersCount++;
+                feedbackElement.textContent = `Richtig! ${currentQuestion.explanation}`;
+                feedbackElement.className = 'feedback correct show';
+                playCelebration();
             } else {
-                feedbackElement.textContent = `Falsch. Die richtige Antwort ist: "${currentQuestion.answer}". ${currentQuestion.explanation || ''}`;
-                feedbackElement.classList.remove('correct');
-                feedbackElement.classList.add('incorrect', 'show'); // Feedback anzeigen
-                streak = 0; // Streak zurücksetzen
+                streak = 0; // Streak zurücksetzen bei falscher Antwort
+                feedbackElement.textContent = `Leider falsch. Die richtige Antwort ist: ${currentQuestion.answer}. ${currentQuestion.explanation}`;
+                feedbackElement.className = 'feedback incorrect show';
             }
+            updateCurrentStats();
+            updateGlobalStats(); // Globale Statistiken sofort aktualisieren
 
-            document.getElementById('submit-btn').classList.add('hidden'); // Prüf-Button ausblenden
-            document.getElementById('next-btn').classList.remove('hidden'); // Nächste-Frage-Button anzeigen
-            
-            // Aktuelle Quiz-Statistiken aktualisieren
-            animateStatUpdate('current-score', score);
-            animateStatUpdate('current-streak', streak);
-
-            // Globale Statistiken im localStorage aktualisieren
-            totalScore = parseInt(localStorage.getItem('totalScore') || '0');
-            totalStreak = parseInt(localStorage.getItem('totalStreak') || '0');
-            
-            // Punkte zur Gesamtpunktzahl addieren
-            if (userAnswer === correctAnswer) {
-                totalScore += 10;
-            }
-            // Gesamt-Streak nur aktualisieren, wenn der aktuelle Streak höher ist
-            if (streak > totalStreak) {
-                totalStreak = streak;
-            }
-            localStorage.setItem('totalScore', totalScore);
-            localStorage.setItem('totalStreak', totalStreak);
-            updateGlobalStats(); // Anzeige der globalen Statistiken aktualisieren
+            document.getElementById('submit-btn').classList.add('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
+            document.getElementById('answer-input').classList.add('pulse');
+            setTimeout(() => {
+                document.getElementById('answer-input').classList.remove('pulse');
+            }, 500);
         }
 
         function nextQuestion() {
-            if (questionIndex + 1 < questionsForQuiz.length) {
-                questionIndex++; // Zur nächsten Frage im Fragenpool wechseln
-                loadQuestion(); // Nächste Frage laden
+            questionIndex++;
+            document.getElementById('answer-input').value = ''; // Eingabefeld leeren
+            if (questionIndex < questionsForQuiz.length) {
+                loadQuestion();
             } else {
-                endQuiz(); // Quiz beenden, wenn keine weiteren Fragen mehr vorhanden sind
+                endQuiz();
             }
-        }
-
-        function updateQuizStats() {
-            // Anzeige der aktuellen Quiz-Statistiken
-            document.getElementById('current-score').textContent = score;
-            document.getElementById('current-streak').textContent = streak;
-            document.getElementById('time-left').textContent = timeLeft;
         }
 
         function endQuiz() {
             gameActive = false;
-            clearInterval(timer); // Timer stoppen
-
-            // Quiz-UI ausblenden und End-Screen anzeigen
+            clearInterval(timer);
+            document.getElementById('quiz-title').textContent = "Quiz beendet!";
             document.getElementById('question-container').classList.add('hidden');
             document.getElementById('answer-input').classList.add('hidden');
             document.getElementById('submit-btn').classList.add('hidden');
             document.getElementById('next-btn').classList.add('hidden');
-            document.getElementById('feedback').classList.remove('show', 'correct', 'incorrect'); // Alle Feedback-Klassen entfernen
+            document.getElementById('feedback').classList.add('hidden');
             document.getElementById('quiz-progress-text').classList.add('hidden');
+            document.getElementById('game-stats').classList.add('hidden'); // Spielstatistiken ausblenden
 
             document.getElementById('final-score').textContent = score;
-            // Da totalQuestionsAttempted auch Fragen zählt, die nur angezeigt, aber nicht beantwortet wurden,
-            // ist correctAnswersCount von questionsForQuiz.length aussagekräftiger für das Verhältnis.
             document.getElementById('final-correct-answers').textContent = correctAnswersCount;
-            document.getElementById('final-total-questions').textContent = questionsForQuiz.length; // Gesamtfragen im Quiz
-
+            document.getElementById('final-total-questions').textContent = totalQuestionsAttempted;
             document.getElementById('quiz-end-screen').classList.remove('hidden');
-            
-            updateGlobalStats(); // Sicherstellen, dass globale Stats aktuell sind
         }
 
-        // --- Dynamische Generierung der Arbeitsblätter ---
+        function resetQuiz() {
+            score = 0;
+            streak = 0;
+            timeLeft = 60;
+            gameActive = false;
+            clearInterval(timer);
+            totalQuestionsAttempted = 0;
+            correctAnswersCount = 0;
+            questionIndex = 0;
+
+            document.getElementById('current-score').textContent = '0';
+            document.getElementById('current-streak').textContent = '0';
+            document.getElementById('time-left').textContent = '60';
+            document.getElementById('question-text').textContent = 'Bereit für deine erste Aufgabe?';
+            document.getElementById('answer-input').value = '';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback'; // Alle Klassen entfernen
+
+            document.getElementById('answer-input').classList.remove('hidden');
+            document.getElementById('submit-btn').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            document.getElementById('start-btn').classList.remove('hidden'); // Start-Button anzeigen
+            document.getElementById('quiz-end-screen').classList.add('hidden'); // Ende-Bildschirm ausblenden
+            document.getElementById('question-container').classList.remove('hidden'); // Frage anzeigen
+            document.getElementById('quiz-progress-text').classList.remove('hidden'); // Fortschritt anzeigen
+            document.getElementById('game-stats').classList.remove('hidden'); // Spielstatistiken anzeigen
+        }
+
+        function startTimer() {
+            clearInterval(timer); // Alten Timer löschen, falls vorhanden
+            timeLeft = 60; // Timer zurücksetzen
+            document.getElementById('time-left').textContent = timeLeft;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('time-left').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateCurrentStats() {
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('current-streak').textContent = streak;
+        }
+
+        function updateGlobalStats() {
+            // Update total score and streak
+            totalScore += score;
+            totalStreak = Math.max(totalStreak, streak); // Keep highest streak
+            localStorage.setItem('totalScore', totalScore);
+            localStorage.setItem('totalStreak', totalStreak);
+
+            document.getElementById('totalScore').textContent = totalScore;
+            document.getElementById('totalStreak').textContent = totalStreak;
+        }
+
+        function playCelebration() {
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = '🎉';
+            document.body.appendChild(celebration);
+            setTimeout(() => {
+                celebration.remove();
+            }, 1000);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         function generateWorksheetsList() {
             const container = document.getElementById('worksheets-list-container');
-            container.innerHTML = ''; // Vorherige Arbeitsblätter entfernen
-
-            if (availableWorksheets.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #718096;">Aktuell sind keine Arbeitsblätter verfügbar. Schau bald wieder vorbei!</p>';
-                return;
-            }
-
+            container.innerHTML = ''; // Vorherige Einträge leeren
             availableWorksheets.forEach(worksheet => {
                 const worksheetCard = document.createElement('div');
-                worksheetCard.classList.add('worksheet-card');
+                worksheetCard.className = 'worksheet-card';
                 worksheetCard.innerHTML = `
-                    <div class="worksheet-icon">📝</div>
+                    <div class="worksheet-icon">📄</div>
                     <h3>${worksheet.title}</h3>
                     <p>${worksheet.description}</p>
                     <a href="${worksheet.fileName}" download="${worksheet.fileName}" class="btn">
@@ -1406,11 +1600,45 @@
         }
 
 
-        // Initialer Setup beim Laden der Seite
+        // --- Dark Mode / Light Mode Switcher ---
+        const lightModeBtn = document.getElementById('light-mode-btn');
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+
+        function enableDarkMode() {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+            darkModeBtn.classList.add('active');
+            lightModeBtn.classList.remove('active');
+        }
+
+        function enableLightMode() {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+            lightModeBtn.classList.add('active');
+            darkModeBtn.classList.remove('active');
+        }
+
+        // Check for saved theme preference or system preference on load
         document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    enableDarkMode();
+                } else {
+                    enableLightMode();
+                }
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // If no saved preference, check system preference
+                enableDarkMode();
+            } else {
+                enableLightMode(); // Default to light mode
+            }
+
+            lightModeBtn.addEventListener('click', enableLightMode);
+            darkModeBtn.addEventListener('click', enableDarkMode);
+
             updateGlobalStats(); // Globale Statistiken beim Start laden
             showHomeView('subjects'); // Standardmäßig die Fächerübersicht anzeigen
-            // generateWorksheetsList() wird jetzt nur aufgerufen, wenn man auf den Nav-Button klickt
         });
 
         // Event Listener für "Enter"-Taste im Antwortfeld
