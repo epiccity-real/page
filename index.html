@@ -1654,13 +1654,92 @@
         });
     </script>
 </body>
-<footer>
+<style>
+        /* Spezielles CSS nur für diesen Footer-Bereich */
+        /* Beachte: Normalerweise gehört CSS in den <head>-Bereich, aber hier direkt für dich eingefügt */
+
+        footer {
+            width: 100%;
+            padding: 40px 20px; /* Mehr Padding für mehr Raum */
+            margin-top: auto; /* Sorgt dafür, dass der Footer am unteren Rand bleibt */
+            text-align: center;
+            font-size: 0.95em;
+            color: #f0f0f0; /* Hellere Schriftfarbe für besseren Kontrast */
+            background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%); /* Dunklerer, markanterer Hintergrund */
+            border-top: 5px solid #2980b9; /* Kräftige obere Linie */
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3); /* Stärkerer Schatten */
+            position: relative; /* Für den "Back to Top" Button, falls wir den später hinzufügen */
+        }
+        /* Dark Mode Anpassung für Footer (falls du sie separat steuern willst) */
+        body.dark-mode footer {
+            background: linear-gradient(90deg, #1c2833 0%, #0d0d0d 100%);
+            border-top-color: #007bff;
+            color: #e0e0e0;
+        }
+        body.light-mode footer {
+             /* Sicherstellen, dass Light Mode auch definiert ist, falls du den Dark Mode nur für den Footer im Standard an hast */
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-top-color: #667eea;
+            color: white;
+        }
+
+
+        .footer-content {
+            display: flex;
+            flex-direction: column; /* Standardmäßig untereinander auf kleinen Bildschirmen */
+            align-items: center;
+            max-width: 900px; /* An den Hauptinhalt anpassen */
+            margin: 0 auto;
+            gap: 15px; /* Mehr Abstand zwischen den Zeilen */
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px; /* Abstand zwischen den Links */
+            flex-wrap: wrap; /* Links umbrechen lassen auf kleinen Bildschirmen */
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: inherit; /* Farbe vom Footer erben */
+            text-decoration: none;
+            font-weight: bold; /* Links hervorheben */
+            transition: color 0.3s ease, transform 0.2s ease;
+            padding: 5px 10px; /* Etwas Padding für Klickfläche */
+            border-radius: 5px;
+        }
+
+        .footer-links a:hover {
+            color: #00bcd4; /* Türkis als Hover-Farbe */
+            transform: translateY(-2px); /* Leichter Schwebe-Effekt */
+        }
+        .dark-mode .footer-links a:hover {
+            color: #79f2f2; /* Hellere Türkis-Variante für Dark Mode */
+        }
+        .light-mode .footer-links a:hover {
+            color: #ffeb3b; /* Gelb als Hover-Farbe im Light Mode */
+        }
+
+
+        /* Responsive Anpassung für Footer - auf größeren Bildschirmen nebeneinander */
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row; /* Nebeneinander auf größeren Bildschirmen */
+                justify-content: space-between; /* Elemente verteilen */
+                align-items: center;
+            }
+            .footer-links {
+                justify-content: flex-end; /* Links nach rechts ausrichten */
+            }
+        }
+    </style>
+
+    <footer>
         <div class="footer-content">
             <p>&copy; 2025 Bohncity Schule. Alle Rechte vorbehalten.</p>
             <div class="footer-links">
                 <a href="https://epiccity-real.github.io/page/impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
                 </div>
             </div>
-    </footer>
     </footer>
 </html>
