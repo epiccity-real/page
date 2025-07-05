@@ -5,104 +5,244 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-            background: #f4f4f4;
-            color: #333;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
+        /* Grundlegende Stildefinitionen von der Hauptseite kopiert und angepasst */
+        :root {
+            --background-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --background-dark: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            --text-color-light: #333;
+            --text-color-dark: #f0f0f0;
+            --card-background-light: white;
+            --card-background-dark: #3a3a3a;
+            --header-background-light: rgba(255, 255, 255, 0.95);
+            --header-background-dark: rgba(25, 25, 25, 0.95);
+            --score-color: #007bff; /* Für Links und Hervorhebungen */
+            --warning-bg-light: #fcf8e3;
+            --warning-border-light: #fbeed5;
+            --warning-text-light: #c09853;
+            --warning-bg-dark: #4a3e26;
+            --warning-border-dark: #63502c;
+            --warning-text-dark: #f0e1a8;
         }
-        h1 {
-            color: #2c3e50;
+
+        /* Light Mode */
+        body.light-mode {
+            background: var(--background-light);
+            color: var(--text-color-light);
+        }
+        .light-mode .impressum-section {
+            background: var(--card-background-light);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .light-mode h1, .light-mode h2 {
+            color: var(--text-color-light); /* Oder spezifischere Header-Farbe */
+        }
+        .light-mode .contact-email {
+            color: #e74c3c; /* Roter für Warnung/Auffälligkeit */
+        }
+        .light-mode a {
+            color: var(--score-color);
+        }
+        .light-mode .disclaimer-box {
+            background-color: var(--warning-bg-light);
+            border: 1px solid var(--warning-border-light);
+            color: var(--warning-text-light);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: var(--background-dark);
+            color: var(--text-color-dark);
+        }
+        .dark-mode .impressum-section {
+            background: var(--card-background-dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .dark-mode h1, .dark-mode h2 {
+            color: var(--text-color-dark);
+        }
+        .dark-mode .contact-email {
+            color: #ff7675; /* Hellere Variante für Dark Mode */
+        }
+        .dark-mode a {
+            color: #6daffc; /* Hellblau für Links im Dark Mode */
+        }
+        .dark-mode .disclaimer-box {
+            background-color: var(--warning-bg-dark);
+            border: 1px solid var(--warning-border-dark);
+            color: var(--warning-text-dark);
+        }
+
+        /* Allgemeine Styles für Impressumsseite */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Oben ausgerichtet */
+            min-height: 100vh;
+            box-sizing: border-box;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .impressum-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 25px;
+            border-radius: 10px;
             text-align: center;
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Abstand nach unten, falls der Content kürzer als der Viewport ist */
+        }
+
+        h1 {
+            font-size: 2.5em;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 2px solid rgba(0,0,0,0.1); /* Angepasst für Theme */
         }
+        .dark-mode h1 {
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
         h2 {
-            color: #34495e;
-            border-bottom: 1px solid #eee;
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
             padding-bottom: 8px;
             margin-top: 25px;
             margin-bottom: 15px;
         }
+        .dark-mode h2 {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
         p {
             margin-bottom: 10px;
             font-size: 0.95em;
+            text-align: left; /* Text linksbündig */
         }
+
         .impressum-section {
-            background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 10px; /* Abgerundeter als vorher */
             margin-bottom: 20px;
+            text-align: left;
         }
+
         .contact-email {
             font-weight: bold;
-            color: #e74c3c; /* Eine auffällige Farbe für die E-Mail-Adresse */
+            font-size: 1.1em;
+            display: block; /* Macht die E-Mail zu einem eigenen Block */
+            margin-top: 10px;
+            text-align: center; /* Zentriert die E-Mail-Adresse */
         }
+
         a {
-            color: #3498db;
             text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
         }
         a:hover {
             text-decoration: underline;
         }
+
         .disclaimer-box {
-            background-color: #fcf8e3; /* Helle Warnfarbe */
-            border: 1px solid #fbeed5; /* Passender Rahmen */
-            color: #c09853; /* Dunklerer Text für Kontrast */
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
             font-size: 0.9em;
+            text-align: left;
+        }
+        .disclaimer-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .impressum-container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Impressum</h1>
+    <div class="impressum-container">
+        <h1>Impressum</h1>
 
-    <div class="impressum-section">
-        <h2>Angaben gemäß § 5 TMG</h2>
-        <p>Daten wegen potenziellen Datenmissbrauchs entfernt.</p>
-        <p>Für Anfragen und Kontaktmöglichkeiten wenden Sie sich bitte an:</p>
-        <p class="contact-email">exposeworld.consolecrafter@gmail.com</p>
+        <div class="impressum-section">
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <p>Daten wegen potenziellen Datenmissbrauchs entfernt.</p>
+            <p>Für Anfragen und Kontaktmöglichkeiten wenden Sie sich bitte an:</p>
+            <p class="contact-email">exposeworld.consolecrafter@gmail.com</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+            <p>Daten wegen potenziellen Datenmissbrauchs entfernt.</p>
+            <p>Für Anfragen und Kontaktmöglichkeiten wenden Sie sich bitte an die oben genannte E-Mail-Adresse.</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Haftung für Inhalte</h2>
+            <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+            <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Haftung für Links</h2>
+            <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+            <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Urheberrecht</h2>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+            <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+        </div>
+
+        <div class="disclaimer-box">
+            <p><strong>Wichtiger Hinweis:</strong> Bitte beachten Sie, dass diese Vorlage eine rechtliche Beratung nicht ersetzt. Je nach Art Ihrer Website (privat, gewerblich, Blog etc.) können weitere oder andere Angaben notwendig sein, um allen gesetzlichen Anforderungen zu genügen. Insbesondere wenn Sie eine geschäftliche oder kommerzielle Tätigkeit ausüben, ist eine umfassende Offenlegung Ihrer Daten gemäß Telemediengesetz (TMG) und Rundfunkstaatsvertrag (RStV) gesetzlich vorgeschrieben. Es wird dringend empfohlen, sich von einem spezialisierten Anwalt beraten zu lassen.</p>
+            <p>Diese Seite wurde so angepasst, dass keine direkten persönlichen Daten sichtbar sind, um Ihren Wunsch nach Datenschutz zu erfüllen. Für offizielle Anfragen und Kontaktmöglichkeiten dient die angegebene E-Mail-Adresse.</p>
+        </div>
     </div>
 
-    <div class="impressum-section">
-        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-        <p>Daten wegen potenziellen Datenmissbrauchs entfernt.</p>
-        <p>Für Anfragen und Kontaktmöglichkeiten wenden Sie sich bitte an die oben genannte E-Mail-Adresse.</p>
-    </div>
+    <script>
+        // Funktion zum Anwenden des Themes basierend auf localStorage oder Systempräferenz
+        function applyTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    document.body.classList.remove('light-mode');
+                } else {
+                    document.body.classList.add('light-mode');
+                    document.body.classList.remove('dark-mode');
+                }
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // Wenn keine gespeicherte Präferenz vorhanden ist, Systempräferenz prüfen
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+            } else {
+                // Standardmäßig Light Mode
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+            }
+        }
 
-    <div class="impressum-section">
-        <h2>Haftung für Inhalte</h2>
-        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
-        <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
-    </div>
-
-    <div class="impressum-section">
-        <h2>Haftung für Links</h2>
-        <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
-        <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
-    </div>
-
-    <div class="impressum-section">
-        <h2>Urheberrecht</h2>
-        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
-        <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
-    </div>
-
-    <div class="disclaimer-box">
-        <p><strong>Wichtiger Hinweis:</strong> Bitte beachten Sie, dass diese Vorlage eine rechtliche Beratung nicht ersetzt. Je nach Art Ihrer Website (privat, gewerblich, Blog etc.) können weitere oder andere Angaben notwendig sein, um allen gesetzlichen Anforderungen zu genügen. Insbesondere wenn Sie eine geschäftliche oder kommerzielle Tätigkeit ausüben, ist eine umfassende Offenlegung Ihrer Daten gemäß Telemediengesetz (TMG) und Rundfunkstaatsvertrag (RStV) gesetzlich vorgeschrieben. Es wird dringend empfohlen, sich von einem spezialisierten Anwalt beraten zu lassen.</p>
-        <p>Diese Seite wurde so angepasst, dass keine direkten persönlichen Daten sichtbar sind, um Ihren Wunsch nach Datenschutz zu erfüllen. Für offizielle Anfragen und Kontaktmöglichkeiten dient die angegebene E-Mail-Adresse.</p>
-    </div>
-
+        // Theme beim Laden der Seite anwenden
+        document.addEventListener('DOMContentLoaded', applyTheme);
+    </script>
 </body>
 </html>
