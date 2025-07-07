@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bohncity Kochen & Knochen: Dein Alltags-Guide für Mensch und Tier</title>
+    <style>
+        /* Grundlegende Stildefinitionen aus index (2).html angepasst */
+        :root {
+            --background-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --background-dark: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            --text-color-light: #333;
+            --text-color-dark: #f0f0f0;
+            --card-background-light: white;
+            --card-background-dark: #3a3a3a; /* Dark background for content cards */
+            --header-background-light: rgba(255, 255, 255, 0.95);
+            --header-background-dark: rgba(25, 25, 25, 0.95);
+            --nav-button-color-light: #718096;
+            --nav-button-color-dark: #bbbbbb;
+            --nav-button-hover-bg-light: #edf2f7;
+            --nav-button-hover-bg-dark: #555;
+            --btn-background-light: linear-gradient(45deg, #667eea, #764ba2);
+            --btn-background-dark: linear-gradient(45deg, #4a5568, #2d3748);
+            --section-title-color-light: #2d3748;
+            --section-title-color-dark: #f0f0f0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--background-light);
+            min-height: 100vh;
+            color: var(--text-color-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: background 0.5s ease, color 0.5s ease;
+            line-height: 1.6;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: var(--background-dark);
+            color: var(--text-color-dark);
+        }
+
+        body.dark-mode .header,
+        body.dark-mode .content-section, /* Apply dark background to content sections */
+        body.dark-mode footer {
+            background: var(--header-background-dark); /* Header and footer use a slightly darker background */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Specifically for content sections in dark mode */
+        body.dark-mode .content-section {
+            background: var(--card-background-dark); /* Use the designated card background for content sections */
+        }
+
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode .logo-text { /* Add logo-text for dark mode */
+            color: var(--section-title-color-dark);
+        }
+
+        body.dark-mode .btn {
+            background: var(--btn-background-dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Container und allgemeine Layout-Anpassungen */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .header {
+            background: var(--header-background-light);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: var(--section-title-color-light);
+            margin-bottom: 15px;
+            transition: color 0.5s ease;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px; /* Space between logo elements */
+        }
+
+        .logo-icon {
+            font-size: 3.5rem; /* Larger bean icon */
+            line-height: 1; /* Align vertically */
+            color: #4CAF50; /* Green for bean */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 3rem; /* Larger text */
+            font-weight: bold;
+            color: var(--section-title-color-light); /* Inherit from general title color */
+            letter-spacing: -2px;
+            transition: color 0.5s ease;
+        }
+
+        .logo-text span {
+            color: #FFC107; /* Yellow for "city" part, reminiscent of light/bright */
+        }
+        
+        .logo-subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-top: -15px; /* Pull it closer to the main logo */
+            margin-bottom: 20px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-background-light);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--section-title-color-light);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            color: var(--section-title-color-light);
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content-section p {
+            margin-bottom: 10px;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section ol {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            margin-bottom: 5px;
+        }
+
+        /* Button Style (adapted from subject-card button) */
+        .btn {
+            background: var(--btn-background-light);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block; /* For better alignment */
+            margin-top: 20px;
+            text-decoration: none; /* Ensure buttons are not underlined */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--header-background-light);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #555;
+            font-size: 0.9rem;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+            justify-content: center; /* Center links */
+            margin-top: 15px;
+            gap: 15px; /* Space between links */
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            white-space: nowrap; /* Prevent links from breaking */
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Dark mode switch (simplified) */
+        .theme-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-color-light);
+        }
+
+        body.dark-mode .theme-switcher {
+            background: rgba(25, 25, 25, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            color: var(--text-color-dark);
+        }
+        .theme-switcher:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-background-light);
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .search-container input[type="text"] {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: white; /* Ensure light background for input */
+            color: #333; /* Ensure dark text for input */
+        }
+
+        .search-container input[type="text"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+        }
+
+        body.dark-mode .search-container {
+            background: var(--card-background-dark);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .search-container input[type="text"] {
+            background-color: #555;
+            color: #f0f0f0;
+            border-color: #777;
+        }
+
+        body.dark-mode .search-container input[type="text"]:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 8px rgba(118, 75, 162, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switcher" onclick="toggleDarkMode()">
+        ☀️ / 🌙
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <span class="logo-icon">🫘</span>
+                <div class="logo-text">Bohn<span>city</span></div>
+            </div>
+            <div class="logo-subtitle">Kochen & Knochen</div>
+            <p>Willkommen bei <strong>Bohncity Kochen & Knochen</strong>, deinem neuen Lieblingsort für alles, was das Leben von dir und deinen Vierbeinern bereichert! Hier findest du leckere Rezepte für dich, praktische Tipps für deine Haustiere und jede Menge Inspiration für einen harmonischen Alltag.</p>
+            <p>Wir glauben, dass gutes Essen und glückliche Tiere Hand in Hand gehen. Deshalb haben wir eine Plattform geschaffen, die dir hilft, beides mühelos zu vereinen. Egal, ob du ein schnelles Abendessen zaubern möchtest oder dich fragst, welches Spielzeug dein Hund wirklich glücklich macht – bei uns bist du genau richtig.</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="Suche nach Rezepten oder Tiertipps...">
+        </div>
+
+        <section class="content-section" id="rezepte">
+            <h2>🍽️ Kochen: Einfache Rezepte für jeden Tag</h2>
+
+            <div class="searchable-item">
+                <h3>Wochengericht im Fokus: Die Blitz-Pasta mit Kirschtomaten und Basilikum</h3>
+                <p>Manchmal muss es einfach schnell gehen, ohne auf Geschmack zu verzichten! Unsere Blitz-Pasta ist perfekt für hektische Abende und zaubert im Handumdrehen ein Lächeln auf dein Gesicht.</p>
+                <p style="font-size: 0.8em; color: #777;">(Bild entfernt)</p>
+
+                <h4>Zutaten:</h4>
+                <ul>
+                    <li>250 g Penne oder Spaghetti</li>
+                    <li>250 g Kirschtomaten, halbiert</li>
+                    <li>2 Knoblauchzehen, fein gehackt</li>
+                    <li>Frischer Basilikum, eine Handvoll, gehackt</li>
+                    <li>2 EL Olivenöl</li>
+                    <li>Salz und Pfeffer</li>
+                    <li>Optional: Parmesan zum Bestreuen</li>
+                </ul>
+
+                <h4>Zubereitung:</h4>
+                <ol>
+                    <li><strong>Pasta kochen:</strong> Bringe Salzwasser zum Kochen und gare die Pasta nach Packungsanweisung al dente.</li>
+                    <li><strong>Soße vorbereiten:</strong> Währenddessen das Olivenöl in einer Pfanne erhitzen. Knoblauch darin kurz andünsten (nicht braun werden lassen!).</li>
+                    <li><strong>Tomaten dazu:</strong> Gib die halbierten Kirschtomaten in die Pfanne und brate sie für 3-5 Minuten an, bis sie leicht aufplatzen. Mit Salz und Pfeffer abschmecken.</li>
+                    <li><strong>Alles vereinen:</strong> Gieße die Pasta ab und gib sie direkt zur Tomatensoße in die Pfanne. Alles gut vermischen.</li>
+                    <li><strong>Basilikum rein:</strong> Zum Schluss den frischen Basilikum unterheben. Auf Tellern anrichten und optional mit Parmesan bestreuen. Guten Appetit!</li>
+                </ol>
+            </div>
+
+            <div class="searchable-item">
+                <h3>Schneller Quinoa-Salat mit Gemüse</h3>
+                <p>Dieser Quinoa-Salat ist leicht, nahrhaft und perfekt für eine gesunde Mahlzeit. Er lässt sich wunderbar vorbereiten und mitnehmen.</p>
+                <p style="font-size: 0.8em; color: #777;">(Bild entfernt)</p>
+
+                <h4>Zutaten:</h4>
+                <ul>
+                    <li>150 g Quinoa</li>
+                    <li>300 ml Gemüsebrühe</li>
+                    <li>1 Paprika (rot oder gelb), gewürfelt</li>
+                    <li>1/2 Gurke, gewürfelt</li>
+                    <li>100 g Kirschtomaten, halbiert</li>
+                    <li>Frische Petersilie, gehackt</li>
+                    <li>Dressing: 2 EL Olivenöl, 1 EL Zitronensaft, Salz, Pfeffer</li>
+                </ul>
+
+                <h4>Zubereitung:</h4>
+                <ol>
+                    <li><strong>Quinoa kochen:</strong> Quinoa gründlich waschen. Mit Gemüsebrühe in einem Topf zum Kochen bringen, dann Hitze reduzieren und ca. 15 Minuten köcheln lassen, bis die Flüssigkeit aufgenommen ist. Von der Herdplatte nehmen und 5 Minuten ruhen lassen. Auflockern.</li>
+                    <li><strong>Gemüse vorbereiten:</strong> Paprika, Gurke und Kirschtomaten waschen und klein schneiden. Petersilie hacken.</li>
+                    <li><strong>Mischen:</strong> Gekühlten Quinoa mit dem vorbereiteten Gemüse und der Petersilie in einer großen Schüssel vermengen.</li>
+                    <li><strong>Dressing:</strong> Alle Zutaten für das Dressing verrühren und über den Salat geben. Gut mischen und vor dem Servieren etwas ziehen lassen.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="content-section" id="tiertipps">
+            <h2>🐾 Knochen: Tierische Tipps für glückliche Fellnasen</h2>
+
+            <div class="searchable-item">
+                <h3>Tier-Tipp der Woche: Sommerhitze? So bleibt dein Hund cool!</h3>
+                <p>Der Sommer ist wunderschön, aber für unsere Hunde kann die Hitze schnell gefährlich werden. Hier sind ein paar einfache Tipps, wie du deinen Vierbeiner bei hohen Temperaturen schützt:</p>
+                <p style="font-size: 0.8em; color: #777;">(Bild entfernt)</p>
+
+                <ul>
+                    <li><strong>Viel Wasser:</strong> Stelle sicher, dass dein Hund immer Zugang zu frischem, kühlem Wasser hat. Mehrere Wassernäpfe im Haus und Garten sind ideal.</li>
+                    <li><strong>Spaziergänge verlegen:</strong> Verlege die Gassi-Runden in die kühleren Morgen- und Abendstunden. Asphalt kann sich extrem aufheizen und Pfoten verbrennen! Mach den "5-Sekunden-Test": Halte deine Hand 5 Sekunden auf den Asphalt. Wenn es zu heiß für dich ist, ist es auch zu heiß für die Pfoten deines Hundes.</li>
+                    <li><strong>Schattenplätze:</strong> Biete deinem Hund immer ausreichend Schatten. Das kann ein Baum im Garten, ein Sonnenschirm oder einfach ein kühler Raum im Haus sein.</li>
+                    <li><strong>Kühle Leckerlis:</strong> Gefrorene Hundeleckerlis oder ein mit Wasser und etwas Hundefutter gefüllter und eingefrorener Kong können für Abkühlung und Beschäftigung sorgen.</li>
+                    <li><strong>Niemals im Auto lassen:</strong> Auch nur für wenige Minuten kann ein geparktes Auto zur tödlichen Falle werden! Die Temperatur im Inneren steigt extrem schnell an.</li>
+                </ul>
+            </div>
+
+            <div class="searchable-item">
+                <h3>Zahnpflege für Hunde: Ein wichtiger Schritt zur Gesundheit</h3>
+                <p>Regelmäßige Zahnpflege ist für die Gesundheit deines Hundes genauso wichtig wie für dich selbst. Vernachlässigte Zähne können zu Schmerzen, Infektionen und sogar zu ernsthaften Krankheiten führen.</p>
+                <p style="font-size: 0.8em; color: #777;">(Bild entfernt)</p>
+
+                <h4>Tipps für die Zahnpflege:</h4>
+                <ul>
+                    <li><strong>Regelmäßiges Zähneputzen:</strong> Gewöhne deinen Hund frühzeitig an das Zähneputzen mit einer speziellen Hundezahnbürste und Hundezahnpasta. Beginne mit kurzen Einheiten.</li>
+                    <li><strong>Zahnpflege-Kausnacks:</strong> Es gibt spezielle Kausnacks, die helfen können, Plaque und Zahnstein zu reduzieren. Achte auf Produkte mit dem VOHC-Siegel (Veterinary Oral Health Council).</li>
+                    <li><strong>Regelmäßige tierärztliche Kontrollen:</strong> Dein Tierarzt kann den Zustand der Zähne beurteilen und gegebenenfalls eine professionelle Zahnreinigung empfehlen.</li>
+                    <li><strong>Sicheres Kauspielzeug:</strong> Hartes Kauspielzeug kann die Zähne reinigen, aber vermeide zu harte Gegenstände wie Knochen, die zu Zahnfrakturen führen können.</li>
+                </ul>
+            </div>
+
+            <div class="searchable-item">
+                <h3>Trainingstipp: Positive Verstärkung verstehen</h3>
+                <p>Positive Verstärkung ist eine der effektivsten und humansten Methoden, um deinem Haustier neue Verhaltensweisen beizubringen. Es geht darum, erwünschtes Verhalten zu belohnen, sodass die Wahrscheinlichkeit steigt, dass es wiederholt wird.</p>
+                <p style="font-size: 0.8em; color: #777;">(Bild entfernt)</p>
+                <h4>So funktioniert's:</h4>
+                <ul>
+                    <li><strong>Belohnung direkt nach dem Verhalten:</strong> Gib die Belohnung (Leckerli, Lob, Spielzeug) sofort, nachdem dein Tier das gewünschte Verhalten gezeigt hat. So verknüpft es die Belohnung mit der Aktion.</li>
+                    <li><strong>Kurze Trainingseinheiten:</strong> Halte die Einheiten kurz (5-10 Minuten), um die Aufmerksamkeit deines Tieres zu behalten und Überforderung zu vermeiden.</li>
+                    <li><strong>Konsistenz:</strong> Alle im Haushalt sollten die gleichen Kommandos und Belohnungen verwenden, um Verwirrung zu vermeiden.</li>
+                    <li><strong>Vielfältige Belohnungen:</strong> Nicht jedes Tier motiviert das Gleiche – das kann ein spezielles Leckerli, ein Lob, eine Streicheleinheit oder ein kurzes Spiel sein.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Bohncity Kochen & Knochen. Alle Rechte vorbehalten.</p>
+            <div class="footer-links">
+                <a href="https://epiccity-real.github.io/page/impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
+                <a href="https://mc-host24.de/donate/bohncity" target="_blank" rel="noopener noreferrer">Spenden</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript für den Dark Mode Umschalter
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            // Speichern des Zustands im Local Storage (optional, aber gut für Benutzerfreundlichkeit)
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Beim Laden der Seite den gespeicherten Zustand überprüfen
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // JavaScript für die Suchfunktion
+        function filterContent() {
+            const searchInput = document.getElementById('searchInput');
+            const filter = searchInput.value.toLowerCase();
+            const searchableItems = document.querySelectorAll('.content-section .searchable-item');
+
+            searchableItems.forEach(item => {
+                let textContent = item.textContent || item.innerText;
+                if (textContent.toLowerCase().includes(filter)) {
+                    item.style.display = ""; // Show the item
+                } else {
+                    item.style.display = "none"; // Hide the item
+                }
+            });
+        }
+    </script>
+</body>
+</html>
