@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BohnCity Tree 🌱</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Mode Farben */
+            --background-color: #f0f8ff; /* AliceBlue */
+            --text-color: #333;
+            --button-bg: #4CAF50; /* Grüne Bohne */
+            --button-hover-bg: #45a049;
+            --button-text: white;
+            --container-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --toggle-bg: #e0e0e0;
+            --toggle-circle: #fff;
+            --player-bg: #f8f8f8; /* Light gray for player background */
+            --player-border: #ddd;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Farben */
+            --background-color: #282c34; /* Dunkles Anthrazit */
+            --text-color: #e0e0e0;
+            --button-bg: #61afef; /* Blau für Dark Mode */
+            --button-hover-bg: #529cdc;
+            --button-text: white;
+            --container-bg: #3c4048;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --toggle-bg: #555;
+            --toggle-circle: #fff;
+            --player-bg: #1e1e1e; /* Darker gray for player background */
+            --player-border: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            position: relative; /* Needed for fixed audio player */
+            padding-bottom: 100px; /* Space for the fixed player */
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+            margin-bottom: 30px; /* Space above theme switcher */
+        }
+
+        .logo {
+            font-size: 100px;
+            margin-bottom: 25px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            transition: color 0.5s ease;
+        }
+
+        .link-button {
+            display: block;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 18px 25px;
+            margin: 20px auto;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: calc(100% - 40px); /* Adjust for padding */
+            max-width: 350px;
+        }
+
+        .link-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .link-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark/Light Mode Switcher */
+        .theme-switcher {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .theme-switcher label {
+            cursor: pointer;
+            width: 60px;
+            height: 30px;
+            background-color: var(--toggle-bg);
+            border-radius: 15px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switcher label::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: var(--toggle-circle);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-switcher input[type="checkbox"] {
+            display: none;
+        }
+
+        .theme-switcher input[type="checkbox"]:checked + label::after {
+            transform: translateX(30px);
+        }
+
+        .theme-switcher input[type="checkbox"]:checked + label {
+            background-color: #6a0dad; /* Dunkle Farbe für den Umschalter im Dark Mode */
+        }
+
+        /* Fixed Audio Player at the bottom */
+        .fixed-audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--player-bg);
+            box-shadow: 0 -2px 10px var(--shadow-color);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border-top: 1px solid var(--player-border);
+            transition: background-color 0.5s ease, box-shadow 0.5s ease, border-top 0.5s ease;
+            box-sizing: border-box; /* Include padding in width */
+            z-index: 1000; /* Ensure it stays on top */
+        }
+
+        .fixed-audio-player audio {
+            flex-grow: 1; /* Allows the audio element to take available space */
+            max-width: 500px; /* Limit player width */
+            height: 40px; /* Standard height for audio controls */
+            background-color: transparent; /* Let the container handle background */
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* Styling for player controls */
+        .fixed-audio-player button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .fixed-audio-player button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }
+
+        .fixed-audio-player button:active {
+            transform: translateY(0);
+        }
+
+        /* Adjust audio player appearance for dark mode */
+        [data-theme="dark"] .fixed-audio-player audio {
+             /* Invert to make controls visible against dark background */
+            filter: invert(85%) hue-rotate(180deg);
+        }
+
+        /* Responsive Anpassungen */
+        @media (max-width: 600px) {
+            body {
+                padding-bottom: 80px; /* Adjust for smaller player height */
+            }
+            .container {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+            .logo {
+                font-size: 80px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .link-button {
+                font-size: 1.1em;
+                padding: 15px 20px;
+            }
+            .fixed-audio-player {
+                flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+                padding: 10px 15px;
+                gap: 10px;
+            }
+            .fixed-audio-player button {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+
+        /* Keyframe-Animation für das Logo */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🫘</div>
+        <h1>BohnCity Tree</h1>
+
+        <a href="https://kochenundknochen.bohncity.de" target="_blank" class="link-button">Kochen & Knochen</a>
+        <a href="http://lernen.bohncity.de/" target="_blank" class="link-button">BohnCity Lernen</a>
+        <a href="http://impressum.bohncity.de/" target="_blank" class="link-button">Impressum</a>
+
+        <div class="theme-switcher">
+            <span>Light Mode</span>
+            <input type="checkbox" id="theme-toggle">
+            <label for="theme-toggle"></label>
+            <span>Dark Mode</span>
+        </div>
+    </div>
+
+    <div class="fixed-audio-player">
+        <button id="prev-track">Zurück</button>
+        <audio id="audio-player" controls>
+            Your browser does not support the audio element.
+        </audio>
+        <button id="next-track">Weiter</button>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Function to set the theme
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // On page load: Check localStorage for theme, use system preference, or default to light
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+            if (savedTheme === 'dark') {
+                themeToggle.checked = true;
+            }
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+            themeToggle.checked = true;
+        } else {
+            setTheme('light');
+        }
+
+        // Event Listener for the theme switcher
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        });
+
+        // --- Audio Player Logic ---
+        const audioPlayer = document.getElementById('audio-player');
+        const prevTrackBtn = document.getElementById('prev-track');
+        const nextTrackBtn = document.getElementById('next-track');
+
+        const playlist = [
+            '2.mp3',
+            '1.mp3',
+            '3.mp3',
+            '4.mp3',
+			'5.mp3',
+			'6.mp3',
+			'7.mp3',
+			'8.mp3',
+			'9.mp3',
+			'10.mp3',
+			'11.mp3',
+			'12.mp3',
+			'13.mp3',
+			'14.mp3',
+			'15.mp3',
+			'16.mp3',
+			'17.mp3',
+			'18.mp3',
+			'19.mp3',
+			'20.mp3',
+			'21.mp3',
+			'22.mp3',
+			'23.mp3',
+            '14.mp3'
+        ];
+        let currentTrackIndex = 0;
+
+        function loadTrack(index) {
+            if (index >= 0 && index < playlist.length) {
+                currentTrackIndex = index;
+                audioPlayer.src = playlist[currentTrackIndex];
+                audioPlayer.load(); // Load the new track
+                audioPlayer.play(); // Auto-play the new track
+            }
+        }
+
+        function playNextTrack() {
+            loadTrack((currentTrackIndex + 1) % playlist.length);
+        }
+
+        function playPrevTrack() {
+            loadTrack((currentTrackIndex - 1 + playlist.length) % playlist.length);
+        }
+
+        // Event listeners for buttons
+        nextTrackBtn.addEventListener('click', playNextTrack);
+        prevTrackBtn.addEventListener('click', playPrevTrack);
+
+        // Event listener for when a track ends
+        audioPlayer.addEventListener('ended', playNextTrack);
+
+        // Initialize with the first track
+        loadTrack(currentTrackIndex);
+
+    </script>
+</body>
+</html>
