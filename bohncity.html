@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BohnCity - Dein Minecraft Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="icon.png" type="image/png"> <style>
+        :root {
+            --primary-bg: #1a1a2e;
+            --secondary-bg: #16213e;
+            --accent-red: #e94560;
+            --accent-green: #53d395;
+            --text-light: #e0e0e0;
+            --text-dark-subtle: #c0c0c0;
+            --border-color: #0f3460;
+            --header-font: 'Oswald', sans-serif;
+            --body-font: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.7;
+            margin: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #111a2a;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: var(--header-font);
+            font-size: 2.8em;
+            color: var(--accent-green);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 700;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-red);
+            background-color: rgba(233, 69, 96, 0.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('banner.png') no-repeat center center/cover; /* Bannerbild eingefügt */
+            color: var(--text-light);
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2 {
+            font-family: var(--header-font);
+            font-size: 3.5em;
+            color: var(--accent-green);
+            text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: var(--text-dark-subtle);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 30px 0;
+        }
+
+        h2 {
+            font-family: var(--header-font);
+            font-size: 2.2em;
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+            color: var(--text-dark-subtle);
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            color: var(--text-dark-subtle);
+        }
+
+        li::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--accent-red);
+            font-size: 1.1em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        /* Override for rule list items */
+        #rules-section li::before {
+            content: '•';
+            font-family: var(--body-font);
+            font-weight: normal;
+            font-size: 1.2em;
+            color: var(--accent-red);
+        }
+
+
+        strong {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--accent-green);
+            font-style: normal;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed var(--border-color);
+            margin: 50px 0;
+        }
+
+        /* --- Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background-color: #0f1629;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-item i {
+            font-size: 3em;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            font-family: var(--header-font);
+            color: var(--accent-green);
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 0.95em;
+            color: var(--text-dark-subtle);
+        }
+
+        /* --- Contact Section --- */
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 2.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background-color: #0f1629;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-dark-subtle);
+            font-size: 0.9em;
+            border-radius: 12px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .container {
+                margin: 30px auto;
+                padding: 30px;
+            }
+            .hero h2 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .logo {
+                font-size: 2.2em;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .hero {
+                padding: 60px 15px;
+            }
+            .hero h2 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            li {
+                padding-left: 25px;
+            }
+            li::before {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BohnCity</div>
+        <nav>
+            <ul>
+                <li><a href="#hero" class="active">Start</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#rules-section">Regeln</a></li>
+                <li><a href="#join">Mitspielen</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="hero" class="hero">
+            <h2>Willkommen auf BohnCity!</h2>
+            <p>Dein Zuhause für ein einzigartiges Minecraft-Erlebnis. Tauche ein in unsere vielfältige Welt, baue beeindruckende Projekte und erlebe Abenteuer mit einer großartigen Community!</p>
+            <a href="#join" class="btn">Jetzt mitspielen!</a>
+        </section>
+
+        <section id="about">
+            <h2>Über uns</h2>
+            <p><strong>BohnCity</strong> ist ein langjähriger und etablierter Minecraft-Server, der sich der Schaffung einer freundlichen, innovativen und langlebigen Spielumgebung verschrieben hat. Wir bieten Spielern aller Altersgruppen und Spielstile ein Zuhause, in dem sie ihrer Kreativität freien Lauf lassen und gemeinsam neue Welten erkunden können.</p>
+            <p>Unser Ziel ist es, eine Community zu fördern, die auf Respekt und Zusammenarbeit basiert. Egal ob du lieber entspannt baust, dich in Minigames misst oder die weite Survival-Welt erkundest – bei BohnCity findest du immer etwas Neues zu entdecken.</p>
+        </section>
+
+        <hr>
+
+        <section id="features">
+            <h2>Unsere Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-hammer"></i>
+                    <h3>Kreatives Bauen</h3>
+                    <p>Entfalte deine architektonischen Fähigkeiten auf gesicherten Grundstücken und erschaffe beeindruckende Bauwerke.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Spannendes Survival</h3>
+                    <p>Tauche ein in eine riesige, unberührte Survival-Welt, sammle Ressourcen und baue deine Basis auf.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Aktive Community</h3>
+                    <p>Triff Gleichgesinnte, schmiede Allianzen und erlebe gemeinsam unvergessliche Momente.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Regelmäßige Events</h3>
+                    <p>Nimm an spannenden Events und Wettbewerben teil, um besondere Belohnungen zu gewinnen.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Fairness & Schutz</h3>
+                    <p>Ein erfahrenes Team sorgt für Fairness, Bug-Fixes und schützt deine Bauwerke vor Griefing.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Stabile Server</h3>
+                    <p>Wir nutzen leistungsstarke Hardware, um dir ein lagfreies und flüssiges Spielerlebnis zu garantieren.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="rules-section">
+            <h2>Regelwerk</h2>
+            <p>Mit der Nutzung des <strong>BohnCity Netzwerkes</strong> oder auch nur Teilen davon (Discord, Webseite, etc.) erkennt der Nutzer diese Regeln in vollem Umfang an.</p>
+
+            <h3>Allgemeines</h3>
+            <ul>
+                <li>Solltest du eine Regel finden, die deiner Meinung nach im Regelwerk fehlen sollte, teile dies bitte dem <strong>Serverteam</strong> mit.</li>
+                <li>Das <strong>Serverteam</strong> kann User auch mit Sanktionen belegen, um das Ausnutzen von Lücken im Regelwerk zu verhindern, selbst wenn kein direkter Verstoß vorliegt.</li>
+                <li>Jeder Angriff gegen diesen Server ist strafbar. IP-Adressen werden geloggt und im Angriffsfall zur strafrechtlichen Anzeige gebracht.</li>
+                <li>Das <strong>Serverteam</strong> behält sich vor, dieses Regelwerk jederzeit zu ändern. Diese Änderungen können ohne Ankündigung geschehen und treten i.d.R. sofort in Kraft.</li>
+                <li>Mit der Nutzung des <strong>BohnCity Netzwerkes</strong> oder auch nur Teilen davon (Discord, Forum, etc.) erkennt der Nutzer diese Regeln in vollem Umfang an.</li>
+                <li>Das <strong>Serverteam</strong> hat absolutes Weisungsrecht. Das heißt, dass Anweisungen des Serverteams stets Folge zu leisten sind. Bei Bedenken über die Rechtmäßigkeit von Entscheidungen hat man sich an die <strong>Admins</strong> zu wenden.</li>
+            </ul>
+
+            <h3>Accounts, Client-Modifikationen und Bug-Using</h3>
+            <ul>
+                <li>Jede Art von <strong>Client-Modifikationen</strong>, welche dem Nutzer einen Vorteil gegenüber anderen verschafft, ist verboten. Beispiele sind: X-Ray, Fly, Freecam oder Minimaps, welche Spieler/Mobs anzeigen.</li>
+                <li>Das <strong>Ausnutzen oder Verbreiten von Bugs</strong> ist verboten und ist im Forum oder einem Teammitglied zu melden.</li>
+                <li>Accounts mit rassistischen, sexistischen oder in sonst einer Weise <strong>unanfechtbaren Namen</strong> sind nicht erwünscht.</li>
+                <li>Ebenso sind Accounts mit <strong>Nackt-Skins</strong> oder rassistischen Skins nicht erwünscht.</li>
+            </ul>
+
+            <h3>Nutzung von Zweitaccounts</h3>
+            <p>Die Nutzung von Zweitaccounts ist nur zulässig, wenn zwischen den beiden Accounts keine Interaktion stattfindet. Verboten sind unter anderem:</p>
+            <ul>
+                <li>Das Membern eines Accounts auf dem Grundstück des anderen.</li>
+                <li>Sämtliche finanzielle Interaktion (z.B. Überweisung, Shopeinkäufe, Grundstückskäufe).</li>
+                <li>Mit beiden Accounts gleichzeitig online sein.</li>
+                <li>Die Weitergabe von Items in beliebiger Art und Weise.</li>
+            </ul>
+
+            <h3>Verhalten gegenüber Mitspielern/Team</h3>
+            <ul>
+                <li>Das <strong>Griefen</strong> ist verboten. Ausnahme: Survival-Server.</li>
+                <li>Andere Spieler zu <strong>betrügen</strong> und auszunutzen ist verboten.</li>
+                <li>Das Team anzubetteln (z.B. um nach Items aus dem Gamemode zu betteln) ist verboten.</li>
+                <li>Den Anweisungen des Teams ist Folge zu leisten.</li>
+                <li>Entscheidungen des Teams werden nicht diskutiert.</li>
+                <li>Entscheidungen von Gamemastern/Admins werden nicht diskutiert.</li>
+                <li>Das Schieben von Gamemastern und Admins ist verboten.</li>
+            </ul>
+
+            <h3>Chat Regeln (gelten auch für Privatnachrichten)</h3>
+            <ul>
+                <li>Das <strong>Beleidigen oder Belästigen</strong> von anderen Usern ist verboten.</li>
+                <li>Das <strong>Spammen und CAPSEN</strong> jeglicher Art ist verboten.</li>
+                <li><strong>Fremdwerbung</strong> für andere Server, Websites und z.B. YouTube-Channel ist verboten.</li>
+                <li>Ebenso untersagt ist das Werben für <strong>BohnCity</strong> auf anderen Servern!</li>
+                <li>Bei Privatgesprächen soll geflüstert werden! <em>(/msg [Username] [Nachricht])</em></li>
+            </ul>
+
+            <h3>PvP und Userfallen</h3>
+            <ul>
+                <li>Spielerfallen auf den Grundstücken sowie in Mats/Freebuild sind verboten.</li>
+                <li>Wurftränke sind nur im PvP zu benutzen.</li>
+                <li>Das Verwenden von <strong>Unsichtbarkeitstränken</strong> ist im PvP untersagt.</li>
+                <li>Einen Spieler außerhalb des PvP zu töten ist verboten.</li>
+            </ul>
+
+            <h3>Bauregeln</h3>
+            <ul>
+                <li>Fliegende Schriftzüge und Häuser sind verboten.</li>
+                <li>Ein-Block-Türme sind verboten.</li>
+                <li>Redstone-Clocks sind verboten.</li>
+                <li>Es sind maximal <strong>50 Trichter</strong> auf einem Grundstück erlaubt!</li>
+                <li>Jede Art von <strong>automatischen Farmen</strong> sind verboten. <em>(Automatische Farmen sind Farmen, bei denen man nicht per Hand abbaut).</em></li>
+                <li>Der Effekt eines Leuchtfeuers darf nur auf dem Grundstück des Besitzers aktiv sein. Bei Beschwerden der Nachbarn wird zuerst darauf hingewiesen, bei nicht Entfernung von einem Admin ohne Rückerstattung entfernt.</li>
+                <li><strong>Mob-Farmen</strong> jeglicher Art sind verboten.</li>
+            </ul>
+
+            <h3>Spielinhalte und Eigentum</h3>
+            <ul>
+                <li>Jeglicher Handel mit Gegenständen, Währung, Dienstleistungen oder anderen Spielinhalten gegen Währung (z.B. Euro) außerhalb der Spielwelt ist verboten.</li>
+                <li>Auf dem Server umgesetzte Projekte und Ideen stehen dem Server auch weiterhin zur Verfügung, nachdem der Erbauer/Ideengeber den Server verlassen hat, sei dies aus freien Stücken oder durch einen Bann. Es besteht kein Recht auf eine nachträgliche Löschung von Gebäuden oder sonstigen Inhalten.</li>
+                <li>Es besteht kein Anspruch auf Rückerstattung von verlorenen Gegenständen oder Spielwährung, egal ob die Gegenstände durch Bugs, Lags, Tod, Griefen oder auf anderem Weg verloren gegangen sind.</li>
+                <li>Jeder Spieler ist für das, was auf seinem Grundstück passiert, verantwortlich. Sanktionen für Regelverstöße fallen immer ebenfalls auf den Grundstücksbesitzer zurück. Werden Gegenstände von Spielern entfernt, denen vom Grundstücksbesitzer Rechte erteilt worden sind, so ist der Grundstücksbesitzer für diesen Verlust selbst verantwortlich.</li>
+            </ul>
+
+            <h3>Allgemeine Regeln</h3>
+            <ul>
+                <li><strong>AFK-Zeitfarming</strong> ist verboten.</li>
+                <li>Pornographische Inhalte und illegale Inhalte werden nicht geduldet und mit einem <strong>permanenten Bann</strong> bestraft.</li>
+                <li>Das Verlinken und Posten/Verbreiten von illegalen Inhalten, wie Viren, Trojanern, Bots, Hacks, Serials und Cracks wird mit einem <strong>permanenten Bann</strong> bestraft.</li>
+                <li>Den Anweisungen des Teams ist Folge zu leisten. Wenn deiner Meinung nach etwas falsch bewertet wurde oder ein Teammitglied einen anderen Fehler begangen hat, klärt dies entweder privat oder melde dich bei einem Administrator.</li>
+            </ul>
+
+            <h3>Minecraft-Spezifische Regeln</h3>
+            <ul>
+                <li>Immer <strong>Screenshots oder Videos</strong> machen, wenn ihr euch über einen Spieler etc. beschweren wollt.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="join">
+            <h2>So spielst du mit!</h2>
+            <p>Es ist ganz einfach, BohnCity beizutreten und Teil unserer Community zu werden:</p>
+            <ol style="list-style-type: decimal; padding-left: 20px;">
+                <li style="list-style-type: decimal; color: var(--text-dark-subtle); margin-bottom: 10px;">Stelle sicher, dass du die neueste Version von Minecraft Java Edition hast.</li>
+                <li style="list-style-type: decimal; color: var(--text-dark-subtle); margin-bottom: 10px;">Starte Minecraft und wähle im Hauptmenü "Mehrspieler".</li>
+                <li style="list-style-type: decimal; color: var(--text-dark-subtle); margin-bottom: 10px;">Klicke auf "Server hinzufügen" und gib folgende Daten ein:
+                    <ul style="list-style-type: disc; margin-top: 5px; margin-bottom: 0;">
+                        <li style="list-style-type: disc; color: var(--text-dark-subtle); margin-bottom: 5px;">Servername: <strong>BohnCity</strong></li>
+                        <li style="list-style-type: disc; color: var(--text-dark-subtle);">Serveradresse: <strong>BohnCity.de</strong></li>
+                    </ul>
+                </li>
+                <li style="list-style-type: decimal; color: var(--text-dark-subtle);">Klicke auf "Fertig" und trete dem Server bei. Wir freuen uns auf dich!</li>
+            </ol>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="https://dsc.gg/bohncity" target="_blank" class="btn"><i class="fab fa-discord"></i> Unserem Discord beitreten</a>
+            </p>
+        </section>
+
+        <hr>
+
+        <section id="contact">
+            <h2>Kontakt</h2>
+            <p>Hast du Fragen, Anregungen oder benötigst du Hilfe? Zögere nicht, uns zu kontaktieren!</p>
+            <div class="contact-info">
+                <p><strong>E-Mail:</strong> <a href="mailto:kontakt@bohncity.de" style="color: var(--accent-green); text-decoration: none;">kontakt@bohncity.de</a></p>
+                <p><strong>Discord:</strong> Tritt unserem Discord-Server bei für schnellen Support und Community-Interaktion.</p>
+                <div class="social-links">
+                    <a href="https://dsc.gg/bohncity" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.youtube.com/channel/UCY9LY8Zv02hEoH4ZguvuPHw" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 BohnCity. Alle Rechte vorbehalten. | <a href="#rules-section" style="color: var(--text-dark-subtle); text-decoration: none;">Regelwerk</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const sections = document.querySelectorAll('section');
+
+            const removeActiveClass = () => {
+                navLinks.forEach(link => link.classList.remove('active'));
+            };
+
+            const addActiveClass = (id) => {
+                const activeLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            };
+
+            const onScroll = () => {
+                let currentActive = 'hero'; // Default active section
+
+                // Get header height to adjust scroll position
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 0;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - (headerHeight + 20); // Adjust for fixed header and some padding
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        currentActive = section.id;
+                    }
+                });
+
+                removeActiveClass();
+                addActiveClass(currentActive);
+            };
+
+            const header = document.querySelector('header'); // Re-declare header for scope
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Initial call to set active link on load
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    removeActiveClass();
+                    this.classList.add('active');
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        window.scrollTo({
+                            top: targetSection.offsetTop - headerHeight, // Adjust for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
